@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import modele.DessinModele;
 
 /*
+ * @author Loïck Nosal
  * Cette classe définit la vue.
  */
 public class VueDessin extends JPanel implements Observer{
@@ -23,7 +24,7 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("test3");
+		System.out.println("refresh");
 	}
 
 }

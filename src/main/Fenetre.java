@@ -2,7 +2,6 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,6 +9,7 @@ import controleur.PanneauChoix;
 import vue.VueDessin;
 
 /*
+ * @author Loïck Nosal
  * Cette classe définit l'interface utilisateur et la méthode main.
  */
 public class Fenetre extends JFrame{
@@ -31,7 +31,7 @@ public class Fenetre extends JFrame{
 		fenetre.setLayout(new BorderLayout());
 		fenetre.add(this.choix,BorderLayout.NORTH);
 		fenetre.add(this.principal,BorderLayout.SOUTH);
-		fenetre.setPreferredSize(new Dimension(500,500));
+		fenetre.setPreferredSize(new Dimension(800,600));
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
 		fenetre.pack();
 		fenetre.setVisible(true);
@@ -44,6 +44,6 @@ public class Fenetre extends JFrame{
 	 */
 	public static void main(String[] args) {
 		System.out.println("test");
-		JFrame fenetre = new Fenetre("FG",500,500);
+		JFrame fenetre = new Fenetre("FG",800,600);
 	}
 }

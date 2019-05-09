@@ -1,1 +1,4 @@
-# FiguresGeometriques
+FiguresGeometriques
+PROJET IHM 2019
+NOSAL LOÏCK S2E
+VERSION 1.0

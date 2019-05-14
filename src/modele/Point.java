@@ -15,36 +15,39 @@ public class Point {
 		this.y = posY;
 	}
 	
-	public double distance(Point p) {
-		throw new Error("pas fait");
+	public double distance(Point p2) {
+		double d = Math.sqrt((Math.pow(2,(this.rendreX()-p2.rendreX())) + 
+				(Math.pow(2, (this.rendreY()-p2.rendreY())))));
+		return d;
 	}
 	
 	public int rendreX() {
-		throw new Error("pas fait");
+		return this.x;
 	}
 	
 	public int rendreY() {
-		throw new Error("pas fait");
+		return this.y;
 	}
 	
-	public void incrementerX(int x) {
-		throw new Error("pas fait");
+	public void incrementerX(int incx) {
+		this.x += incx;
 	}
 	
-	public void incrementerY(int y) {
-		throw new Error("pas fait");
+	public void incrementerY(int incy) {
+		this.y += incy;
 	}
 	
-	public void modifierX(int x) {
-		throw new Error("pas fait");
+	public void modifierX(int newx) {
+		this.x = newx;
 	}
 	
-	public void modifierY(int y) {
-		throw new Error("pas fait");
+	public void modifierY(int newy) {
+		this.y = newy;
 	}
 	
-	public void translation(int x, int y) {
-		throw new Error("pas fait");
+	public void translation(int dx, int dy) {
+		this.x += dx;
+		this.y += dy;
 	}
 
 }

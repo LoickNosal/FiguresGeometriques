@@ -11,6 +11,9 @@ import java.util.Observable;
  */
 public class DessinModele extends Observable{
 	
+	/*
+	 * contient l'ensemble des figures dessinees par l'utilisateur dans un dessin
+	 */
 	private ArrayList<FigureColoree> lfg;
 	
 	
@@ -19,15 +22,15 @@ public class DessinModele extends Observable{
 	}
 	
 	public ArrayList<FigureColoree> get_fg(){
-		throw new Error("pas fait");
+		return this.lfg;
 	}
 	
 	public void initDessinModele() {
-		throw new Error("pas fait");
+		this.lfg = new ArrayList<FigureColoree>();
 	}
 	
 	public void ajoute(FigureColoree f) {
-		throw new Error("pas fait");
+		this.lfg.add(f);
 	}
 	
 

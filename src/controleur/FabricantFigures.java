@@ -1,41 +1,67 @@
 package controleur;
 
+import java.awt.event.MouseListener;
+
 import javafx.scene.input.MouseEvent;
 import modele.FigureColoree;
 import modele.Point;
 
 /*
- * Classe implemantant la creation de figures geometriques via des clics de souris
+ * Classe implemantant la creation de figures geometriques via des clics de souris.
+ * La classe FabricantFigures est un contrôleur, le modèle est passé en paramètre de son
+ * constructeur. Cette classe permet la construction d’une figure géométrique à l’aide de la souris.
+ * Cette classe implémente l’interface MouseListener.
  * @author Loick Nosal
  */
-public class FabricantFigures {
+public class FabricantFigures implements MouseListener {
 	
+	/*
+	 * Accumule le nombre de clics de souris.
+	 */
 	private int nb_points_cliques;
+	/*
+	 * figure en train d'etre dessinnee
+	 */
 	private FigureColoree figure_en_cours_de_fabrication;
+	/*
+	 * Tableau contenant des points crees a  partir de clics de souris.
+	 */
 	private Point[] points_cliques;
+	
 	
 	public FabricantFigures() {
 		throw new Error("pas fait");
 	}
-	
-	public void mouseEntered(MouseEvent e) {
-		throw new Error("pas fait");
+
+
+	@Override
+	public void mouseClicked(java.awt.event.MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public void mouseExited(MouseEvent e) {
-		throw new Error("pas fait");
+
+	@Override
+	public void mousePressed(java.awt.event.MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public void mouseReleased(MouseEvent e) {
-		throw new Error("pas fait");
+
+	@Override
+	public void mouseReleased(java.awt.event.MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public void mouseClicked(MouseEvent e) {
-		throw new Error("pas fait");
+
+	@Override
+	public void mouseEntered(java.awt.event.MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public void mousePressed(MouseEvent e) {
-		throw new Error("pas fait");
+
+	@Override
+	public void mouseExited(java.awt.event.MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

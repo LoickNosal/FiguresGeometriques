@@ -13,6 +13,9 @@ import vue.VueDessin;
 /*
  * @author Loïck Nosal
  * Cette classe définit une partie du controleur.
+ * La classe PanneauChoix est un contrôleur, le modèle est passé en paramètre de son
+ * constructeur et, suite à une action de l’utilisateur, il fournit au modèle les informations pour se
+ * modifier en appelant une de ses méthodes.
  */
 public class PanneauChoix extends JPanel{
 	
@@ -35,6 +38,14 @@ public class PanneauChoix extends JPanel{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		final JComboBox fig = new JComboBox (new String [] {"triangle","rectangle"});
 		final JComboBox c = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
+		
+		if (nf.isSelected()) {
+			System.out.println("ah");
+		}else if(tml.isSelected()) {
+			
+		}else if(ma.isSelected()) {
+			
+		}
 		
 		bg.add(nf);
 		bg.add(tml);

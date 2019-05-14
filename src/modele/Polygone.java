@@ -26,4 +26,10 @@ public class Polygone extends FigureColoree{
 	public void modifierPoints(Point[] p) {
 		throw new Error("pas fait");
 	}
+
+	@Override
+	public int nbPoints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

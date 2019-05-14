@@ -11,6 +11,8 @@ import modele.FigureColoree;
 /*
  * @author Loïck Nosal
  * Cette classe définit la vue.
+ * La classe VueDessin est une vue et implémente donc l’interface Observer. La méthode
+ * update sera déclenchée à chaque modification du modèle
  */
 public class VueDessin extends JPanel implements Observer{
 	
@@ -33,7 +35,7 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public DessinModele getDessin() {
-		throw new Error("pas fait");
+		return this.dessin;
 	}
 
 }

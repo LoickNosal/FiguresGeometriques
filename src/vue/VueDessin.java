@@ -6,6 +6,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import modele.DessinModele;
+import modele.FigureColoree;
 
 /*
  * @author Loïck Nosal
@@ -25,6 +26,14 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public void paintComponent(Graphics g) {
 		System.out.println("refresh");
+	}
+	
+	public void construit(FigureColoree f) {
+		throw new Error("pas fait");
+	}
+	
+	public DessinModele getDessin() {
+		throw new Error("pas fait");
 	}
 
 }

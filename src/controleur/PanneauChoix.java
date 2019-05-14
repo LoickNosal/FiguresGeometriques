@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import modele.DessinModele;
+import modele.FigureColoree;
 import vue.VueDessin;
 
 /*
@@ -17,6 +18,7 @@ public class PanneauChoix extends JPanel{
 	
 	private VueDessin vdessin;
 	private DessinModele dmodele;
+	private FigureColoree fc;
 	
 	/*
 	 * Constructeur de la classe
@@ -55,6 +57,10 @@ public class PanneauChoix extends JPanel{
 	public Color determineCouleur(int index) {
 		Color c = new Color(index);
 		return c;
+	}
+	
+	public FigureColoree creeFigure(int i) {
+		throw new Error("pas fait");
 	}
 
 }

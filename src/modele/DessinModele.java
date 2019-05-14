@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 /*
@@ -10,11 +11,24 @@ import java.util.Observable;
  */
 public class DessinModele extends Observable{
 	
+	private ArrayList<FigureColoree> lfg;
+	
 	
 	public DessinModele() {
 		throw new Error (" code non ecrit ");
 	}
 	
+	public ArrayList<FigureColoree> get_fg(){
+		throw new Error("pas fait");
+	}
+	
+	public void initDessinModele() {
+		throw new Error("pas fait");
+	}
+	
+	public void ajoute(FigureColoree f) {
+		throw new Error("pas fait");
+	}
 	
 
 }

@@ -60,15 +60,12 @@ public abstract class FigureColoree {
 	
 		g.setColor(this.couleur);
 		if (this.selected == true) {
-			
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);
 				int or = p.rendreY() - (this.TAILLE_CARRE_SELECTION/2);
 				g.setColor(this.couleur);
 				g.fillRect(ab, or, TAILLE_CARRE_SELECTION, TAILLE_CARRE_SELECTION);
 
-				g.drawLine(0, 0, 800, 800);
-				System.out.println("afficher");
 			}
 		}
 	}

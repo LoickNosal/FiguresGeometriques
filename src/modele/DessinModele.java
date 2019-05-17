@@ -32,6 +32,9 @@ public class DessinModele extends Observable{
 	}
 	
 	public void ajoute(FigureColoree f) {
+		for (FigureColoree fg : lfg) {
+			fg.deSelectionne();
+		}
 		if (f != null) {
 			this.lfg.add(f);
 			f.selectionne();

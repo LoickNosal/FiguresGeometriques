@@ -32,12 +32,11 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("p1");
+
 		super.paintComponent(g);
 		if (this.dessin.get_fg() != null) {
 			for (FigureColoree fg : this.dessin.get_fg()) {
 				fg.afficher(g);
-				System.out.println("p2");
 			}
 		}
 	}
@@ -46,7 +45,6 @@ public class VueDessin extends JPanel implements Observer{
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
-			System.out.println("test");
 			
 		}
 		

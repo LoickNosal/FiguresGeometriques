@@ -33,12 +33,12 @@ public class FabricantFigures implements MouseListener {
 	
 	
 	public FabricantFigures(FigureColoree f) {
-
-		this.nb_points_cliques = 0;
-		this.points_cliques = new ArrayList<Point>();
 		if (f != null) {
 			this.figure_en_cours_de_fabrication = f;
+			this.nb_points_cliques = 0;
+			this.points_cliques = new ArrayList<Point>();
 		}
+		
 		
 	}
 

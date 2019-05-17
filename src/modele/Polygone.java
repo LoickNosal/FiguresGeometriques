@@ -31,7 +31,6 @@ public abstract class Polygone extends FigureColoree{
 	 * Méthode affichant un polygone (fait appel à fillPolygon de la classe Java Polygon).
 	 */
 	public void afficher(Graphics g) {
-		System.out.println("affiche");
 		g.setColor(this.couleur);
 		g.fillPolygon(this.p);
 		super.afficher(g);

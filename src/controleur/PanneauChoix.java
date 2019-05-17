@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -44,7 +45,11 @@ public class PanneauChoix extends JPanel{
 		
 		
 		final JComboBox fig = new JComboBox (new String [] {"rectangle","triangle"});
+
 		final JComboBox co = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
+		
+
+		
 
 		bg.add(nf);
 		bg.add(tml);
@@ -56,6 +61,8 @@ public class PanneauChoix extends JPanel{
 		
 		placementBas.add(fig);
 		placementBas.add(co);
+		
+		fig.setEnabled(false);
 		
 		this.add(placementHaut,BorderLayout.NORTH);
 		this.add(placementBas,BorderLayout.SOUTH);
@@ -100,7 +107,7 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
-		fig.setEnabled(false);
+		
 		
 		fig.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

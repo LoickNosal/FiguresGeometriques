@@ -1,10 +1,12 @@
 package vue;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import controleur.FabricantFigures;
 import modele.DessinModele;
 import modele.FigureColoree;
 
@@ -19,20 +21,32 @@ public class VueDessin extends JPanel implements Observer{
 	private DessinModele dessin;
 	
 	public VueDessin() {
+		this.dessin = new DessinModele();
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 	}
 	
 	public void update(Observable o, Object ob) {
+		this.dessin = (DessinModele) o;
 		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("refresh");
+		super.paintComponent(g);
+		if (this.dessin.get_fg() != null) {
+			for (FigureColoree fg : this.dessin.get_fg()) {
+				fg.afficher(g);
+			}
+		}
 	}
 	
 	public void construit(FigureColoree f) {
-		throw new Error("pas fait");
+		if (f != null) {
+			FabricantFigures ff = new FabricantFigures(f);
+			this.addMouseListener(ff);
+			System.out.println("test");
+		}
+		
 	}
 	
 	public DessinModele getDessin() {

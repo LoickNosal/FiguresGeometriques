@@ -24,7 +24,7 @@ public abstract class FigureColoree {
 	/*
 	 * Attribut de type Color donnant la couleur de remplissage.
 	 */
-	private Color couleur;
+	protected Color couleur;
 	/*
 	 * Tableau des points de memorisation de la figure.
 	 */
@@ -35,6 +35,8 @@ public abstract class FigureColoree {
 		this.selected = false;
 		this.couleur = Color.black;
 		this.tab_mem = new ArrayList<Point>();
+
+
 	}
 	
 	/*
@@ -55,7 +57,15 @@ public abstract class FigureColoree {
 	public abstract void modifierPoints(ArrayList<Point> pts);
 
 	public void afficher(Graphics g) {
-		throw new Error("pas fait");
+		
+		g.setColor(this.couleur);
+		if (this.selected == true) {
+			for (Point p : tab_mem) {
+				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);
+				int or = p.rendreY() - (this.TAILLE_CARRE_SELECTION/2);
+				g.fillRect(ab, or, TAILLE_CARRE_SELECTION, TAILLE_CARRE_SELECTION);
+			}
+		}
 	}
 	
 	public void selectionne() {

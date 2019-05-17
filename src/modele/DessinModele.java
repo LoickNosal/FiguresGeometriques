@@ -18,7 +18,7 @@ public class DessinModele extends Observable{
 	
 	
 	public DessinModele() {
-		throw new Error (" code non ecrit ");
+		this.initDessinModele();
 	}
 	
 	public ArrayList<FigureColoree> get_fg(){

@@ -1,6 +1,7 @@
 package modele;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 /*
@@ -9,22 +10,33 @@ import java.util.ArrayList;
  */
 public abstract class Polygone extends FigureColoree{
 	
-	private java.awt.Polygon p;
+	private Polygon p;
 	
 	
 	public Polygone() {
-		this.p = new  java.awt.Polygon();
+		super();
+		int[] ab = new int[super.tab_mem.size()];
+		int[] or = new int[super.tab_mem.size()];
+		int i = 0;
+		for (Point p : super.tab_mem) {
+			ab[i] = p.rendreX();
+			or[i] = p.rendreY();
+			i++;
+		}
+		this.p = new Polygon(ab,or,super.tab_mem.size());
 	}
 
 	/*
 	 * Méthode affichant un polygone (fait appel à fillPolygon de la classe Java Polygon).
 	 */
 	public void affiche(Graphics g) {
-		throw new Error("pas fait");
+		g.setColor(this.couleur);
+		g.fillPolygon(this.p);
+		super.afficher(g);
 	}
 	
 	public int nbClics() {
-		throw new Error("pas fait");
+		return this.p.npoints;
 	}
 	
 
@@ -32,17 +44,27 @@ public abstract class Polygone extends FigureColoree{
 	/*
 	 * Cette méthode retourne en résultat le nombre de points dont on a besoin, en général, pour la saisie d'un polygone
 	 */
-	public int nbPoints() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public abstract int nbPoints();
 
 	@Override
 	/*
 	 *Cette méthode modifie le polygone conformément à un ensemble de points de saisie (ses nouveaux sommets).
 	 */
 	public void modifierPoints(ArrayList<Point> pts) {
-		// TODO Auto-generated method stub
+		this.tab_mem = pts;
+		if (this.tab_mem != null) {
+			int[] ab = new int[super.tab_mem.size()];
+			int[] or = new int[super.tab_mem.size()];
+			int i = 0;
+			for (Point p : super.tab_mem) {
+				if (p != null) {
+					ab[i] = p.rendreX();
+					or[i] = p.rendreY();
+				}	
+				i++;
+			}
+			this.p = new Polygon(ab,or,super.tab_mem.size());
+		}
 		
 	}
 }

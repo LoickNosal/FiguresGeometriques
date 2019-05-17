@@ -4,6 +4,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javafx.scene.input.MouseEvent;
+import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Point;
 
@@ -31,16 +32,20 @@ public class FabricantFigures implements MouseListener {
 	
 	
 	public FabricantFigures(FigureColoree f) {
+
 		this.nb_points_cliques = 0;
 		this.points_cliques = new ArrayList<Point>();
-		this.figure_en_cours_de_fabrication = f;
+		if (f != null) {
+			this.figure_en_cours_de_fabrication = f;
+		}
+		
 	}
 
 
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -48,14 +53,28 @@ public class FabricantFigures implements MouseListener {
 	 * Méthode implémentant la création d'une figure géométrique via des clics de souris
 	 */
 	public void mousePressed(java.awt.event.MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		if (this.figure_en_cours_de_fabrication != null) {
+			
+			if(this.nb_points_cliques < this.figure_en_cours_de_fabrication.nbPoints()){
+				System.out.println("in");
+				this.points_cliques.add(new Point(e.getX(),e.getY()));
+				this.figure_en_cours_de_fabrication.modifierPoints(this.points_cliques);
+				this.nb_points_cliques++;
+				
+			}
+		}
+		System.out.println(nb_points_cliques);
+
+		
+
 		
 	}
 
 	@Override
 	public void mouseReleased(java.awt.event.MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

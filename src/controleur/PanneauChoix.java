@@ -43,13 +43,9 @@ public class PanneauChoix extends JPanel{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		
-		final JComboBox fig = new JComboBox (new String [] {"triangle","rectangle"});
-		final JComboBox c = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
-		
-		fig.setEnabled(false);
-		
-	
-		
+		final JComboBox fig = new JComboBox (new String [] {"rectangle","triangle"});
+		final JComboBox co = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
+
 		bg.add(nf);
 		bg.add(tml);
 		bg.add(ma);
@@ -59,36 +55,67 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(ma);
 		
 		placementBas.add(fig);
-		placementBas.add(c);
+		placementBas.add(co);
 		
 		this.add(placementHaut,BorderLayout.NORTH);
 		this.add(placementBas,BorderLayout.SOUTH);
 		
 		
-		ActionListener auditeurBoutons = new ActionListener() {
+		ActionListener ALboutons = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JRadioButton source = (JRadioButton)e.getSource();
-				if(source.equals(nf)){ //Nouvelle figure
+				if(source.equals(nf)){ 
 					fig.setEnabled(true);
-				
-//					for (int i=0; i<dmodele.get_fg().size(); i++){
-//						dmodele.get_fg().get(i).deSelectionne();
-//					}
+					co.setEnabled(true);
 				}else if(source.equals(tml)){
 					fig.setEnabled(false);
+					co.setEnabled(true);
 				}else if(source.equals(ma)) {
 					fig.setEnabled(false);
-				}
-				else {
+					co.setEnabled(false);
+				}else {
 					fig.setEnabled(false);
 				}
 			}
 		};
 		
-		nf.addActionListener(auditeurBoutons);
-		tml.addActionListener(auditeurBoutons);
-		ma.addActionListener(auditeurBoutons);
+		nf.addActionListener(ALboutons);
+		tml.addActionListener(ALboutons);
+		ma.addActionListener(ALboutons);
+		
+		
+		
+		
+		co.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Color c = determineCouleur(co.getSelectedIndex());
+				if (nf.isSelected() && c!= null) {
+					fc.changeCouleur(c);
+					vdessin.repaint();
+				}
+				
+			}
+		});
+		
+		fig.setEnabled(false);
+		
+		fig.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+
+				fc = creeFigure(fig.getSelectedIndex());
+				Color c = determineCouleur(co.getSelectedIndex());
+				
+				if (fc != null){
+					fc.changeCouleur(c);
+					vdessin.construit(fc);
+	
+				}
+			}
+		});
+
 	}
 	
 	/*

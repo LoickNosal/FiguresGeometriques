@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -24,17 +25,28 @@ public class Fenetre extends JFrame{
 	public Fenetre(String s, int w, int h) {
 		JFrame fenetre = new JFrame(s);
 		fenetre.setSize(w,h);
-		VueDessin vd = new VueDessin();
-		PanneauChoix ch = new PanneauChoix(vd);
-		this.principal = vd;
-		this.choix = ch;
-		fenetre.setLayout(new BorderLayout());
-		fenetre.add(this.choix,BorderLayout.NORTH);
-		fenetre.add(this.principal,BorderLayout.SOUTH);
-		fenetre.setPreferredSize(new Dimension(800,600));
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
+		
+		this.vdessin = new VueDessin();
+		this.choix = new PanneauChoix(this.vdessin);
+		this.principal = new JPanel();
+		
+		this.principal.setLayout(new BorderLayout());
+		this.principal.setPreferredSize(new Dimension(w,h));
+		this.principal.add(this.choix,BorderLayout.NORTH);
+		this.principal.add(this.vdessin,BorderLayout.CENTER);
+		
+		
+		fenetre.setContentPane(this.principal);
 		fenetre.pack();
+		fenetre.setPreferredSize(new Dimension(800,800));
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
+		fenetre.requestFocusInWindow();
 		fenetre.setVisible(true);
+		
+		this.vdessin.setBackground(Color.pink);
+
+		
+		
 
 		
 	}
@@ -43,7 +55,6 @@ public class Fenetre extends JFrame{
 	 * Programme principale
 	 */
 	public static void main(String[] args) {
-		System.out.println("test");
-		JFrame fenetre = new Fenetre("FG",800,600);
+		JFrame fenetre = new Fenetre("Figures Géométriques",800,600);
 	}
 }

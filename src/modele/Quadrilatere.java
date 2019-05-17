@@ -12,7 +12,9 @@ public class Quadrilatere extends Polygone{
 		throw new Error("pas fait");
 	}
 	
-	
+	/*
+	 * Cette méthode retourne en résultat le nombre de points de mémorisation d'un quadrilatère
+	 */
 	public int nbPoints() {
 		throw new Error("pas fait");
 	}

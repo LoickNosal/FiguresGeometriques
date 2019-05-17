@@ -27,10 +27,17 @@ public class DessinModele extends Observable{
 	
 	public void initDessinModele() {
 		this.lfg = new ArrayList<FigureColoree>();
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void ajoute(FigureColoree f) {
-		this.lfg.add(f);
+		if (f != null) {
+			this.lfg.add(f);
+			f.selectionne();
+		}
+		setChanged();
+		notifyObservers();
 	}
 	
 

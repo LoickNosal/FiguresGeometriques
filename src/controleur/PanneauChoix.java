@@ -8,6 +8,7 @@ import javax.swing.JRadioButton;
 
 import modele.DessinModele;
 import modele.FigureColoree;
+import modele.Quadrilatere;
 import vue.VueDessin;
 
 /*
@@ -66,12 +67,30 @@ public class PanneauChoix extends JPanel{
 	 * Methode determinant la couleur à utiliser
 	 */
 	public Color determineCouleur(int index) {
-		Color c = new Color(index);
-		return c;
+		switch(index) {
+		case 0 : 
+			return Color.red;
+		case 1 :
+			return Color.green;
+		case 2:
+			return Color.blue;
+		case 3:
+			return Color.yellow;
+		default:
+			return Color.black;
+			
+		}
 	}
-	
-	public FigureColoree creeFigure(int i) {
-		throw new Error("pas fait");
+	/*
+	 * Méthode implémentant la création d'une forme géométrique.
+	 */
+	public FigureColoree creeFigure(int index) {
+		switch(index) {
+		case 0:
+			return new Quadrilatere();
+		default :
+			return null;
+		}
 	}
 
 }

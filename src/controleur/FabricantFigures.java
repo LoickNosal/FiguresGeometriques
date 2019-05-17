@@ -41,6 +41,9 @@ public class FabricantFigures implements MouseListener {
 	}
 
 	@Override
+	/*
+	 * Méthode implémentant la création d'une figure géométrique via des clics de souris
+	 */
 	public void mousePressed(java.awt.event.MouseEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -53,6 +56,9 @@ public class FabricantFigures implements MouseListener {
 	}
 
 	@Override
+	/*
+	 * Méthodes de l'interface MouseListener non utilisées.
+	 */
 	public void mouseEntered(java.awt.event.MouseEvent e) {
 		// TODO Auto-generated method stub
 		

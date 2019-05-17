@@ -2,6 +2,7 @@ package modele;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 /*
  * Cette classe abstraite représente le sommet de
@@ -27,13 +28,13 @@ public abstract class FigureColoree {
 	/*
 	 * Tableau des points de memorisation de la figure.
 	 */
-	protected Point[] tab_mem;
+	protected ArrayList<Point> tab_mem;
 	
 	
 	public FigureColoree() {
 		this.selected = false;
 		this.couleur = Color.black;
-		this.tab_mem = new Point[this.nbPoints()];
+		this.tab_mem = new ArrayList<Point>();
 	}
 	
 	/*
@@ -51,18 +52,18 @@ public abstract class FigureColoree {
 	 * Methode abstraite qui permet de modifier les points
 	 *  de memorisation a partir de points de saisie.
 	 */
-	public abstract void modifierPoints(Point[] ps);
+	public abstract void modifierPoints(ArrayList<Point> pts);
 
 	public void afficher(Graphics g) {
 		throw new Error("pas fait");
 	}
 	
 	public void selectionne() {
-		throw new Error("pas fait");
+		this.selected = true;
 	}
 	
 	public void deSelectionne() {
-		throw new Error("pas fait");
+		this.selected = false;
 	}
 	
 	public void changeCouleur(Color c) {

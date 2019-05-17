@@ -19,11 +19,12 @@ public class VueDessin extends JPanel implements Observer{
 	private DessinModele dessin;
 	
 	public VueDessin() {
-		System.out.println("test2");
+		this.setFocusable(true);
+		this.requestFocusInWindow();
 	}
 	
 	public void update(Observable o, Object ob) {
-		throw new Error (" code non ecrit ");
+		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {

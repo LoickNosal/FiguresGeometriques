@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javafx.scene.input.MouseEvent;
 import modele.FigureColoree;
@@ -24,13 +25,15 @@ public class FabricantFigures implements MouseListener {
 	 */
 	private FigureColoree figure_en_cours_de_fabrication;
 	/*
-	 * Tableau contenant des points crees a  partir de clics de souris.
+	 * liste contenant des points crees a  partir de clics de souris.
 	 */
-	private Point[] points_cliques;
+	private ArrayList<Point> points_cliques;
 	
 	
-	public FabricantFigures() {
-		throw new Error("pas fait");
+	public FabricantFigures(FigureColoree f) {
+		this.nb_points_cliques = 0;
+		this.points_cliques = new ArrayList<Point>();
+		this.figure_en_cours_de_fabrication = f;
 	}
 
 

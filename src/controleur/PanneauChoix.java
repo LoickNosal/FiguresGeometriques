@@ -1,6 +1,9 @@
 package controleur;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -35,18 +38,17 @@ public class PanneauChoix extends JPanel{
 		ButtonGroup bg = new ButtonGroup();
 		
 		JRadioButton nf = new JRadioButton ("Nouvelle figure");
-		JRadioButton tml = new JRadioButton ("Tracé à main levée");
+		//seletionné par defaut avec le true
+		JRadioButton tml = new JRadioButton ("Tracé à main levée",true);
 		JRadioButton ma = new JRadioButton ("Manipulation");
+		
+		
 		final JComboBox fig = new JComboBox (new String [] {"triangle","rectangle"});
 		final JComboBox c = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
 		
-		if (nf.isSelected()) {
-			System.out.println("ah");
-		}else if(tml.isSelected()) {
-			
-		}else if(ma.isSelected()) {
-			
-		}
+		fig.setEnabled(false);
+		
+	
 		
 		bg.add(nf);
 		bg.add(tml);
@@ -61,6 +63,32 @@ public class PanneauChoix extends JPanel{
 		
 		this.add(placementHaut,BorderLayout.NORTH);
 		this.add(placementBas,BorderLayout.SOUTH);
+		
+		
+		ActionListener auditeurBoutons = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JRadioButton source = (JRadioButton)e.getSource();
+				if(source.equals(nf)){ //Nouvelle figure
+					fig.setEnabled(true);
+				
+//					for (int i=0; i<dmodele.get_fg().size(); i++){
+//						dmodele.get_fg().get(i).deSelectionne();
+//					}
+				}else if(source.equals(tml)){
+					fig.setEnabled(false);
+				}else if(source.equals(ma)) {
+					fig.setEnabled(false);
+				}
+				else {
+					fig.setEnabled(false);
+				}
+			}
+		};
+		
+		nf.addActionListener(auditeurBoutons);
+		tml.addActionListener(auditeurBoutons);
+		ma.addActionListener(auditeurBoutons);
 	}
 	
 	/*
@@ -76,6 +104,12 @@ public class PanneauChoix extends JPanel{
 			return Color.blue;
 		case 3:
 			return Color.yellow;
+		case 4:
+			return Color.black;
+		case 5:
+			return Color.pink;
+		case 6:
+			return Color.gray;
 		default:
 			return Color.black;
 			

@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Point;
+import vue.VueDessin;
 
 /*
  * Classe implemantant la creation de figures geometriques via des clics de souris.
@@ -57,13 +58,18 @@ public class FabricantFigures implements MouseListener {
 		if (this.figure_en_cours_de_fabrication != null) {
 			
 			if(this.nb_points_cliques < this.figure_en_cours_de_fabrication.nbPoints()){
-				System.out.println("in");
 				this.points_cliques.add(new Point(e.getX(),e.getY()));
 				this.figure_en_cours_de_fabrication.modifierPoints(this.points_cliques);
 				this.nb_points_cliques++;
 				
 			}
+
+			if (this.nb_points_cliques == this.figure_en_cours_de_fabrication.nbPoints()) {
+				((VueDessin)e.getSource()).getDessin().ajoute(this.figure_en_cours_de_fabrication);
+				((VueDessin)e.getSource()).repaint();
+			}
 		}
+
 		System.out.println(nb_points_cliques);
 
 		

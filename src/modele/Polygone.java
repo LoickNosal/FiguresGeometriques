@@ -24,12 +24,14 @@ public abstract class Polygone extends FigureColoree{
 			i++;
 		}
 		this.p = new Polygon(ab,or,super.tab_mem.size());
+
 	}
 
 	/*
 	 * Méthode affichant un polygone (fait appel à fillPolygon de la classe Java Polygon).
 	 */
-	public void affiche(Graphics g) {
+	public void afficher(Graphics g) {
+		System.out.println("affiche");
 		g.setColor(this.couleur);
 		g.fillPolygon(this.p);
 		super.afficher(g);

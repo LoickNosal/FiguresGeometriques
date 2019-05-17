@@ -58,12 +58,12 @@ public abstract class FigureColoree {
 
 	public void afficher(Graphics g) {
 	
-		g.setColor(this.couleur);
+		//g.setColor(this.couleur);
 		if (this.selected == true) {
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);
 				int or = p.rendreY() - (this.TAILLE_CARRE_SELECTION/2);
-				g.setColor(this.couleur);
+				g.setColor(Color.red);
 				g.fillRect(ab, or, TAILLE_CARRE_SELECTION, TAILLE_CARRE_SELECTION);
 
 			}

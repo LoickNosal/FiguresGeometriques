@@ -45,9 +45,8 @@ public class VueDessin extends JPanel implements Observer{
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
-			
 		}
-		
+	
 	}
 	
 	public DessinModele getDessin() {

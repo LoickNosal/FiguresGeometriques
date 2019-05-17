@@ -46,7 +46,7 @@ public class PanneauChoix extends JPanel{
 		
 		final JComboBox fig = new JComboBox (new String [] {"rectangle","triangle"});
 
-		final JComboBox co = new JComboBox (new String [] {"rouge","vert","jaune","bleu"});
+		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
 
 		
@@ -131,15 +131,15 @@ public class PanneauChoix extends JPanel{
 	public Color determineCouleur(int index) {
 		switch(index) {
 		case 0 : 
-			return Color.red;
+			return Color.black;
 		case 1 :
 			return Color.green;
 		case 2:
-			return Color.blue;
-		case 3:
 			return Color.yellow;
+		case 3:
+			return Color.blue;
 		case 4:
-			return Color.black;
+			return Color.red;
 		case 5:
 			return Color.pink;
 		case 6:

@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import modele.Carre;
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Quadrilatere;
@@ -46,7 +47,7 @@ public class PanneauChoix extends JPanel{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		
-		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle"});
+		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre"});
 
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
@@ -101,7 +102,7 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Color c = determineCouleur(co.getSelectedIndex());
-				if (nf.isSelected() && c!= null) {
+				if (nf.isSelected() && c!= null && fc != null) {
 					fc.changeCouleur(c);
 					vdessin.repaint();
 				}
@@ -162,6 +163,8 @@ public class PanneauChoix extends JPanel{
 			return new Triangle();
 		case 2:
 			return new Rectangle();
+		case 3:
+			return new Carre();
 		default :
 			return null;
 		}

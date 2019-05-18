@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import controleur.FabricantFigures;
+import controleur.ManipulateurFormes;
 import modele.DessinModele;
 import modele.FigureColoree;
 
@@ -19,6 +20,7 @@ import modele.FigureColoree;
 public class VueDessin extends JPanel implements Observer{
 	
 	private DessinModele dessin;
+	private ManipulateurFormes mf;
 	
 	public VueDessin() {
 		this.dessin = new DessinModele();

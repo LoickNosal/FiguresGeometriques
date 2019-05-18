@@ -21,18 +21,24 @@ import vue.VueDessin;
 /*
  * @author Loïck Nosal
  * Cette classe définit une partie du controleur.
- * La classe PanneauChoix est un contrôleur, le modèle est passé en paramètre de son
- * constructeur et, suite à une action de l’utilisateur, il fournit au modèle les informations pour se
- * modifier en appelant une de ses méthodes.
  */
 public class PanneauChoix extends JPanel{
-	
+	/*
+	 * zone de dessin
+	 */
 	private VueDessin vdessin;
+	/*
+	 * modele
+	 */
 	private DessinModele dmodele;
+	/*
+	 * figure à construire
+	 */
 	private FigureColoree fc;
 	
 	/*
 	 * Constructeur de la classe
+	 * @param v zone de dessin
 	 */
 	public PanneauChoix(VueDessin v) {
 		this.vdessin = v;
@@ -130,6 +136,7 @@ public class PanneauChoix extends JPanel{
 	
 	/*
 	 * Methode determinant la couleur à utiliser
+	 * @param index index de couleur dans le jcombobox
 	 */
 	public Color determineCouleur(int index) {
 		switch(index) {
@@ -154,6 +161,7 @@ public class PanneauChoix extends JPanel{
 	}
 	/*
 	 * Méthode implémentant la création d'une forme géométrique.
+	 * @param index index de la figure dans le jcombobox
 	 */
 	public FigureColoree creeFigure(int index) {
 		switch(index) {

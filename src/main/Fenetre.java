@@ -21,6 +21,9 @@ public class Fenetre extends JFrame{
 	
 	/*
 	 * Constructeur de la classe
+	 * @param s nom de la fenetre
+	 * @param w largeur de la fenetre
+	 * @param h longueur de la fenetre
 	 */
 	public Fenetre(String s, int w, int h) {
 		JFrame fenetre = new JFrame(s);

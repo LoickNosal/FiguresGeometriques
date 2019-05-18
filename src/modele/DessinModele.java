@@ -6,8 +6,6 @@ import java.util.Observable;
 /*
  * @author Loïck Nosal
  * Cette classe définit le modèle. 
- * Chaque instance de cette classe est un dessin comportant plusieurs 
- * figures colorées visualisables à l'écran dont une seule est sélectionnée.
  */
 public class DessinModele extends Observable{
 	
@@ -16,7 +14,9 @@ public class DessinModele extends Observable{
 	 */
 	private ArrayList<FigureColoree> lfg;
 	
-	
+	/*
+	 * constructeur vide qui initialise le dessin
+	 */
 	public DessinModele() {
 		
 		this.initDessinModele();
@@ -25,13 +25,18 @@ public class DessinModele extends Observable{
 	public ArrayList<FigureColoree> get_fg(){
 		return this.lfg;
 	}
-	
+	/*
+	 * initialise le dessin sans figures
+	 */
 	public void initDessinModele() {		
 		this.lfg = new ArrayList<FigureColoree>();
 		setChanged();
 		notifyObservers();
 	}
-	
+	/*
+	 * ajoute une figure dans le dessin
+	 * @param f figure à ajouter
+	 */
 	public void ajoute(FigureColoree f) {
 		for (FigureColoree fg : lfg) {
 			fg.deSelectionne();

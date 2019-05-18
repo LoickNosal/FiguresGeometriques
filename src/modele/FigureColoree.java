@@ -5,15 +5,14 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 /*
- * Cette classe abstraite représente le sommet de
- *  la hiérarchie d'héritage de n'importe quelle 
- *  figure géométrique visualisable à l'écran et manipulable à la souris.
+ * Cette classe abstraite représente les figures 
+ * que l'on peut dessiner.
  *  @author Loick Nosal
  */
 public abstract class FigureColoree {
 	/*
 	 * Constante definissant la taille des carres 
-	* de selection. Utilisee par la methode "affiche".
+	 * de selection.
 	 */
 	protected static final int TAILLE_CARRE_SELECTION = 10;
 	/*
@@ -26,11 +25,13 @@ public abstract class FigureColoree {
 	 */
 	protected Color couleur;
 	/*
-	 * Tableau des points de memorisation de la figure.
+	 * Liste des points de memorisation de la figure.
 	 */
 	protected ArrayList<Point> tab_mem;
 	
-	
+	/*
+	 * constructeur vide qui initialise les attributs
+	 */
 	public FigureColoree() {
 		this.selected = false;
 		this.couleur = Color.black;
@@ -55,9 +56,12 @@ public abstract class FigureColoree {
 	 */
 	public abstract void modifierPoints(ArrayList<Point> pts);
 
+	/*
+	 * methode qui permet d'afficher une figure Coloree, et d'afficher
+	 * les carres de selections si la figure est selectionnes
+	 */
 	public void afficher(Graphics g) {
 	
-
 		if (this.selected == true) {
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);
@@ -68,15 +72,21 @@ public abstract class FigureColoree {
 			}
 		}
 	}
-	
+	/*
+	 * indique que la figure est selectione
+	 */
 	public void selectionne() {
 		this.selected = true;
 	}
-	
+	/*
+	 * indique que la figure est deselectione
+	 */
 	public void deSelectionne() {
 		this.selected = false;
 	}
-	
+	/*
+	 * changer la couleur de la figure
+	 */
 	public void changeCouleur(Color c) {
 		this.couleur = c;
 	}

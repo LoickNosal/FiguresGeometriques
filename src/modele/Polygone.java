@@ -10,9 +10,15 @@ import java.util.ArrayList;
  */
 public abstract class Polygone extends FigureColoree{
 	
+	/*
+	 * Polygone du package jawa.awt 
+	 */
 	private Polygon p;
 	
-	
+	/*
+	 * constructeur vide
+	 * Initialise le Polygone
+	 */
 	public Polygone() {
 		super();
 		int[] ab = new int[super.tab_mem.size()];
@@ -26,7 +32,8 @@ public abstract class Polygone extends FigureColoree{
 		this.p = new Polygon(ab,or,super.tab_mem.size());
 
 	}
-
+	
+	@Override
 	/*
 	 * Méthode affichant un polygone (fait appel à fillPolygon de la classe Java Polygon).
 	 */
@@ -36,6 +43,7 @@ public abstract class Polygone extends FigureColoree{
 		super.afficher(g);
 	}
 	
+	@Override
 	public int nbClics() {
 		return this.p.npoints; //nb de points d'un polygon
 	}
@@ -49,7 +57,8 @@ public abstract class Polygone extends FigureColoree{
 
 	@Override
 	/*
-	 *Cette méthode modifie le polygone conformément à un ensemble de points de saisie (ses nouveaux sommets).
+	 *Cette méthode modifie le polygone conformément 
+	 *à un ensemble de points de saisie (ses nouveaux sommets).
 	 */
 	public void modifierPoints(ArrayList<Point> pts) {
 		this.tab_mem = pts;

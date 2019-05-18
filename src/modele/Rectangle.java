@@ -2,23 +2,29 @@ package modele;
 
 import java.awt.Polygon;
 import java.util.ArrayList;
-
+/*
+ * @author Nosal Loïck
+ * Classe modélisant les Rectangles
+ */
 public class Rectangle extends Quadrilatere{
 
 	
-
+	/*
+	 * constructeur vide
+	 */
 	public Rectangle() {
 		super();
 	}
 	
+	@Override
 	public int nbClics() {
 		return 2;
 	}
-	
+	@Override
 	public int nbPoints() {
 		return 4;
 	}
-	
+	@Override
 	public void modifierPoints(ArrayList<Point> pts) {
 		ArrayList<Point> rec = new ArrayList<Point>(4);
 		if (pts.size()>1){

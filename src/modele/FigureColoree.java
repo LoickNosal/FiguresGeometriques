@@ -36,7 +36,6 @@ public abstract class FigureColoree {
 		this.couleur = Color.black;
 		this.tab_mem = new ArrayList<Point>();
 
-
 	}
 	
 	/*
@@ -57,8 +56,7 @@ public abstract class FigureColoree {
 	public abstract void modifierPoints(ArrayList<Point> pts);
 
 	public void afficher(Graphics g) {
-	
-		//g.setColor(this.couleur);
+
 		if (this.selected == true) {
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);

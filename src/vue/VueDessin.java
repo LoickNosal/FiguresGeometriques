@@ -32,20 +32,24 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void paintComponent(Graphics g) {
-
+		
 		super.paintComponent(g);
 		if (this.dessin.get_fg() != null) {
 			for (FigureColoree fg : this.dessin.get_fg()) {
 				fg.afficher(g);
 			}
-		}
+		}		
+		
 	}
 	
 	public void construit(FigureColoree f) {
+		System.out.println("test");
+		
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
 		}
+			
 	
 	}
 	

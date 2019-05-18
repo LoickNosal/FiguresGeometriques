@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Quadrilatere;
+import modele.Triangle;
 import vue.VueDessin;
 
 /*
@@ -156,6 +157,8 @@ public class PanneauChoix extends JPanel{
 		switch(index) {
 		case 0:
 			return new Quadrilatere();
+		case 1:
+			return new Triangle();
 		default :
 			return null;
 		}

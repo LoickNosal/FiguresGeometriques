@@ -18,6 +18,7 @@ public class DessinModele extends Observable{
 	
 	
 	public DessinModele() {
+		
 		this.initDessinModele();
 	}
 	
@@ -25,7 +26,7 @@ public class DessinModele extends Observable{
 		return this.lfg;
 	}
 	
-	public void initDessinModele() {
+	public void initDessinModele() {		
 		this.lfg = new ArrayList<FigureColoree>();
 		setChanged();
 		notifyObservers();

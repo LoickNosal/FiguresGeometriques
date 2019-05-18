@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Quadrilatere;
+import modele.Rectangle;
 import modele.Triangle;
 import vue.VueDessin;
 
@@ -45,7 +46,7 @@ public class PanneauChoix extends JPanel{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		
-		final JComboBox fig = new JComboBox (new String [] {"rectangle","triangle"});
+		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle"});
 
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
@@ -159,6 +160,8 @@ public class PanneauChoix extends JPanel{
 			return new Quadrilatere();
 		case 1:
 			return new Triangle();
+		case 2:
+			return new Rectangle();
 		default :
 			return null;
 		}

@@ -13,4 +13,7 @@ public class Triangle extends Polygone{
 		return 3;
 	}
 
+	public int nbClics() {
+		return 3;
+	}
 }

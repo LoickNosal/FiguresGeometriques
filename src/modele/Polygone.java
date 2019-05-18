@@ -37,7 +37,7 @@ public abstract class Polygone extends FigureColoree{
 	}
 	
 	public int nbClics() {
-		return this.p.npoints;
+		return this.p.npoints; //nb de points d'un polygon
 	}
 	
 

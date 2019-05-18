@@ -64,7 +64,7 @@ public class FabricantFigures implements MouseListener {
 				
 			}
 
-			if (this.nb_points_cliques == this.figure_en_cours_de_fabrication.nbPoints()) {
+			if (this.nb_points_cliques == this.figure_en_cours_de_fabrication.nbClics()) {
 				((VueDessin)e.getSource()).getDessin().ajoute(this.figure_en_cours_de_fabrication);
 				((VueDessin)e.getSource()).repaint();
 				((VueDessin)e.getSource()).removeMouseListener(this);

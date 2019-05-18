@@ -68,4 +68,12 @@ public abstract class Polygone extends FigureColoree{
 		}
 		
 	}
+	
+	
+	/**
+	 * vérifie si le point de coordonnées est dans le polygone
+	 */
+	public boolean estDans(int x, int y){
+		return this.p.contains(new java.awt.Point(x, y));
+	}
 }

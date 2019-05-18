@@ -69,6 +69,7 @@ public class FabricantFigures implements MouseListener {
 				((VueDessin)e.getSource()).repaint();
 				((VueDessin)e.getSource()).removeMouseListener(this);
 			}
+			
 		}
 
 		System.out.println(nb_points_cliques);

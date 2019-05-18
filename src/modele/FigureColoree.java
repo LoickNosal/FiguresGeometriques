@@ -15,12 +15,12 @@ public abstract class FigureColoree {
 	 * Constante definissant la taille des carres 
 	* de selection. Utilisee par la methode "affiche".
 	 */
-	private static final int TAILLE_CARRE_SELECTION = 10;
+	protected static final int TAILLE_CARRE_SELECTION = 10;
 	/*
 	 * Attribut booleen indiquant si la figure est
 	 * selectionnee (son affichage est alors different).
 	 */
-	private boolean selected;
+	protected boolean selected;
 	/*
 	 * Attribut de type Color donnant la couleur de remplissage.
 	 */
@@ -56,6 +56,7 @@ public abstract class FigureColoree {
 	public abstract void modifierPoints(ArrayList<Point> pts);
 
 	public void afficher(Graphics g) {
+	
 
 		if (this.selected == true) {
 			for (Point p : tab_mem) {

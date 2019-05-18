@@ -38,7 +38,7 @@ public class DessinModele extends Observable{
 		}
 		if (f != null) {
 			this.lfg.add(f);
-			f.selectionne();
+			//f.selectionne();
 		}
 		setChanged();
 		notifyObservers();

@@ -18,13 +18,47 @@ public class Carre extends Rectangle{
 	}
 	
 	public void modifierPoints(ArrayList<Point> pts) {
-		ArrayList<Point> carre = new ArrayList<Point>(2);
+		ArrayList<Point> rec = new ArrayList<Point>(2);
+		
 		if (pts.size()>1){
-			carre.add(pts.get(0));
-			carre.add(new Point(pts.get(0).rendreX(), pts.get(1).rendreY()));
-			pts.get(1).modifierX(carre.get(0).rendreX() + (int)carre.get(0).distance(carre.get(1)));
+			
+			rec.add(pts.get(0));
+			
+			int x = 0;
+			int y = 0;
+			
+			int DiffX = pts.get(1).rendreX() - pts.get(0).rendreY();
+			int DiffY = pts.get(1).rendreY() - pts.get(0).rendreY();
+			
+			if (DiffX > 0 && DiffY > 0) { //coin bas droite
+				if (DiffX > DiffY) {
+					x = pts.get(0).rendreX() + DiffY;
+					y = pts.get(0).rendreY() + DiffY;
+				}else {
+					x = pts.get(0).rendreX() + DiffX;
+					y = pts.get(0).rendreY() + DiffX;
+				}
+				
+			}else if(DiffX <0 && DiffY > 0){ //coin bas gauche
+				x = pts.get(0).rendreX() - DiffX;
+				y = pts.get(0).rendreY() + DiffX;
+			}else if(DiffX >= 0 && DiffY <= 0) { //coin haut droit
+				x = pts.get(0).rendreX() + DiffX;
+				y = pts.get(0).rendreY() - DiffX;
+			}else if(DiffX <= 0 && DiffY <= 0) { //coin haut gauche
+				x = pts.get(0).rendreX() - DiffY;
+				y = pts.get(0).rendreY() - DiffY;
+			}else if(DiffX == DiffY) {
+				x = pts.get(1).rendreX();
+				y = pts.get(1).rendreY();
+			}
+			
+			rec.add(new Point(x,y));
+			
+
+			
 		}
-			super.modifierPoints(pts);
+		super.modifierPoints(rec);
 	}
 
 }

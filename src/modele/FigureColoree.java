@@ -55,6 +55,11 @@ public abstract class FigureColoree {
 	 *  de memorisation a partir de points de saisie.
 	 */
 	public abstract void modifierPoints(ArrayList<Point> pts);
+	
+	/**
+	 * permet de savoir si les le Point(x,y) et dans la figure
+	 */
+	public abstract boolean estDans(int x, int y);
 
 	/*
 	 * methode qui permet d'afficher une figure Coloree, et d'afficher

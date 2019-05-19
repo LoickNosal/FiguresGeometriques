@@ -132,6 +132,18 @@ public class PanneauChoix extends JPanel{
 				}
 			}
 		});
+		
+		ma.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("manip");
+				vdessin.manip();
+				
+				
+			}
+		});
+		
 
 	}
 	

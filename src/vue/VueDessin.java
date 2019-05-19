@@ -1,6 +1,7 @@
 package vue;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -45,14 +46,18 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void construit(FigureColoree f) {
-		System.out.println("test");
-		
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
 		}
-			
 	
+	}
+	
+	public void manip() {
+		ArrayList<FigureColoree> f = this.dessin.get_fg();
+		ManipulateurFormes mf = new ManipulateurFormes(this.dessin, f);
+		this.addMouseListener(mf);
+		this.addMouseMotionListener(mf);
 	}
 	
 	public DessinModele getDessin() {

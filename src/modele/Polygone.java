@@ -78,7 +78,7 @@ public abstract class Polygone extends FigureColoree{
 		
 	}
 	
-	
+	@Override
 	/**
 	 * vérifie si le point de coordonnées est dans le polygone
 	 */

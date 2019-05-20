@@ -46,13 +46,16 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	 */
 	private DessinModele dm;
 	
-	public ManipulateurFormes(DessinModele d, ArrayList<FigureColoree> f) {
+	public ManipulateurFormes(DessinModele d) {
 		this.dm = d;
 		this.trans = false;
 		this.sel = -1;
 		this.last_x = 0;
 		this.last_y = 0;
-		this.lfg = f;
+		if (this.dm.get_fg() != null) {
+			this.lfg = this.dm.get_fg();
+		}
+		
 		
 	}
 	
@@ -73,6 +76,8 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	public void mouseDragged(MouseEvent e) {
 		if (lfg.size()!=0){
 			if(lfg.get(indice).isSelected() == true) {
+				
+				lfg.get(indice).modifierPoints(lfg.get(indice).getListePoint());
 				lfg.get(indice).bouger(e.getX()-last_x, e.getY()-last_y);
 				trans = true;
 				last_x = e.getX();
@@ -80,6 +85,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 			}
 			
 		((VueDessin)e.getSource()).repaint();
+		dm.update();
 		}
 		
 	}
@@ -98,7 +104,6 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("a");
 		if(lfg.size()!=0){
 			if(MouseEvent.BUTTON1 == e.getButton()) {
 				last_y = e.getY();
@@ -106,7 +111,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				
 				boolean select = false;
 				for(int i=(lfg.size()-1); i>=0; i--) {
-					if(lfg.get(i).estDans(last_x, last_y)&&!select) {
+					if(lfg.get(i).estDedans(last_x, last_y)&&!select) {
 						lfg.get(i).selectionne();
 						indice = i;
 						select=true;
@@ -115,9 +120,13 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 						lfg.get(i).deSelectionne();
 					}
 				}
+
 			}
 		}
 		((VueDessin)e.getSource()).repaint();
+		dm.update();
+
+		
 		
 	}
 

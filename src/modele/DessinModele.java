@@ -31,7 +31,7 @@ public class DessinModele extends Observable{
 	public void initDessinModele() {		
 		this.lfg = new ArrayList<FigureColoree>();
 		setChanged();
-		notifyObservers();
+		notifyObservers(this);
 	}
 	/*
 	 * ajoute une figure dans le dessin
@@ -46,7 +46,7 @@ public class DessinModele extends Observable{
 			//f.selectionne();
 		}
 		setChanged();
-		notifyObservers();
+		notifyObservers(this);
 	}
 	
 	public void deselectTous() {
@@ -56,6 +56,11 @@ public class DessinModele extends Observable{
 			}
 		}
 		
+	}
+	
+	public void update() {
+		setChanged();
+		notifyObservers(this);
 	}
 	
 

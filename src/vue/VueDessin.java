@@ -1,6 +1,8 @@
 package vue;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -39,8 +41,11 @@ public class VueDessin extends JPanel implements Observer{
 		super.paintComponent(g);
 		if (this.dessin.get_fg() != null) {
 			for (FigureColoree fg : this.dessin.get_fg()) {
+				g.setColor(fg.getColor());
 				fg.afficher(g);
+
 			}
+			System.out.println("repaint");
 		}		
 		
 	}
@@ -52,16 +57,19 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	
 	}
-	
-	public void manip() {
-		ArrayList<FigureColoree> f = this.dessin.get_fg();
-		ManipulateurFormes mf = new ManipulateurFormes(this.dessin, f);
-		this.addMouseListener(mf);
-		this.addMouseMotionListener(mf);
-	}
+
 	
 	public DessinModele getDessin() {
 		return this.dessin;
+	}
+	
+	public void desactiverToutListener() {
+		for (MouseListener m : getMouseListeners()) {
+			removeMouseListener(m);
+		}
+		for (MouseMotionListener mm : getMouseMotionListeners()) {
+			removeMouseMotionListener(mm);
+		}
 	}
 
 }

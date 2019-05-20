@@ -38,6 +38,10 @@ public abstract class FigureColoree {
 		this.tab_mem = new ArrayList<Point>();
 
 	}
+	
+	public ArrayList<Point> getListePoint(){
+		return this.tab_mem;
+	}
 	/*
 	 * permet de savoir si une figure est selectionne
 	 */
@@ -64,7 +68,7 @@ public abstract class FigureColoree {
 	/**
 	 * permet de savoir si les le Point(x,y) et dans la figure
 	 */
-	public abstract boolean estDans(int x, int y);
+	public abstract boolean estDedans(int x, int y);
 
 	/*
 	 * methode qui permet d'afficher une figure Coloree, et d'afficher
@@ -107,12 +111,15 @@ public abstract class FigureColoree {
 	 * @param dy, nouveau y
 	 */
 	public void bouger(int x, int y) {
-		for(Point p : tab_mem) {
+		for(Point p : this.tab_mem) {
 			p.incrementerX(x);
 			p.incrementerY(y);
 		}
-		
-	}
 	
+	}
+
+	public Color getColor() {
+		return this.couleur;
+	}
 
 }

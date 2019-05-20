@@ -43,7 +43,8 @@ public class PanneauChoix extends JPanel{
 	 */
 	public PanneauChoix(VueDessin v) {
 		this.vdessin = v;
-
+		this.dmodele = new DessinModele();
+		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
 		JPanel placementBas  = new JPanel();
@@ -84,18 +85,19 @@ public class PanneauChoix extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				JRadioButton source = (JRadioButton)e.getSource();
 				if(source.equals(nf)){ 
-			
 					fig.setEnabled(true);
 					co.setEnabled(true);
+					vdessin.desactiverToutListener();
 				}else if(source.equals(tml)){
-			
 					fig.setEnabled(false);
 					co.setEnabled(true);
+					vdessin.desactiverToutListener();
 				}else if(source.equals(ma)) {
 					fig.setEnabled(false);
-					co.setEnabled(false);
+					vdessin.desactiverToutListener();
 				}else {
 					fig.setEnabled(false);
+					vdessin.desactiverToutListener();
 				}
 			}
 		};
@@ -141,9 +143,9 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("manip");
-				vdessin.manip();
-				
-				
+				ManipulateurFormes mf = new ManipulateurFormes(dmodele);
+				vdessin.addMouseListener(mf);
+				vdessin.addMouseMotionListener(mf);
 			}
 		});
 		
@@ -193,5 +195,7 @@ public class PanneauChoix extends JPanel{
 			return null;
 		}
 	}
+	
+	
 
 }

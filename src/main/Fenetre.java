@@ -46,7 +46,7 @@ public class Fenetre extends JFrame{
 		fenetre.requestFocusInWindow();
 		fenetre.setVisible(true);
 		
-		this.vdessin.setBackground(Color.pink);
+		this.vdessin.setBackground(Color.white);
 
 		
 		

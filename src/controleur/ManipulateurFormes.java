@@ -71,7 +71,16 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if (lfg.size()!=0){
+			if(lfg.get(indice).isSelected() == true) {
+				lfg.get(indice).bouger(e.getX()-last_x, e.getY()-last_y);
+				trans = true;
+				last_x = e.getX();
+				last_y = e.getY();
+			}
+			
+		((VueDessin)e.getSource()).repaint();
+		}
 		
 	}
 

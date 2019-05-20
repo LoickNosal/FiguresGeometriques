@@ -43,6 +43,7 @@ public class PanneauChoix extends JPanel{
 	 */
 	public PanneauChoix(VueDessin v) {
 		this.vdessin = v;
+
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
 		JPanel placementBas  = new JPanel();
@@ -83,9 +84,11 @@ public class PanneauChoix extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				JRadioButton source = (JRadioButton)e.getSource();
 				if(source.equals(nf)){ 
+			
 					fig.setEnabled(true);
 					co.setEnabled(true);
 				}else if(source.equals(tml)){
+			
 					fig.setEnabled(false);
 					co.setEnabled(true);
 				}else if(source.equals(ma)) {

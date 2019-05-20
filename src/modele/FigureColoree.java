@@ -38,7 +38,12 @@ public abstract class FigureColoree {
 		this.tab_mem = new ArrayList<Point>();
 
 	}
-	
+	/*
+	 * permet de savoir si une figure est selectionne
+	 */
+	public boolean isSelected() {
+		return this.selected;
+	}
 	/*
 	 * Methode abstraite qui retourne le nombre de points de memorisation.
 	 */
@@ -96,6 +101,18 @@ public abstract class FigureColoree {
 		this.couleur = c;
 	}
 	
+	/**
+	 * methode qui permet de deplacer la figure
+	 * @param dx, nouveau x
+	 * @param dy, nouveau y
+	 */
+	public void bouger(int x, int y) {
+		for(Point p : tab_mem) {
+			p.incrementerX(x);
+			p.incrementerY(y);
+		}
+		
+	}
 	
 
 }

@@ -49,5 +49,14 @@ public class DessinModele extends Observable{
 		notifyObservers();
 	}
 	
+	public void deselectTous() {
+		if (this.lfg != null) {
+			for (FigureColoree fg : this.lfg) {
+				fg.deSelectionne();
+			}
+		}
+		
+	}
+	
 
 }

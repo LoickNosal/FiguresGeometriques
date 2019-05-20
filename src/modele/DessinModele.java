@@ -1,5 +1,6 @@
 package modele;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -65,6 +66,10 @@ public class DessinModele extends Observable{
 	public void update() {
 		setChanged();
 		notifyObservers();
+	}
+	
+	public void changeCoul(FigureColoree fc, Color c) {
+		fc.changeCouleur(c);
 	}
 	
 

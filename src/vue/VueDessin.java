@@ -70,6 +70,10 @@ public class VueDessin extends JPanel implements Observer{
 		return this.dessin;
 	}
 	
+	public ManipulateurFormes getManipulateurFormes() {
+		return this.mf;
+	}
+	
 	public void desactiverToutListener() {
 		for (MouseListener m : getMouseListeners()) {
 			removeMouseListener(m);

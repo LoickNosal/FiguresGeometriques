@@ -111,12 +111,18 @@ public abstract class FigureColoree {
 	 * @param dx, nouveau x
 	 * @param dy, nouveau y
 	 */
-	public void bouger(int x, int y) {
+	public void translation(int x, int y) {
+		
 		for(Point p : this.tab_mem) {
-			p.incrementerX(x);
-			p.incrementerY(y);
+			p.translation(x, y);
 		}
+		this.modifierPoints(this.tab_mem);
+	}
 	
+	public void transformation(int dx, int dy, int indice) {
+		this.tab_mem.get(indice).modifierX(dx);
+		this.tab_mem.get(indice).modifierY(dy);
+		this.modifierPoints(this.tab_mem);
 	}
 
 	public Color getColor() {

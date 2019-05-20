@@ -126,6 +126,11 @@ public class PanneauChoix extends JPanel{
 				if (nf.isSelected() && c!= null && fc != null) {
 					fc.changeCouleur(c);
 					vdessin.repaint();
+				}else if (ma.isSelected() && c!= null && fc != null) {
+					if (vdessin.getManipulateurFormes().figureSelection() != null) {
+						vdessin.getManipulateurFormes().figureSelection().changeCouleur(c);
+					}
+					vdessin.repaint();
 				}
 				
 			}

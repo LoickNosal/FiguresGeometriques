@@ -63,17 +63,17 @@ public abstract class Polygone extends FigureColoree{
 	public void modifierPoints(ArrayList<Point> pts) {
 		this.tab_mem = pts;
 		if (this.tab_mem != null) {
-			int[] ab = new int[super.tab_mem.size()];
-			int[] or = new int[super.tab_mem.size()];
+			int[] ab = new int[this.tab_mem.size()];
+			int[] or = new int[this.tab_mem.size()];
 			int i = 0;
-			for (Point p : super.tab_mem) {
+			for (Point p : this.tab_mem) {
 				if (p != null) {
 					ab[i] = p.rendreX();
 					or[i] = p.rendreY();
 				}	
 				i++;
 			}
-			this.p = new Polygon(ab,or,super.tab_mem.size());
+			this.p = new Polygon(ab,or,this.tab_mem.size());
 		}
 		
 	}

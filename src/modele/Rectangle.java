@@ -35,7 +35,16 @@ public class Rectangle extends Quadrilatere{
 	
 		}
 		super.modifierPoints(rec);
-	}
 		
+	}
+	
+	@Override
+	public void translation(int x, int y) {	
+		for(Point p : this.tab_mem) {
+			p.translation(x, y);
+		}
+		super.modifierPoints(this.tab_mem);
+	}
+
 	
 }

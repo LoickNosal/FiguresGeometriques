@@ -33,6 +33,7 @@ public class DessinModele extends Observable{
 	 */
 	public void initDessinModele() {
 		this.lfg = new ArrayList<FigureColoree>();
+		this.sel = -1;
 		setChanged();
 		notifyObservers();
 	}
@@ -68,8 +69,20 @@ public class DessinModele extends Observable{
 		notifyObservers();
 	}
 	
+	public void setSel(int index) {
+		this.sel = index;
+	}
+	
 	public void changeCoul(FigureColoree fc, Color c) {
 		fc.changeCouleur(c);
+	}
+	
+	public void supprimerFigure() {
+		if (this.sel != -1) {
+			this.lfg.remove(sel);
+		}
+		this.update();
+		this.sel = -1;
 	}
 	
 

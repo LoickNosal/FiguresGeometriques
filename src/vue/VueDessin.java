@@ -58,14 +58,12 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public void manip() {
 		System.out.println("manip");
-		ManipulateurFormes mpf = new ManipulateurFormes(this.dessin);
-		this.mf = mpf;
+		this.mf = new ManipulateurFormes(this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.mf);
 		this.addMouseMotionListener(this.mf);
 	}
 
-	
 	public DessinModele getDessin() {
 		return this.dessin;
 	}

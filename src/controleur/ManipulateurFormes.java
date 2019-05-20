@@ -53,9 +53,11 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 		this.sel = -1;
 		this.last_x = 0;
 		this.last_y = 0;
-	
 	}
 	
+	public int getSel() {
+		return this.sel;
+	}
 
 	public int nbFigures() {
 		return this.lfg.size();
@@ -118,6 +120,8 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 					if(lfg.get(i).estDedans(last_x, last_y) && estselec == false) {
 						lfg.get(i).selectionne();
 						indice = i;
+						this.sel = i;
+						this.dm.setSel(i);
 						estselec=true;
 
 					}

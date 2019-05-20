@@ -61,8 +61,7 @@ public class PanneauChoix extends JPanel{
 
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
-
-		
+		final JButton supp = new JButton("Supprimer figure");
 
 		bg.add(nf);
 		bg.add(tml);
@@ -74,6 +73,7 @@ public class PanneauChoix extends JPanel{
 		
 		placementBas.add(fig);
 		placementBas.add(co);
+		placementBas.add(supp);
 		
 		fig.setEnabled(false);
 		
@@ -88,22 +88,26 @@ public class PanneauChoix extends JPanel{
 				if(source.equals(nf)){ 
 					fig.setEnabled(true);
 					co.setEnabled(true);
+					supp.setEnabled(false);
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
 				}else if(source.equals(tml)){
 					fig.setEnabled(false);
 					co.setEnabled(true);
+					supp.setEnabled(false);
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
 				}else if(source.equals(ma)) {
 					fig.setEnabled(false);
+					supp.setEnabled(true);
 					dmodele.deselectTous();
 					//vdessin.desactiverToutListener();
 					vdessin.repaint();
 				}else {
 					fig.setEnabled(false);
+					supp.setEnabled(false);
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -157,6 +161,16 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vdessin.manip();
+			}
+		});
+		
+		
+		supp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dmodele.supprimerFigure();
+				
 			}
 		});
 		

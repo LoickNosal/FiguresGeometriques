@@ -48,28 +48,32 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	
 	public ManipulateurFormes(DessinModele d) {
 		this.dm = d;
+		this.lfg = d.get_fg();
 		this.trans = false;
 		this.sel = -1;
 		this.last_x = 0;
 		this.last_y = 0;
-		if (this.dm.get_fg() != null) {
-			this.lfg = this.dm.get_fg();
-		}
-		
-		
+	
 	}
 	
 
 	public int nbFigures() {
-		throw new Error("pas fait");
+		return this.lfg.size();
 	}
 	
 	public FigureColoree figureSelection() {
-		throw new Error("pas fait");
+		for (FigureColoree f : this.lfg) {
+			if (f.isSelected() == true) {
+				return f;
+			}
+		}
+		return null;
 	}
 	
 	public void selectionProchaineFigure() {
-		throw new Error("pas fait");
+		this.dm.deselectTous();
+		this.lfg.get(sel+1).selectionne();
+		this.sel = this.sel +1;
 	}
 	
 	@Override
@@ -83,11 +87,8 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				last_x = e.getX();
 				last_y = e.getY();
 			}
-			
-		((VueDessin)e.getSource()).repaint();
-		dm.update();
 		}
-		
+		this.dm.update();
 	}
 
 	@Override
@@ -104,30 +105,33 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+
 		if(lfg.size()!=0){
 			if(MouseEvent.BUTTON1 == e.getButton()) {
 				last_y = e.getY();
 				last_x = e.getX();
 				
-				boolean select = false;
+				boolean estselec = false;
+				
 				for(int i=(lfg.size()-1); i>=0; i--) {
-					if(lfg.get(i).estDedans(last_x, last_y)&&!select) {
+					
+					if(lfg.get(i).estDedans(last_x, last_y) && estselec == false) {
 						lfg.get(i).selectionne();
 						indice = i;
-						select=true;
+						estselec=true;
+
 					}
 					else {
 						lfg.get(i).deSelectionne();
 					}
-				}
+					
 
+				}
+				this.dm.update();
 			}
 		}
-		((VueDessin)e.getSource()).repaint();
-		dm.update();
 
-		
-		
+	
 	}
 
 	@Override

@@ -32,12 +32,11 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void update(Observable o, Object ob) {
-		this.dessin = (DessinModele) o;
+		this.dessin = (DessinModele)o;
 		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
 		if (this.dessin.get_fg() != null) {
 			for (FigureColoree fg : this.dessin.get_fg()) {
@@ -45,8 +44,7 @@ public class VueDessin extends JPanel implements Observer{
 				fg.afficher(g);
 
 			}
-			System.out.println("repaint");
-		}		
+		}
 		
 	}
 	
@@ -56,6 +54,15 @@ public class VueDessin extends JPanel implements Observer{
 			this.addMouseListener(ff);
 		}
 	
+	}
+	
+	public void manip() {
+		System.out.println("manip");
+		ManipulateurFormes mpf = new ManipulateurFormes(this.dessin);
+		this.mf = mpf;
+		this.desactiverToutListener();
+		this.addMouseListener(this.mf);
+		this.addMouseMotionListener(this.mf);
 	}
 
 	

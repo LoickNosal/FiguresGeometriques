@@ -9,6 +9,9 @@ import java.util.Observable;
  */
 public class DessinModele extends Observable{
 	
+	
+	private int nbf;
+	private int sel;
 	/*
 	 * contient l'ensemble des figures dessinees par l'utilisateur dans un dessin
 	 */
@@ -18,7 +21,6 @@ public class DessinModele extends Observable{
 	 * constructeur vide qui initialise le dessin
 	 */
 	public DessinModele() {
-		
 		this.initDessinModele();
 	}
 	
@@ -28,26 +30,26 @@ public class DessinModele extends Observable{
 	/*
 	 * initialise le dessin sans figures
 	 */
-	public void initDessinModele() {		
+	public void initDessinModele() {
 		this.lfg = new ArrayList<FigureColoree>();
 		setChanged();
-		notifyObservers(this);
+		notifyObservers();
 	}
 	/*
 	 * ajoute une figure dans le dessin
 	 * @param f figure à ajouter
 	 */
 	public void ajoute(FigureColoree f) {
-		for (FigureColoree fg : lfg) {
-			fg.deSelectionne();
-		}
+		this.deselectTous();
 		if (f != null) {
 			this.lfg.add(f);
 			//f.selectionne();
 		}
 		setChanged();
-		notifyObservers(this);
+		notifyObservers();
 	}
+	
+
 	
 	public void deselectTous() {
 		if (this.lfg != null) {
@@ -55,12 +57,14 @@ public class DessinModele extends Observable{
 				fg.deSelectionne();
 			}
 		}
+		setChanged();
+		notifyObservers();
 		
 	}
 	
 	public void update() {
 		setChanged();
-		notifyObservers(this);
+		notifyObservers();
 	}
 	
 

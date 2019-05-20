@@ -32,9 +32,7 @@ public class Rectangle extends Quadrilatere{
 			rec.add(new Point(pts.get(0).rendreX(), pts.get(1).rendreY()));
 			rec.add(pts.get(1));
 			rec.add(new Point(pts.get(1).rendreX(), pts.get(0).rendreY()));
-			
-			
-			
+	
 		}
 		super.modifierPoints(rec);
 	}

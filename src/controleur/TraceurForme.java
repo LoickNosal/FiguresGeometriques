@@ -8,6 +8,9 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import vue.VueDessin;
 
 public class TraceurForme extends JPanel implements MouseListener,MouseMotionListener{
 	
@@ -16,12 +19,25 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 	private int lasy_y;
 	private Color couleur_trait;
 	private Graphics gc;
+
 	
 	
 	public TraceurForme(Graphics g) {
+		System.out.println("creer");
 		this.liste_traits = new ArrayList<Trait>();
 		this.couleur_trait = Color.black;
 		this.gc = g;
+
+		
+	}
+	
+
+	public void setColor(Color c) {
+		this.couleur_trait = c;
+	}
+	
+	public ArrayList<Trait> getListe_traits(){
+		return this.liste_traits;
 	}
 	
 	@Override
@@ -31,7 +47,9 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("creer");
+		this.last_x = e.getX();
+		this.lasy_y = e.getY();
 		
 	}
 	@Override
@@ -51,7 +69,15 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			gc.setColor(this.couleur_trait);
+			gc.drawLine(this.last_x, this.lasy_y, e.getX(), e.getY());
+			this.liste_traits.add(new Trait(this.last_x, this.lasy_y, e.getX(), e.getY(), this.couleur_trait));
+			this.last_x = e.getX();
+			this.lasy_y = e.getY();
+			
+		}
 		
 	}
 	@Override

@@ -51,8 +51,8 @@ public class PanneauChoix extends JPanel{
 		ButtonGroup bg = new ButtonGroup();
 		
 		JRadioButton nf = new JRadioButton ("Nouvelle figure");
-		//seletionné par defaut avec le true
-		JRadioButton tml = new JRadioButton ("Tracé à main levée",true);
+
+		JRadioButton tml = new JRadioButton ("Tracé à main levée");
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		
@@ -96,7 +96,7 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(false);
-					
+					vdessin.ajouterTrait();
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -107,8 +107,8 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(true);
-					
-					vdessin.desactiverToutListener();
+					vdessin.ajouterTrait();
+					//vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
 					
@@ -118,7 +118,7 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
 					co.setEnabled(true);
-					
+					vdessin.ajouterTrait();
 					dmodele.deselectTous();
 					vdessin.repaint();
 				}else {
@@ -180,6 +180,16 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vdessin.manip();
+			}
+		});
+		
+		tml.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Color c = determineCouleur(co.getSelectedIndex());
+				vdessin.trace(c);
+				
 			}
 		});
 		

@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 import controleur.FabricantFigures;
 import controleur.ManipulateurFormes;
+import controleur.TraceurForme;
+import controleur.Trait;
 import modele.DessinModele;
 import modele.FigureColoree;
 
@@ -30,11 +32,21 @@ public class VueDessin extends JPanel implements Observer{
 	 * Objet "listener" pour les manipulations et transformations de figures via la souris
 	 */
 	private ManipulateurFormes mf;
+	/*
+	 * jpanel traceurforme pour les traits
+	 */
+	private TraceurForme tf;
+	/*
+	 * liste des traits du dessin
+	 */
+	private ArrayList<Trait> liste_traits;
 	
 	public VueDessin() {
+		this.liste_traits = new ArrayList<Trait>();
 		this.dessin = new DessinModele();
 		this.setFocusable(true);
 		this.requestFocusInWindow();
+		
 	}
 	
 	public void update(Observable o, Object ob) {
@@ -56,19 +68,31 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		if (this.dessin.get_fg() != null) {
 			for (FigureColoree fg : this.dessin.get_fg()) {
 				g.setColor(fg.getColor());
 				fg.afficher(g);
+				
 
 			}
 		}
+		
+		if (this.liste_traits != null) {
+			for (Trait t : this.liste_traits) {
+				g.setColor(t.getCouleur());
+				g.drawLine(t.getDebx(), t.getDeby(), t.getFinx(), t.getFiny());
+			}
+		}
+		
+		
 		
 	}
 	/*
 	 * Cette méthode permet d'initier le mécanisme événementiel de fabrication des figures à la souris (ajout du listener).
 	 */
 	public void construit(FigureColoree f) {
+		this.ajouterTrait();
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
@@ -76,11 +100,37 @@ public class VueDessin extends JPanel implements Observer{
 	
 	}
 	
+	public void ajouterTrait() {
+		System.out.println("appelee");
+		if (this.tf != null) {
+			if(this.tf.getListe_traits() != null) {
+
+				for (Trait t :this.tf.getListe_traits()) {
+					this.liste_traits.add(t);
+				}
+				
+			}
+		}
+	}
+	
+	
+	public void trace(Color c) {
+		System.out.println("tracer");
+		this.ajouterTrait();
+		this.desactiverToutListener();
+		this.tf = new TraceurForme(this.getGraphics());
+		
+		this.addMouseListener(this.tf);
+		this.addMouseMotionListener(this.tf);
+		
+	}
+	
 	/*
 	 * Cette méthode permet d'initier le mécanisme de manipulation des figures à la souris (ajout du listener).
 	 */
 	public void manip() {
 		System.out.println("manip");
+		this.ajouterTrait();
 		this.mf = new ManipulateurFormes(this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.mf);
@@ -107,5 +157,7 @@ public class VueDessin extends JPanel implements Observer{
 			removeMouseMotionListener(mm);
 		}
 	}
+	
+
 
 }

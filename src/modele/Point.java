@@ -23,8 +23,8 @@ public class Point {
 	 * @p2 deuxieme point avec lequel calculé la distance
 	 */
 	public double distance(Point p2) {
-		double d = Math.sqrt((Math.pow(2,(this.rendreX()-p2.rendreX())) + 
-				(Math.pow(2, (this.rendreY()-p2.rendreY())))));
+		double d = Math.sqrt((Math.pow((this.rendreX()-p2.rendreX()),2) + 
+				(Math.pow((this.rendreY()-p2.rendreY()),2))));
 		return d;
 	}
 	

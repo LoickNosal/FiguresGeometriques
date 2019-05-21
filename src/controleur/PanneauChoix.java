@@ -95,6 +95,7 @@ public class PanneauChoix extends JPanel{
 					fig.setEnabled(true);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
+					co.setEnabled(false);
 					
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
@@ -105,6 +106,7 @@ public class PanneauChoix extends JPanel{
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
+					co.setEnabled(true);
 					
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
@@ -115,6 +117,7 @@ public class PanneauChoix extends JPanel{
 					fig.setEnabled(false);
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
+					co.setEnabled(true);
 					
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -122,6 +125,7 @@ public class PanneauChoix extends JPanel{
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
+					co.setEnabled(true);
 					
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
@@ -141,31 +145,33 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				Color c = determineCouleur(co.getSelectedIndex());
 				if (nf.isSelected() && c!= null && fc != null) {
 					fc.changeCouleur(c);
 					vdessin.repaint();
+					//fc = null;
 				}else if (ma.isSelected() && c!= null && fc != null) {
 					if (vdessin.getManipulateurFormes().figureSelection() != null) {
 						vdessin.getManipulateurFormes().figureSelection().changeCouleur(c);
 					}
 					vdessin.repaint();
 				}
-				
 			}
 		});
 			
 		fig.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				co.setEnabled(false);
 				fc = creeFigure(fig.getSelectedIndex());
 				Color c = determineCouleur(co.getSelectedIndex());
 				
 				if (fc != null){
 					fc.changeCouleur(c);
 					vdessin.construit(fc);
-	
+					co.setEnabled(true);
 				}
+				
 			}
 		});
 		
@@ -192,9 +198,7 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vdessin.effacer();
-
-				
-				
+			
 			}
 		});
 

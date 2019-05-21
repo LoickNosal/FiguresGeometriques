@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modele.DessinModele;
 import modele.FigureColoree;
+import modele.Point;
 import vue.VueDessin;
 
 public class ManipulateurFormes implements MouseListener, MouseMotionListener {
@@ -80,16 +81,28 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (lfg.size()!=0){
-			if(lfg.get(indice).isSelected() == true) {	
+
+		if (this.trans == true) {
+			if (lfg.size()!=0){
+				if(lfg.get(indice).isSelected() == true) {	
+					
+					lfg.get(this.sel).translation(e.getX()-last_x, e.getY()-last_y);
+					last_x = e.getX();
+					last_y = e.getY();
+				}
+			}
+		}else {
+			this.trans = false;
+				this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
+				if (indice != -1) {
+					lfg.get(this.sel).transformation(last_x, last_y, this.indice);
+				}
 				
-				lfg.get(indice).translation(e.getX()-last_x, e.getY()-last_y);
-				
-				trans = true;
 				last_x = e.getX();
 				last_y = e.getY();
 			}
-		}
+						
+		
 		this.dm.update();
 	}
 
@@ -123,7 +136,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 						this.sel = i;
 						this.dm.setSel(i);
 						estselec=true;
-
+						this.trans = true;	
 					}
 					else {
 						lfg.get(i).deSelectionne();
@@ -133,7 +146,15 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				}
 				this.dm.update();
 			}
+			if (MouseEvent.BUTTON3 == e.getButton()) {
+				last_y = e.getY();
+				last_x = e.getX();
+				this.trans = false;
+				
+			}
 		}
+		
+		
 
 	
 	}

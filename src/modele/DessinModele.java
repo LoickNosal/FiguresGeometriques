@@ -64,6 +64,7 @@ public class DessinModele extends Observable{
 		
 	}
 	
+	
 	public void update() {
 		setChanged();
 		notifyObservers();

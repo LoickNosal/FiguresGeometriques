@@ -16,6 +16,11 @@ public abstract class FigureColoree {
 	 */
 	protected static final int TAILLE_CARRE_SELECTION = 10;
 	/*
+	 * Constante définissant 
+	 * la taille de la périphérie des carrés de sélection.
+	 */
+	protected static final int PERIPHERIE_CARRE_SELECTION = 10;
+	/*
 	 * Attribut booleen indiquant si la figure est
 	 * selectionnee (son affichage est alors different).
 	 */
@@ -127,6 +132,22 @@ public abstract class FigureColoree {
 
 	public Color getColor() {
 		return this.couleur;
+	}
+	/*
+	 * Méthode qui détecte un point 
+	 * se trouvant près d'un carré de séléction.
+	 */
+	public int carreDeSelection(int x, int y) {
+		Point p = new Point(x,y);
+		int indice = -1;
+		for (Point point : this.tab_mem) {
+			indice += 1;
+			if (p.distance(point) <= this.PERIPHERIE_CARRE_SELECTION) {
+				return indice;
+			}
+		}
+		return -1;
+		
 	}
 
 }

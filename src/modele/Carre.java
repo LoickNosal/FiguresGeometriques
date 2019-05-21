@@ -59,6 +59,38 @@ public class Carre extends Rectangle{
 		super.modifierPoints(rec);
 	}
 	
+	@Override
+	public void transformation(int dx, int dy, int indice) {
+		ArrayList<Point> rec = new ArrayList<Point>(2);
 	
+		
+		int i = 0;		
+		for (Point p : tab_mem) {
+			if (indice == i) {
+				
+				tab_mem.get(i).modifierX(dx);
+				tab_mem.get(i).modifierY(dy);
+				
+				if (indice == 0) {
+					rec.add(tab_mem.get(2));
+					rec.add(tab_mem.get(0));
+				}else if (indice == 1) {
+					rec.add(tab_mem.get(3));
+					rec.add(tab_mem.get(1));
+				}else if (indice == 2) {
+					rec.add(tab_mem.get(0));
+					rec.add(tab_mem.get(2));
+					
+				}else if (indice == 3) {
+					rec.add(tab_mem.get(1));
+					rec.add(tab_mem.get(3));
+				}
+			}
+			i++;
+		}
+		modifierPoints(rec);
+
+		
+	}
 
 }

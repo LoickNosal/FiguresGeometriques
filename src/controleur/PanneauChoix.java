@@ -64,6 +64,7 @@ public class PanneauChoix extends JPanel{
 		
 		final JButton suppTout = new JButton("Effacer Tout");
 
+		
 		bg.add(nf);
 		bg.add(tml);
 		bg.add(ma);

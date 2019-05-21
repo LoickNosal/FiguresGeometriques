@@ -15,6 +15,9 @@ public class Triangle extends Polygone{
 	
 	
 	@Override
+	/*
+	 * Cette méthode retourne en résultat le nombre de points de mémorisation d'un triangle.
+	 */
 	public int nbPoints() {
 		return 3;
 	}

@@ -11,10 +11,15 @@ import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Point;
 import vue.VueDessin;
-
+/*
+ * @author Nosal Loïck
+ * Classe gérant le déplacement et la transformation des figures géométriques.
+ */
 public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	
-	
+	/*
+	 * savoir si la figure est en train d'etre deforme
+	 */
 	private boolean deformer;
 	/*
 	 * Abscisse d'un clic de souris.
@@ -50,6 +55,9 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	 */
 	private DessinModele dm;
 	
+	/*
+	 * constructeur à partir d'un DessinModele
+	 */
 	public ManipulateurFormes(DessinModele d) {
 		this.dm = d;
 		this.lfg = d.get_fg();
@@ -65,10 +73,16 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 		return this.sel;
 	}
 
+	/*
+	 * Cette méthode retourne le nombre de figures apparaissant dans ce dessin.
+	 */
 	public int nbFigures() {
 		return this.lfg.size();
 	}
 	
+	/*
+	 * Cette méthode retourne la figure actuellement sélectionnée.
+	 */
 	public FigureColoree figureSelection() {
 		for (FigureColoree f : this.lfg) {
 			if (f.isSelected() == true) {
@@ -77,7 +91,9 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 		}
 		return null;
 	}
-	
+	/*
+	 * Cette méthode sélectionne la prochaine figure dans le tableau des figures.
+	 */
 	public void selectionProchaineFigure() {
 		this.dm.deselectTous();
 		this.lfg.get(sel+1).selectionne();
@@ -85,6 +101,9 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	}
 	
 	@Override
+	/*
+	 * Méthode déplaçant ou transformant la figure géométrique sélectionnée.
+	 */
 	public void mouseDragged(MouseEvent e) {
 
 		if (this.trans == true) {
@@ -124,22 +143,14 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 			}
 				
 		}
-		this.dm.update();
+		this.dm.majAffichage();
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	/*
+	 * Méthode permettant de sélectionner la figure géométrique à manipuler.
+	 */
 	public void mousePressed(MouseEvent e) {
 
 		if(lfg.size()!=0){
@@ -169,7 +180,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 					
 
 				}
-				this.dm.update();
+				this.dm.majAffichage();
 			}
 			if (MouseEvent.BUTTON3 == e.getButton()) {
 				
@@ -179,13 +190,12 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				
 			}
 		}
-		
-		
-
-	
 	}
 
 	@Override
+	/*
+	 * permet de gerer le lacher de clique 
+	 */
 	public void mouseReleased(MouseEvent e) {
 		this.deformer = false;
 		this.trans = false; 
@@ -194,17 +204,15 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 	
-	
+	@Override
+	public void mouseMoved(MouseEvent e) {}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {}
 
 }

@@ -17,6 +17,9 @@ public class Rectangle extends Quadrilatere{
 	}
 	
 	@Override
+	/*
+	 * Cette méthode retourne en résultat le nombre de points dont on a besoin pour la saisie d'un rectangle.
+	 */
 	public int nbClics() {
 		return 2;
 	}
@@ -24,7 +27,11 @@ public class Rectangle extends Quadrilatere{
 	public int nbPoints() {
 		return 4;
 	}
+	
 	@Override
+	/*
+	 * Cette méthode modifie le rectangle conformément à un ensemble de deux points de saisie.
+	 */
 	public void modifierPoints(ArrayList<Point> pts) {
 		ArrayList<Point> rec = new ArrayList<Point>(4);
 		if (pts.size()>1){
@@ -39,6 +46,9 @@ public class Rectangle extends Quadrilatere{
 	}
 	
 	@Override
+	/*
+	 * Cette méthode permet d'effectuer une translation des coordonées du rectangle
+	 */
 	public void translation(int x, int y) {	
 		for(Point p : this.tab_mem) {
 			p.translation(x, y);
@@ -46,7 +56,9 @@ public class Rectangle extends Quadrilatere{
 		super.modifierPoints(this.tab_mem);
 	}
 	
-	@Override
+	/*
+	 * Cette méthode permet d'effectuer une transformation des coordonnées des points de mémorisation du rectangle.
+	 */
 	public void transformation(int dx, int dy, int indice) {
 		int i = 0;		
 		for (Point p : tab_mem) {

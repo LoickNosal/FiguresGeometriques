@@ -44,6 +44,9 @@ public abstract class Polygone extends FigureColoree{
 	}
 	
 	@Override
+	/*
+	 * Cette méthode retourne en résultat le nombre de points dont on a besoin, en général, pour la saisie d'un polygone
+	 */
 	public int nbClics() {
 		return this.p.npoints; //nb de points d'un polygon
 	}
@@ -80,7 +83,7 @@ public abstract class Polygone extends FigureColoree{
 	
 	@Override
 	/**
-	 * vérifie si le point de coordonnées est dans le polygone
+	 * Cette méthode retourne vrai si le point dont les coordonnées sont passées en paramètre se trouve à l'intérieur du polygone.
 	 */
 	public boolean estDedans(int x, int y){
 		return this.p.contains(new java.awt.Point(x, y));

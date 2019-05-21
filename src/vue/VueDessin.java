@@ -22,7 +22,13 @@ import modele.FigureColoree;
  */
 public class VueDessin extends JPanel implements Observer{
 	
+	/*
+	 * Modèle
+	 */
 	private DessinModele dessin;
+	/*
+	 * Objet "listener" pour les manipulations et transformations de figures via la souris
+	 */
 	private ManipulateurFormes mf;
 	
 	public VueDessin() {
@@ -36,6 +42,18 @@ public class VueDessin extends JPanel implements Observer{
 		repaint();
 	}
 	
+	/*
+	 * Cette méthode retourne la figure actuellement sélectionnée.
+	 */
+	public FigureColoree figureSelection() {
+		for (FigureColoree f : this.dessin.get_fg()) {
+			if (f.isSelected()) {
+				return f;
+			}
+		}
+		return null;
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (this.dessin.get_fg() != null) {
@@ -47,7 +65,9 @@ public class VueDessin extends JPanel implements Observer{
 		}
 		
 	}
-	
+	/*
+	 * Cette méthode permet d'initier le mécanisme événementiel de fabrication des figures à la souris (ajout du listener).
+	 */
 	public void construit(FigureColoree f) {
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
@@ -56,6 +76,9 @@ public class VueDessin extends JPanel implements Observer{
 	
 	}
 	
+	/*
+	 * Cette méthode permet d'initier le mécanisme de manipulation des figures à la souris (ajout du listener).
+	 */
 	public void manip() {
 		System.out.println("manip");
 		this.mf = new ManipulateurFormes(this.dessin);
@@ -73,6 +96,9 @@ public class VueDessin extends JPanel implements Observer{
 		return this.mf;
 	}
 	
+	/*
+	 * Méthode désactivant les listeners
+	 */
 	public void desactiverToutListener() {
 		for (MouseListener m : getMouseListeners()) {
 			removeMouseListener(m);

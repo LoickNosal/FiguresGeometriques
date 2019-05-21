@@ -10,8 +10,13 @@ import java.util.Observable;
  */
 public class DessinModele extends Observable{
 	
-	
+	/*
+	 * Liste de figures colorées
+	 */
 	private int nbf;
+	/*
+	 * Indice de la figure actuellement sélectionnée (-1 si aucune figure n'est sélectionnée).
+	 */
 	private int sel;
 	/*
 	 * contient l'ensemble des figures dessinees par l'utilisateur dans un dessin
@@ -25,6 +30,9 @@ public class DessinModele extends Observable{
 		this.initDessinModele();
 	}
 	
+	/*
+	 * Getter de la liste de figures colorées
+	 */
 	public ArrayList<FigureColoree> get_fg(){
 		return this.lfg;
 	}
@@ -35,8 +43,7 @@ public class DessinModele extends Observable{
 		this.lfg = new ArrayList<FigureColoree>();
 		this.sel = -1;
 		this.nbf = 0;
-		setChanged();
-		notifyObservers();
+		this.majAffichage();
 	}
 	/*
 	 * ajoute une figure dans le dessin
@@ -47,40 +54,53 @@ public class DessinModele extends Observable{
 		if (f != null) {
 			this.lfg.add(f);
 			this.nbf += 1;
-			//f.selectionne();
 		}
-		setChanged();
-		notifyObservers();
+		this.majAffichage();
 	}
 	
 
-	
+	/*
+	 * permet de deselectionner toutes les
+	 * figures
+	 */
 	public void deselectTous() {
 		if (this.lfg != null) {
 			for (FigureColoree fg : this.lfg) {
 				fg.deSelectionne();
 			}
 		}
-		setChanged();
-		notifyObservers();
+		this.majAffichage();
 		
 	}
 	
-	
-	public void update() {
+	/*
+	 * Mise à jour de l'affichage Opérations de sélection,
+	 * déselection, changement de position, changement de couleur
+	 */
+	public void majAffichage() {
 		setChanged();
 		notifyObservers();
 	}
 	
-	public void setSel(int index) {
-		this.sel = index;
+	public void setSel(int i) {
+		this.sel = i;
 		
 	}
 	
+	public void setNbf(int i) {
+		this.nbf = i;
+	}
+	
+	/*
+	 * Cette méthode permet de changer la couleur de la figure passée en paramètre.
+	 */
 	public void changeCoul(FigureColoree fc, Color c) {
 		fc.changeCouleur(c);
 	}
 	
+	/*
+	 * permet de supprimer une figure du dessin
+	 */
 	public void supprimerFigure() {
 		if (this.sel != -1) {
 			if (this.lfg.get(this.sel).isSelected() == true) {
@@ -90,14 +110,17 @@ public class DessinModele extends Observable{
 			}
 			
 		}		
-		this.update();
+		this.majAffichage();
 	}
 	
+	/*
+	 * permet de supprimer l'ensemble des figures du dessin.
+	 */
 	public void supprimerTout() {
 		this.lfg.clear();
 		this.sel = -1;
 		this.nbf = 0;
-		update();
+		this.majAffichage();
 	}
 	
 

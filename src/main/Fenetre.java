@@ -15,8 +15,17 @@ import vue.VueDessin;
  */
 public class Fenetre extends JFrame{
 	
+	/*
+	 * Panneau principal
+	 */
 	private JPanel principal;
+	/*
+	 * Panneau des choix
+	 */
 	private JPanel choix;
+	/*
+	 * Vue (MVC)
+	 */
 	private VueDessin vdessin;
 	
 	/*

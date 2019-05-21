@@ -14,6 +14,8 @@ import vue.VueDessin;
 
 public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	
+	
+	private boolean deformer;
 	/*
 	 * Abscisse d'un clic de souris.
 	 */
@@ -55,6 +57,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 		this.sel = -1;
 		this.last_x = 0;
 		this.last_y = 0;
+		this.deformer = false;
 	}
 	
 	public int getSel() {
@@ -93,19 +96,33 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				}
 			}
 		}else {
-			if (this.sel != -1) {
-				this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
-				if (indice != -1) {
+			if (deformer == false) {
+				if (this.sel != -1) {
 					if (lfg.get(this.sel).isSelected()) {
-						lfg.get(this.sel).transformation(last_x, last_y, this.indice);
-						last_x = e.getX();
-						last_y = e.getY();
+						this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
+							if (indice != -1) {
+								lfg.get(this.sel).transformation(last_x, last_y, this.indice);
+								last_x = e.getX();
+								last_y = e.getY();
+								deformer = true;
+							}
+					}
+
+				}
+			}else {
+				if (this.sel != -1) {
+					if (lfg.get(this.sel).isSelected()) {
+								lfg.get(this.sel).transformation(last_x, last_y, this.indice);
+								last_x = e.getX();
+								last_y = e.getY();
+								deformer = true;
+								
 					}
 				}
 
 			}
 				
-			}
+		}
 		this.dm.update();
 	}
 
@@ -132,9 +149,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				boolean estselec = false;
 				
 				for(int i=(lfg.size()-1); i>=0; i--) {
-					
 					if(lfg.get(i).estDedans(last_x, last_y) && estselec == false) {
-
 						lfg.get(i).selectionne();
 						indice = i;
 						this.sel = i;
@@ -169,7 +184,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		this.deformer = false;
 		
 	}
 

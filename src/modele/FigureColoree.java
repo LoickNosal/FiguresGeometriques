@@ -149,6 +149,10 @@ public abstract class FigureColoree {
 		}
 		return -1;
 		
+		
+		
+
+		
 	}
 
 }

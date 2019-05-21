@@ -34,6 +34,7 @@ public class DessinModele extends Observable{
 	public void initDessinModele() {
 		this.lfg = new ArrayList<FigureColoree>();
 		this.sel = -1;
+		this.nbf = 0;
 		setChanged();
 		notifyObservers();
 	}
@@ -45,6 +46,7 @@ public class DessinModele extends Observable{
 		this.deselectTous();
 		if (f != null) {
 			this.lfg.add(f);
+			this.nbf += 1;
 			//f.selectionne();
 		}
 		setChanged();
@@ -72,6 +74,7 @@ public class DessinModele extends Observable{
 	
 	public void setSel(int index) {
 		this.sel = index;
+		
 	}
 	
 	public void changeCoul(FigureColoree fc, Color c) {
@@ -80,14 +83,20 @@ public class DessinModele extends Observable{
 	
 	public void supprimerFigure() {
 		if (this.sel != -1) {
-			this.lfg.remove(sel);
-		}
+			if (this.lfg.get(this.sel).isSelected() == true) {
+				this.lfg.remove(sel);
+				this.sel = -1;
+				this.nbf -= 1;
+			}
+			
+		}		
 		this.update();
-		this.sel = -1;
 	}
 	
 	public void supprimerTout() {
 		this.lfg.clear();
+		this.sel = -1;
+		this.nbf = 0;
 		update();
 	}
 	

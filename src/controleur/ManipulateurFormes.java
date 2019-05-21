@@ -58,6 +58,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 		this.last_x = 0;
 		this.last_y = 0;
 		this.deformer = false;
+		this.indice = -1;
 	}
 	
 	public int getSel() {
@@ -88,7 +89,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 
 		if (this.trans == true) {
 			if (lfg.size()!=0){
-				if(lfg.get(indice).isSelected() == true) {	
+				if(lfg.get(this.sel).isSelected() == true) {	
 					
 					lfg.get(this.sel).translation(e.getX()-last_x, e.getY()-last_y);
 					last_x = e.getX();
@@ -150,10 +151,11 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				
 				for(int i=(lfg.size()-1); i>=0; i--) {
 					if(lfg.get(i).estDedans(last_x, last_y) && estselec == false) {
+						
 						lfg.get(i).selectionne();
-						indice = i;
 						this.sel = i;
 						this.dm.setSel(i);
+						
 						estselec=true;
 						this.trans = true;	
 //						lfg.add(null);
@@ -162,7 +164,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 						
 					}else {
 						lfg.get(i).deSelectionne();
-						this.dm.setSel(-1);
+						//this.dm.setSel(-1);
 					}
 					
 
@@ -170,6 +172,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				this.dm.update();
 			}
 			if (MouseEvent.BUTTON3 == e.getButton()) {
+				
 				last_y = e.getY();
 				last_x = e.getX();
 				this.trans = false;
@@ -185,6 +188,8 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		this.deformer = false;
+		this.trans = false; 
+		this.indice = -1;
 		
 	}
 

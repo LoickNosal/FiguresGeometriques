@@ -27,7 +27,7 @@ public class Carre extends Rectangle{
 		
 		ArrayList<Point> rec = new ArrayList<Point>(2);
 		
-		if (pts.size()>1){
+		if (pts.size()>1 && pts.size()<3){
 			int x = 0;
 			int y = 0;
 			int diff = Math.abs(pts.get(0).rendreX() - pts.get(1).rendreX());
@@ -38,7 +38,7 @@ public class Carre extends Rectangle{
 				y = pts.get(0).rendreY() + diff;
 			}
 			//coin bas droite/haut gauche
-			else if (pts.get(0).rendreY() > pts.get(1).rendreY() && pts.get(0).rendreX() > pts.get(1).rendreX()){
+			else if (pts.get(0).rendreY() >= pts.get(1).rendreY() && pts.get(0).rendreX() >= pts.get(1).rendreX()){
 				x = pts.get(0).rendreX() - diff;
 				y = pts.get(0).rendreY() - diff;
 			}
@@ -63,27 +63,37 @@ public class Carre extends Rectangle{
 	public void transformation(int dx, int dy, int indice) {
 		ArrayList<Point> rec = new ArrayList<Point>(2);
 	
+		int i = 0;	
 		
-		int i = 0;		
 		for (Point p : tab_mem) {
+			
 			if (indice == i) {
-				
-				tab_mem.get(i).modifierX(dx);
-				tab_mem.get(i).modifierY(dy);
+			
+				tab_mem.get(indice).modifierX(dx);
+				tab_mem.get(indice).modifierY(dy);
 				
 				if (indice == 0) {
-					rec.add(tab_mem.get(2));
-					rec.add(tab_mem.get(0));
-				}else if (indice == 1) {
-					rec.add(tab_mem.get(3));
-					rec.add(tab_mem.get(1));
-				}else if (indice == 2) {
+					
 					rec.add(tab_mem.get(0));
 					rec.add(tab_mem.get(2));
 					
+					
+				}else if (indice == 1) {
+					
+					rec.add(tab_mem.get(1));
+					rec.add(tab_mem.get(3));
+					
+					
+				}else if (indice == 2) {
+					rec.add(tab_mem.get(0));
+					rec.add(tab_mem.get(2));		
+					
+						
 				}else if (indice == 3) {
 					rec.add(tab_mem.get(1));
 					rec.add(tab_mem.get(3));
+					
+					
 				}
 			}
 			i++;

@@ -113,6 +113,14 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	}
 	
+	public void supprimerTrait() {
+		this.liste_traits.clear();
+		if (this.tf != null) {
+			if(this.tf.getListe_traits() != null) {
+				this.tf.getListe_traits().clear();
+			}
+		}
+	}
 	
 	public void trace(Color c) {
 		System.out.println("tracer");

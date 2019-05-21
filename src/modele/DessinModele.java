@@ -69,6 +69,7 @@ public class DessinModele extends Observable{
 				fg.deSelectionne();
 			}
 		}
+		this.setSel(-1);
 		this.majAffichage();
 		
 	}

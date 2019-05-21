@@ -118,9 +118,12 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
 					co.setEnabled(true);
+					
 					vdessin.ajouterTrait();
 					dmodele.deselectTous();
+					
 					vdessin.repaint();
+					
 				}else {
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -208,6 +211,12 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dmodele.supprimerTout();
+				vdessin.supprimerTrait();
+				vdessin.getManipulateurFormes().setSel(-1);
+				vdessin.desactiverToutListener();
+				dmodele.deselectTous();
+				vdessin.repaint();
+				
 			
 			}
 		});

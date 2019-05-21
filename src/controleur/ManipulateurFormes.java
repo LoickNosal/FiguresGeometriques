@@ -72,6 +72,10 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 	public int getSel() {
 		return this.sel;
 	}
+	
+	public void setSel(int s) {
+		this.sel = s;
+	}
 
 	/*
 	 * Cette méthode retourne le nombre de figures apparaissant dans ce dessin.

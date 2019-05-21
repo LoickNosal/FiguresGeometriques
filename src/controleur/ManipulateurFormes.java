@@ -131,12 +131,17 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				for(int i=(lfg.size()-1); i>=0; i--) {
 					
 					if(lfg.get(i).estDedans(last_x, last_y) && estselec == false) {
+
 						lfg.get(i).selectionne();
 						indice = i;
 						this.sel = i;
 						this.dm.setSel(i);
 						estselec=true;
 						this.trans = true;	
+//						lfg.add(null);
+//						FigureColoree f = this.lfg.get(this.sel);
+//						lfg.set(this.lfg.size()-1, f);
+						
 					}
 					else {
 						lfg.get(i).deSelectionne();

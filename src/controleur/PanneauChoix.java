@@ -197,7 +197,7 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vdessin.effacer();
+				dmodele.supprimerTout();
 			
 			}
 		});

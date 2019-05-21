@@ -86,5 +86,10 @@ public class DessinModele extends Observable{
 		this.sel = -1;
 	}
 	
+	public void supprimerTout() {
+		this.lfg.clear();
+		update();
+	}
+	
 
 }

@@ -46,11 +46,15 @@ public class Rectangle extends Quadrilatere{
 		super.modifierPoints(this.tab_mem);
 	}
 	
+	@Override
 	public void transformation(int dx, int dy, int indice) {
-		if (indice != -1) {
-			this.tab_mem.get(indice).translation(dx, dy);
-			this.tab_mem.get(indice-1).incrementerY(dy);
-			this.tab_mem.get(indice+1).incrementerX(dx);
+		int i = 0;		
+		for (Point p : tab_mem) {
+			if (indice == i) {
+				tab_mem.get(i).incrementerX(dx);
+				tab_mem.get(i).incrementerY(dy);
+			}
+			i++;
 		}
 		
 	}

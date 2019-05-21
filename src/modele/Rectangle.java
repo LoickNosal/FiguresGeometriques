@@ -51,11 +51,29 @@ public class Rectangle extends Quadrilatere{
 		int i = 0;		
 		for (Point p : tab_mem) {
 			if (indice == i) {
-				tab_mem.get(i).incrementerX(dx);
-				tab_mem.get(i).incrementerY(dy);
+				
+				tab_mem.get(i).modifierX(dx);
+				tab_mem.get(i).modifierY(dy);
+				
+				if (indice == 0) {
+					tab_mem.get(1).modifierX(dx);
+					tab_mem.get(3).modifierY(dy);
+				}else if (indice == 1) {
+					tab_mem.get(0).modifierX(dx);
+					tab_mem.get(2).modifierY(dy);
+				}else if (indice == 2) {
+					tab_mem.get(3).modifierX(dx);
+					tab_mem.get(1).modifierY(dy);
+					
+				}else if (indice == 3) {
+					tab_mem.get(2).modifierX(dx);
+					tab_mem.get(0).modifierY(dy);
+				}
+
 			}
 			i++;
 		}
+		super.modifierPoints(this.tab_mem);
 		
 	}
 

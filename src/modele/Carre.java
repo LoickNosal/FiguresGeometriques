@@ -58,5 +58,7 @@ public class Carre extends Rectangle{
 		}
 		super.modifierPoints(rec);
 	}
+	
+	
 
 }

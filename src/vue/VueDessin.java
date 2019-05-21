@@ -63,6 +63,11 @@ public class VueDessin extends JPanel implements Observer{
 		this.addMouseListener(this.mf);
 		this.addMouseMotionListener(this.mf);
 	}
+	
+	public void effacer() {
+		this.removeAll();
+		this.repaint();
+	}
 
 	public DessinModele getDessin() {
 		return this.dessin;

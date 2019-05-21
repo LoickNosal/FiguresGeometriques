@@ -84,8 +84,8 @@ public abstract class FigureColoree {
 		if (this.selected == true) {
 
 			for (Point p : tab_mem) {
-				int ab = p.rendreX() - (this.TAILLE_CARRE_SELECTION/2);
-				int or = p.rendreY() - (this.TAILLE_CARRE_SELECTION/2);
+				int ab = p.rendreX() - (TAILLE_CARRE_SELECTION/2);
+				int or = p.rendreY() - (TAILLE_CARRE_SELECTION/2);
 				g.setColor(Color.gray);
 				g.drawRect(ab, or, TAILLE_CARRE_SELECTION, TAILLE_CARRE_SELECTION);
 
@@ -128,6 +128,7 @@ public abstract class FigureColoree {
 		this.tab_mem.get(indice).modifierX(dx);
 		this.tab_mem.get(indice).modifierY(dy);
 		this.modifierPoints(this.tab_mem);
+		
 	}
 
 	public Color getColor() {
@@ -142,7 +143,7 @@ public abstract class FigureColoree {
 		int indice = -1;
 		for (Point point : this.tab_mem) {
 			indice += 1;
-			if (p.distance(point) <= this.PERIPHERIE_CARRE_SELECTION) {
+			if (p.distance(point) <= PERIPHERIE_CARRE_SELECTION) {
 				return indice;
 			}
 		}

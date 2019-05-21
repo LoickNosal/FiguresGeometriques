@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -92,17 +93,19 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 				}
 			}
 		}else {
-			this.trans = false;
+			if (this.sel != -1) {
 				this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
 				if (indice != -1) {
-					lfg.get(this.sel).transformation(last_x, last_y, this.indice);
+					if (lfg.get(this.sel).isSelected()) {
+						lfg.get(this.sel).transformation(last_x, last_y, this.indice);
+						last_x = e.getX();
+						last_y = e.getY();
+					}
 				}
-				
-				last_x = e.getX();
-				last_y = e.getY();
+
 			}
-						
-		
+				
+			}
 		this.dm.update();
 	}
 
@@ -142,9 +145,9 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 //						FigureColoree f = this.lfg.get(this.sel);
 //						lfg.set(this.lfg.size()-1, f);
 						
-					}
-					else {
+					}else {
 						lfg.get(i).deSelectionne();
+						this.dm.setSel(-1);
 					}
 					
 

@@ -202,7 +202,9 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dmodele.supprimerFigure();
-				
+				vdessin.getManipulateurFormes().setSel(-1);
+				dmodele.deselectTous();
+				vdessin.repaint();
 			}
 		});
 		

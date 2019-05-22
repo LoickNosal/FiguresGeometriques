@@ -127,7 +127,7 @@ public class VueDessin extends JPanel implements Observer{
 		this.ajouterTrait();
 		this.desactiverToutListener();
 		this.tf = new TraceurForme(this.getGraphics());
-		
+		this.tf.setColor(c);
 		this.addMouseListener(this.tf);
 		this.addMouseMotionListener(this.tf);
 		

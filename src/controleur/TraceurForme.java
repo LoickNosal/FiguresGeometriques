@@ -27,7 +27,7 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 		this.liste_traits = new ArrayList<Trait>();
 		this.couleur_trait = Color.black;
 		this.gc = g;
-
+		
 		
 	}
 	

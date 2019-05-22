@@ -1,8 +1,13 @@
 package controleur;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
-public class Trait {
+import modele.FigureColoree;
+import modele.Point;
+
+public class Trait extends FigureColoree {
 	
 	private int debx;
 	private int deby;
@@ -67,6 +72,37 @@ public class Trait {
 
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
+	}
+
+
+	@Override
+	public int nbPoints() {
+		return 2;
+	}
+
+
+	@Override
+	public int nbClics() {
+		return 2;
+	}
+	
+	@Override
+	public void afficher(Graphics g) {
+		g.setColor(this.couleur);
+		g.drawLine(this.debx, deby, finx, finy);
+		super.afficher(g);
+	}
+	
+	@Override
+	public void modifierPoints(ArrayList<Point> pts) {
+		// TODO Auto-generated method stub
+	}
+
+
+	@Override
+	public boolean estDedans(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

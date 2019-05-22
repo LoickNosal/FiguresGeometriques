@@ -96,7 +96,6 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(false);
-					vdessin.ajouterTrait();
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -107,7 +106,6 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(true);
-					vdessin.ajouterTrait();
 					//vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -118,8 +116,6 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
 					co.setEnabled(true);
-					
-					vdessin.ajouterTrait();
 					dmodele.deselectTous();
 					
 					vdessin.repaint();

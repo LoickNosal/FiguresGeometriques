@@ -77,13 +77,13 @@ public class VueDessin extends JPanel implements Observer{
 
 			}
 		}
-		ajouterTrait();
-		if (this.liste_traits != null) {
-			for (Trait t : this.liste_traits) {
-				g.setColor(t.getCouleur());
-				g.drawLine(t.getDebx(), t.getDeby(), t.getFinx(), t.getFiny());
-			}
-		}
+		//ajouterTrait();
+//		if (this.liste_traits != null) {
+//			for (Trait t : this.liste_traits) {
+//				g.setColor(t.getCouleur());
+//				g.drawLine(t.getDebx(), t.getDeby(), t.getFinx(), t.getFiny());
+//			}
+//		}
 		
 		
 		
@@ -92,7 +92,6 @@ public class VueDessin extends JPanel implements Observer{
 	 * Cette méthode permet d'initier le mécanisme événementiel de fabrication des figures à la souris (ajout du listener).
 	 */
 	public void construit(FigureColoree f) {
-		this.ajouterTrait();
 		if (f != null) {
 			FabricantFigures ff = new FabricantFigures(f);
 			this.addMouseListener(ff);
@@ -100,16 +99,9 @@ public class VueDessin extends JPanel implements Observer{
 	
 	}
 	
-	public void ajouterTrait() {
-		System.out.println("appelee");
-		if (this.tf != null) {
-			if(this.tf.getListe_traits() != null) {
-
-				for (Trait t :this.tf.getListe_traits()) {
-					this.liste_traits.add(t);
-				}
-				
-			}
+	public void ajouterTrait(Trait t) {	
+		if(this.tf != null) {
+			this.dessin.ajoute(t);
 		}
 	}
 	
@@ -124,7 +116,6 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public void trace(Color c) {
 		System.out.println("tracer");
-		this.ajouterTrait();
 		this.desactiverToutListener();
 		this.tf = new TraceurForme(this.getGraphics());
 		this.tf.setColor(c);
@@ -138,7 +129,6 @@ public class VueDessin extends JPanel implements Observer{
 	 */
 	public void manip() {
 		System.out.println("manip");
-		this.ajouterTrait();
 		this.mf = new ManipulateurFormes(this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.mf);

@@ -23,7 +23,6 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 	
 	
 	public TraceurForme(Graphics g) {
-		System.out.println("creer");
 		this.liste_traits = new ArrayList<Trait>();
 		this.couleur_trait = Color.black;
 		this.gc = g;
@@ -47,7 +46,6 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("creer");
 		this.last_x = e.getX();
 		this.lasy_y = e.getY();
 		
@@ -74,6 +72,7 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 			gc.setColor(this.couleur_trait);
 			gc.drawLine(this.last_x, this.lasy_y, e.getX(), e.getY());
 			this.liste_traits.add(new Trait(this.last_x, this.lasy_y, e.getX(), e.getY(), this.couleur_trait));
+			((VueDessin)e.getSource()).ajouterTrait(new Trait(this.last_x, this.lasy_y, e.getX(), e.getY(), this.couleur_trait));
 			this.last_x = e.getX();
 			this.lasy_y = e.getY();
 			

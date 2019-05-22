@@ -3,9 +3,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
+
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -74,6 +76,7 @@ public class PanneauChoix extends JPanel{
 		final JMenu menuSupp = new JMenu("Effacer");
 		
 		JMenuItem supp = new JMenuItem("Effacer figure");
+		
 		JMenuItem suppTout = new JMenuItem("Effacer Tout");
 		
 		
@@ -219,16 +222,31 @@ public class PanneauChoix extends JPanel{
 		});
 		
 		//permet de supprimer une figure géometrique
-		supp.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dmodele.supprimerFigure();
-				vdessin.getManipulateurFormes().setSel(-1);
-				dmodele.deselectTous();
-				vdessin.repaint();
-			}
-		});
+//		supp.addActionListener(new ActionListener() {
+//			
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				dmodele.supprimerFigure();
+//				vdessin.getManipulateurFormes().setSel(-1);
+//				dmodele.deselectTous();
+//				vdessin.repaint();
+//			}
+//		});
+		
+		ActionListener al = new ActionListener() {
+		
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dmodele.supprimerFigure();
+			vdessin.getManipulateurFormes().setSel(-1);
+			dmodele.deselectTous();
+			vdessin.repaint();
+		}
+	};
+
+	supp.addActionListener(al);
 		
 		
 		//Permet de supprimer l'ensemble du dessin (figures et traits)

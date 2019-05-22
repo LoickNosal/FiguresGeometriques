@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -46,9 +49,12 @@ public class PanneauChoix extends JPanel{
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
 		
+		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
+		//placementHaut.setBackground(new Color(227,227,227));
 		JPanel placementBas  = new JPanel();
+		//placementBas.setBackground(new Color(227,227,227));
 		ButtonGroup bg = new ButtonGroup();
 		
 		JRadioButton nf = new JRadioButton ("Nouvelle figure");
@@ -60,10 +66,22 @@ public class PanneauChoix extends JPanel{
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
-		final JButton supp = new JButton("Effacer figure");
-		
-		final JButton suppTout = new JButton("Effacer Tout");
+//		final JButton supp = new JButton("Effacer figure");
+//		
+//		final JButton suppTout = new JButton("Effacer Tout");
 
+		final JMenuBar menuBar = new JMenuBar();
+		final JMenu menuSupp = new JMenu("Effacer");
+		
+		JMenuItem supp = new JMenuItem("Effacer figure");
+		JMenuItem suppTout = new JMenuItem("Effacer Tout");
+		
+		
+		menuSupp.add(supp);
+		menuSupp.add(suppTout);
+		
+
+		menuBar.add(menuSupp);
 		
 		bg.add(nf);
 		bg.add(tml);
@@ -75,17 +93,16 @@ public class PanneauChoix extends JPanel{
 		
 		placementBas.add(fig);
 		placementBas.add(co);
-		placementBas.add(supp);
-		placementBas.add(suppTout);
+
 		
 		fig.setEnabled(false);
 		supp.setEnabled(false);
 		co.setEnabled(true);
 		suppTout.setEnabled(false);
 		
-		this.add(placementHaut,BorderLayout.NORTH);
+		this.add(menuBar,BorderLayout.NORTH);
+		this.add(placementHaut,BorderLayout.CENTER);
 		this.add(placementBas,BorderLayout.SOUTH);
-		
 		//definit l'ensemble des actions des jRadioButton
 		ActionListener ALboutons = new ActionListener() {
 			@Override

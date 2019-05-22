@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import modele.Carre;
+import modele.Cercle;
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Quadrilatere;
@@ -56,7 +57,7 @@ public class PanneauChoix extends JPanel{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		
-		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre"});
+		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
 		final JButton supp = new JButton("Effacer figure");
@@ -263,6 +264,8 @@ public class PanneauChoix extends JPanel{
 			return new Rectangle();
 		case 3:
 			return new Carre();
+		case 4:
+			return new Cercle();
 		default :
 			return null;
 		}

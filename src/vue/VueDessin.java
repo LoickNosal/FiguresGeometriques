@@ -77,14 +77,6 @@ public class VueDessin extends JPanel implements Observer{
 
 			}
 		}
-		//ajouterTrait();
-//		if (this.liste_traits != null) {
-//			for (Trait t : this.liste_traits) {
-//				g.setColor(t.getCouleur());
-//				g.drawLine(t.getDebx(), t.getDeby(), t.getFinx(), t.getFiny());
-//			}
-//		}
-		
 		
 		
 	}

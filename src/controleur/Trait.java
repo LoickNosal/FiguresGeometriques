@@ -7,15 +7,36 @@ import java.util.ArrayList;
 import modele.FigureColoree;
 import modele.Point;
 
+/*
+ * @author Nosal Loïck
+ * Classe modélisant des Traits
+ */
 public class Trait extends FigureColoree {
 	
+	/*
+	 * abscisse du premier point du trait
+	 */
 	private int debx;
+	/*
+	 * ordonnee du premier point du trait
+	 */
 	private int deby;
+	/*
+	 * abscisse du dernier point du trait
+	 */
 	private int finx;
+	/*
+	 * ordonnee du dernier point du trait
+	 */
 	private int finy;
+	/*
+	 * couleur du trait
+	 */
 	private Color couleur;
 	
-	
+	/*
+	 * Constructeur
+	 */
 	public Trait(int x1, int y1, int x2, int y2, Color c) {
 		this.debx = x1;
 		this.deby = y1;

@@ -12,16 +12,37 @@ import javax.swing.SwingUtilities;
 
 import vue.VueDessin;
 
-public class TraceurForme extends JPanel implements MouseListener,MouseMotionListener{
+/*
+ * @author Nosal Loïck
+ * Class permettant de tracer des traits
+ */
+public class TraceurForme implements MouseListener,MouseMotionListener{
 	
+	/*
+	 * Liste des traits.
+	 */
 	private ArrayList<Trait> liste_traits;
+	/*
+	 * Abscisse d'un clic de souris.
+	 */
 	private int last_x;
+	/*
+	 * Ordonnée d'un clic de souris.
+	 */
 	private int lasy_y;
+	/*
+	 * Couleur du trait à dessiner.
+	 */
 	private Color couleur_trait;
+	/*
+	 * Contexte graphique.
+	 */
 	private Graphics gc;
 
 	
-	
+	/*
+	 * Constructeur de la classe.
+	 */
 	public TraceurForme(Graphics g) {
 		this.liste_traits = new ArrayList<Trait>();
 		this.couleur_trait = Color.black;
@@ -30,11 +51,16 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 		
 	}
 	
-
+	/*
+	 * Méthode pour changer la couleur du trait.
+	 */
 	public void setColor(Color c) {
 		this.couleur_trait = c;
 	}
 	
+	/*
+	 * Méthode pour récupérer les traits
+	 */
 	public ArrayList<Trait> getListe_traits(){
 		return this.liste_traits;
 	}
@@ -45,6 +71,9 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 		
 	}
 	@Override
+	/*
+	 * Méthode débutant le trace à main levée.
+	 */
 	public void mousePressed(MouseEvent e) {
 		this.last_x = e.getX();
 		this.lasy_y = e.getY();
@@ -66,6 +95,9 @@ public class TraceurForme extends JPanel implements MouseListener,MouseMotionLis
 		
 	}
 	@Override
+	/*
+	 * Méthode effectuant le trace à main levée.
+	 */
 	public void mouseDragged(MouseEvent e) {
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {

@@ -86,7 +86,7 @@ public class PanneauChoix extends JPanel{
 		this.add(placementHaut,BorderLayout.NORTH);
 		this.add(placementBas,BorderLayout.SOUTH);
 		
-		
+		//definit l'ensemble des actions des jRadioButton
 		ActionListener ALboutons = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -141,6 +141,8 @@ public class PanneauChoix extends JPanel{
 		
 		
 		
+		//permet de determiner la couleur, pour une nouvelle figure,
+		//pour un trait ou quand on modifie une figure.
 		co.addActionListener(new ActionListener() {
 			
 			@Override
@@ -162,7 +164,8 @@ public class PanneauChoix extends JPanel{
 				}
 			}
 		});
-			
+		
+		//permet de construire une nouvelle figure
 		fig.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				co.setEnabled(false);
@@ -178,6 +181,7 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
+		//permet de manipuler les figures
 		ma.addActionListener(new ActionListener() {
 			
 			@Override
@@ -186,6 +190,7 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
+		//permet de tracer des traits
 		tml.addActionListener(new ActionListener() {
 			
 			@Override
@@ -196,7 +201,7 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
-		
+		//permet de supprimer une figure géometrique
 		supp.addActionListener(new ActionListener() {
 			
 			@Override
@@ -208,12 +213,13 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
+		
+		//Permet de supprimer l'ensemble du dessin (figures et traits)
 		suppTout.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dmodele.supprimerTout();
-				vdessin.supprimerTrait();
 				vdessin.getManipulateurFormes().setSel(-1);
 				vdessin.desactiverToutListener();
 				dmodele.deselectTous();

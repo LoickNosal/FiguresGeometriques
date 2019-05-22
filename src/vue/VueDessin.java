@@ -36,19 +36,21 @@ public class VueDessin extends JPanel implements Observer{
 	 * jpanel traceurforme pour les traits
 	 */
 	private TraceurForme tf;
+
 	/*
-	 * liste des traits du dessin
+	 * Constructeur
 	 */
-	private ArrayList<Trait> liste_traits;
-	
 	public VueDessin() {
-		this.liste_traits = new ArrayList<Trait>();
+
 		this.dessin = new DessinModele();
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		
 	}
 	
+	/*
+	 * mise à jour de la vue
+	 */
 	public void update(Observable o, Object ob) {
 		this.dessin = (DessinModele)o;
 		repaint();
@@ -91,21 +93,18 @@ public class VueDessin extends JPanel implements Observer{
 	
 	}
 	
+	/*
+	 * permet d'ajouter un trait en tant que figureColoree
+	 */
 	public void ajouterTrait(Trait t) {	
 		if(this.tf != null) {
 			this.dessin.ajoute(t);
 		}
 	}
 	
-	public void supprimerTrait() {
-		this.liste_traits.clear();
-		if (this.tf != null) {
-			if(this.tf.getListe_traits() != null) {
-				this.tf.getListe_traits().clear();
-			}
-		}
-	}
-	
+	/*
+	 *  Cette méthode permet de tracer des traits à la souris (ajout du listener).
+	 */
 	public void trace(Color c) {
 		System.out.println("tracer");
 		this.desactiverToutListener();

@@ -70,7 +70,6 @@ public class FabricantFigures implements MouseListener {
 
 		}
 
-		System.out.println(nb_points_cliques);
 
 	}
 

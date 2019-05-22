@@ -113,8 +113,8 @@ public abstract class FigureColoree {
 	
 	/**
 	 * methode qui permet de deplacer la figure
-	 * @param dx, nouveau x
-	 * @param dy, nouveau y
+	 * @param dx nouveau x
+	 * @param dy nouveau y
 	 */
 	public void translation(int x, int y) {
 		
@@ -124,6 +124,12 @@ public abstract class FigureColoree {
 		this.modifierPoints(this.tab_mem);
 	}
 	
+	/**
+	 * methode qui permet de transformer la figure
+	 * @param dx nouveau x du coin
+	 * @param dy nouveau y du coin
+	 * @param indice indice du coin à modifier
+	 */
 	public void transformation(int dx, int dy, int indice) {
 		this.tab_mem.get(indice).modifierX(dx);
 		this.tab_mem.get(indice).modifierY(dy);

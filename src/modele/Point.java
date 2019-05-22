@@ -5,8 +5,13 @@ package modele;
  * @author Loick Nosal
  */
 public class Point {
-	
+	/*
+	 * abscisse du point
+	 */
 	private int x;
+	/*
+	 * ordonnee du point
+	 */
 	private int y;
 	
 	/*

@@ -3,11 +3,20 @@ package modele;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-
+/*
+ * @author Nosal Loïck
+ * figure geometrique Cercle
+ */
 public class Cercle extends ConiqueCentree{
 	
+	/*
+	 * Rayon du cercle
+	 */
 	private double rayon;
 	
+	/*
+	 * constructeur
+	 */
 	public Cercle() {
 		super();
 		this.rayon = 0;
@@ -59,6 +68,7 @@ public class Cercle extends ConiqueCentree{
 		g.setColor(this.couleur);
 		g.fillOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
 		super.afficher(g);
+	
 	}
 	
 	@Override

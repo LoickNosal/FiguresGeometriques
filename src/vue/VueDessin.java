@@ -77,7 +77,7 @@ public class VueDessin extends JPanel implements Observer{
 
 			}
 		}
-		
+		ajouterTrait();
 		if (this.liste_traits != null) {
 			for (Trait t : this.liste_traits) {
 				g.setColor(t.getCouleur());
@@ -152,6 +152,10 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public ManipulateurFormes getManipulateurFormes() {
 		return this.mf;
+	}
+	
+	public TraceurForme getTraceurForme() {
+		return this.tf;
 	}
 	
 	/*

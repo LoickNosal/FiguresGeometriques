@@ -159,6 +159,9 @@ public class PanneauChoix extends JPanel{
 						vdessin.getManipulateurFormes().figureSelection().changeCouleur(c);
 					}
 					vdessin.repaint();
+				}else if (tml.isSelected() && c!= null) {
+					vdessin.getTraceurForme().setColor(c);
+					vdessin.repaint();
 				}
 			}
 		});

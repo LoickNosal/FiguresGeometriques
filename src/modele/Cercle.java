@@ -3,6 +3,7 @@ package modele;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+
 public class Cercle extends ConiqueCentree{
 	
 	private double rayon;
@@ -40,8 +41,13 @@ public class Cercle extends ConiqueCentree{
 
 	@Override
 	public boolean estDedans(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean appartient = false;
+		//formule cercle x² + y² = R²
+		
+		if ((Math.pow((x - this.centre.rendreX()), 2) + Math.pow((y - this.centre.rendreY()), 2)) <= Math.pow(this.rayon,2)) {
+			appartient = true;
+		}
+		return appartient;
 	}
 	
 	@Override
@@ -57,12 +63,12 @@ public class Cercle extends ConiqueCentree{
 	
 	@Override
 	public void translation(int x, int y) {
-
+		super.translation(x, y);
 	}
 	
 	@Override
 	public void transformation(int dx, int dy, int indice) {
-		
+		super.transformation(dx, dy, indice);
 	}
 
 	

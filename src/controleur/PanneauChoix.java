@@ -11,6 +11,7 @@ import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -48,6 +49,8 @@ public class PanneauChoix extends JPanel implements Serializable{
 	 */
 	private FigureColoree fc;
 	
+	private Color couleurActuelle;
+	
 	/*
 	 * Constructeur de la classe
 	 * @param v zone de dessin
@@ -72,10 +75,12 @@ public class PanneauChoix extends JPanel implements Serializable{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		JButton copie = new JButton("Copie");
+		
+		JButton couleur = new JButton();
 
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
-		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
+		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisé"});
 		
 
 		final JMenuBar menuBar = new JMenuBar();
@@ -123,7 +128,10 @@ public class PanneauChoix extends JPanel implements Serializable{
 		
 		placementBas.add(fig);
 		placementBas.add(co);
-
+		placementBas.add(couleur);
+		
+		couleur.setEnabled(false);
+		couleur.setBackground(Color.black);
 		
 		fig.setEnabled(false);
 		supp.setEnabled(false);
@@ -213,18 +221,21 @@ public class PanneauChoix extends JPanel implements Serializable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Color c = determineCouleur(co.getSelectedIndex());
-				if (nf.isSelected() && c!= null && fc != null) {
-					fc.changeCouleur(c);
+				couleur.setBackground(couleurActuelle);
+				if (nf.isSelected() && couleurActuelle!= null && fc != null) {
+					fc.changeCouleur(couleurActuelle);
+				
 					vdessin.repaint();
 					//fc = null;
-				}else if (ma.isSelected() && c!= null && fc != null) {
+				}else if (ma.isSelected() && couleurActuelle!= null && fc != null) {
 					if (vdessin.getManipulateurFormes().figureSelection() != null) {
-						vdessin.getManipulateurFormes().figureSelection().changeCouleur(c);
+						
+						vdessin.getManipulateurFormes().figureSelection().changeCouleur(couleurActuelle);
 					}
 					vdessin.repaint();
-				}else if (tml.isSelected() && c!= null) {
-					vdessin.getTraceurForme().setColor(c);
+				}else if (tml.isSelected() && couleurActuelle!= null) {
+				
+					vdessin.getTraceurForme().setColor(couleurActuelle);
 					vdessin.repaint();
 				}
 			}
@@ -234,11 +245,9 @@ public class PanneauChoix extends JPanel implements Serializable{
 		fig.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				co.setEnabled(false);
-				fc = creeFigure(fig.getSelectedIndex());
-				Color c = determineCouleur(co.getSelectedIndex());
-				
+				fc = creeFigure(fig.getSelectedIndex());				
 				if (fc != null){
-					fc.changeCouleur(c);
+					fc.changeCouleur(couleurActuelle);
 					vdessin.construit(fc);
 					co.setEnabled(true);
 				}
@@ -248,7 +257,6 @@ public class PanneauChoix extends JPanel implements Serializable{
 		
 		//permet de manipuler les figures
 		ma.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vdessin.manip();
@@ -272,8 +280,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Color c = determineCouleur(co.getSelectedIndex());
-				vdessin.trace(c);
+				vdessin.trace(couleurActuelle);
 				
 			}
 		});
@@ -313,24 +320,27 @@ public class PanneauChoix extends JPanel implements Serializable{
 	 * Methode determinant la couleur à utiliser
 	 * @param index index de couleur dans le jcombobox
 	 */
-	public Color determineCouleur(int index) {
+	public void determineCouleur(int index) {
 		switch(index) {
 		case 0 : 
-			return Color.black;
+			this.couleurActuelle = Color.black;
 		case 1 :
-			return Color.green;
+			this.couleurActuelle = Color.green;
 		case 2:
-			return Color.yellow;
+			this.couleurActuelle = Color.yellow;
 		case 3:
-			return Color.blue;
+			this.couleurActuelle = Color.blue;
 		case 4:
-			return Color.red;
+			this.couleurActuelle = Color.red;
 		case 5:
-			return Color.pink;
+			this.couleurActuelle = Color.pink;
 		case 6:
-			return Color.gray;
+			this.couleurActuelle = Color.gray;
+		case 7:
+			Color c = couleurPerso();
+			this.couleurActuelle = c;
 		default:
-			return Color.black;
+			this.couleurActuelle = Color.black;
 			
 		}
 	}
@@ -353,6 +363,11 @@ public class PanneauChoix extends JPanel implements Serializable{
 		default :
 			return null;
 		}
+	}
+	
+	public Color couleurPerso() {
+		Color couleur = JColorChooser.showDialog(null, "couleur du fond", Color.WHITE);
+		return couleur;
 	}
 	
 	

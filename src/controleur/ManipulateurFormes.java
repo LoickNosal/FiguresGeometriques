@@ -20,7 +20,7 @@ import vue.VueDessin;
  * @author Nosal Loïck
  * Classe gérant le déplacement et la transformation des figures géométriques.
  */
-public class ManipulateurFormes implements MouseListener, MouseMotionListener,Serializable{
+public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	
 	/*
 	 * savoir si la figure est en train d'etre deforme

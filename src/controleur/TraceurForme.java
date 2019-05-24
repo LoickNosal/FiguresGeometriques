@@ -17,7 +17,7 @@ import vue.VueDessin;
  * @author Nosal Loïck
  * Class permettant de tracer des traits
  */
-public class TraceurForme implements MouseListener,MouseMotionListener,Serializable{
+public class TraceurForme implements MouseListener,MouseMotionListener{
 	
 	/*
 	 * Liste des traits.

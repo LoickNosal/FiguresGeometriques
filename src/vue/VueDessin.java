@@ -25,7 +25,7 @@ import modele.FigureColoree;
  * La classe VueDessin est une vue et implémente donc l’interface Observer. La méthode
  * update sera déclenchée à chaque modification du modèle
  */
-public class VueDessin extends JPanel implements Observer,Serializable{
+public class VueDessin extends JPanel implements Observer{
 	
 	/*
 	 * Modèle
@@ -39,7 +39,9 @@ public class VueDessin extends JPanel implements Observer,Serializable{
 	 * jpanel traceurforme pour les traits
 	 */
 	private TraceurForme tf;
-	
+	/*
+	 * permet de gérer les copies de figures
+	 */
 	private CopieFigure cf;
 
 	/*
@@ -51,6 +53,10 @@ public class VueDessin extends JPanel implements Observer,Serializable{
 		this.setFocusable(true);
 		this.requestFocusInWindow();
 		
+	}
+	
+	public void setDessin(DessinModele dm) {
+		this.dessin = dm;
 	}
 	
 	/*

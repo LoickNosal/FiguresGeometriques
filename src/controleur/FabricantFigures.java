@@ -13,7 +13,7 @@ import vue.VueDessin;
  * via des clics de souris.
  * @author Loick Nosal
  */
-public class FabricantFigures implements MouseListener,Serializable {
+public class FabricantFigures implements MouseListener {
 
 	/*
 	 * Accumule le nombre de clics de souris.

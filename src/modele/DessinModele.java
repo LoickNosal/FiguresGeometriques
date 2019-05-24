@@ -1,9 +1,17 @@
 package modele;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
+
 
 /*
  * @author Loïck Nosal
@@ -132,6 +140,23 @@ public class DessinModele extends Observable implements Serializable{
 		this.sel = -1;
 		this.nbf = 0;
 		this.majAffichage();
+	}
+	
+	public void sauvegarder(File dest) throws FileNotFoundException, IOException {
+		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
+		d.writeObject(this);
+		d.close();
+		System.out.println("sauvegarde effecutée");
+	}
+
+	public DessinModele charger(File source) throws IOException, ClassNotFoundException{
+		
+		ObjectInputStream di = new ObjectInputStream(new FileInputStream(source));
+		DessinModele p = (DessinModele)(di.readObject());
+		p.setSel(-1);
+		di.close();
+		System.out.println("sauvegarde chargée");
+		return p;
 	}
 	
 

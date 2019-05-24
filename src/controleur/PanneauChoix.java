@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.swing.Action;
@@ -13,6 +15,7 @@ import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -35,7 +38,7 @@ import vue.VueDessin;
  * @author Loïck Nosal
  * Cette classe définit une partie du controleur.
  */
-public class PanneauChoix extends JPanel implements Serializable{
+public class PanneauChoix extends JPanel{
 	/*
 	 * zone de dessin
 	 */
@@ -49,6 +52,9 @@ public class PanneauChoix extends JPanel implements Serializable{
 	 */
 	private FigureColoree fc;
 	
+	/*
+	 * couleur actuellement selectionnee
+	 */
 	private Color couleurActuelle;
 	
 	/*
@@ -59,6 +65,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 		this.vdessin = v;
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
+		
 		
 		
 		this.setLayout(new BorderLayout());
@@ -74,7 +81,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 		
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
-		JButton copie = new JButton("Copie");
+		JButton copie = new JButton("Copier Figure");
 		
 		JButton couleur = new JButton();
 
@@ -314,6 +321,53 @@ public class PanneauChoix extends JPanel implements Serializable{
 				vdessin.repaint();
 				
 			
+			}
+		});
+		
+		sauver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("Sauvegarder le fichier");
+				fc.setCurrentDirectory(new java.io.File("Sauvegardes"));
+				File result;
+				if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
+						result = fc.getSelectedFile();;
+						System.out.println(result.getAbsolutePath());
+						try {
+							dmodele.sauvegarder(result);
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+				
+			}
+		});
+		
+		charger.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					JFileChooser fc = new JFileChooser();
+					fc.setDialogTitle("Charger un fichier");
+					fc.setCurrentDirectory(new java.io.File("Sauvegardes"));
+					File result;
+					if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
+							result = fc.getSelectedFile();;
+							System.out.println(result.getAbsolutePath());
+							try {
+								dmodele = dmodele.charger(result);
+								dmodele.addObserver(vdessin);
+								vdessin.setDessin(dmodele);
+								vdessin.repaint();
+							} catch (Exception ex) {
+								ex.printStackTrace();
+							}
+						}
+					
+
+				
 			}
 		});
 

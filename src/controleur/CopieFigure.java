@@ -14,7 +14,7 @@ import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Point;
 
-public class CopieFigure implements Serializable{
+public class CopieFigure{
 
 	
 	private DessinModele modele;

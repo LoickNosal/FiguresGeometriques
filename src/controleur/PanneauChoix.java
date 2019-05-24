@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Action;
@@ -12,8 +13,11 @@ import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.KeyStroke;
+
 
 import modele.Carre;
 import modele.Cercle;
@@ -68,23 +72,40 @@ public class PanneauChoix extends JPanel{
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
 		
-//		final JButton supp = new JButton("Effacer figure");
-//		
-//		final JButton suppTout = new JButton("Effacer Tout");
 
 		final JMenuBar menuBar = new JMenuBar();
+		
 		final JMenu menuSupp = new JMenu("Effacer");
-		
 		JMenuItem supp = new JMenuItem("Effacer figure");
-		
 		JMenuItem suppTout = new JMenuItem("Effacer Tout");
-		
-		
 		menuSupp.add(supp);
 		menuSupp.add(suppTout);
+		supp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,0));
+		suppTout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,InputEvent.CTRL_DOWN_MASK));
 		
-
+		
+		final JMenu menuFichier = new JMenu("Fichier");
+		JMenuItem sauver = new JMenuItem("Enregistrer");
+		JMenuItem charger = new JMenuItem("Ouvrir");
+		JMenuItem quitter = new JMenuItem("Quitter");
+		menuFichier.add(sauver);
+		menuFichier.add(charger);
+		menuFichier.add(quitter);
+		
+		sauver.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));
+		charger.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_DOWN_MASK));
+		
+		final JMenu aide = new JMenu("Aide");
+		JMenuItem modeEmploi = new JMenuItem("mode d'Emploi");
+		JMenuItem Description = new JMenuItem("Description des fonctionnalitées");
+		aide.add(modeEmploi);
+		aide.add(Description);
+		modeEmploi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,0));
+		
+		menuBar.add(menuFichier);
 		menuBar.add(menuSupp);
+		menuBar.add(aide);
+		
 		
 		bg.add(nf);
 		bg.add(tml);
@@ -158,7 +179,18 @@ public class PanneauChoix extends JPanel{
 		tml.addActionListener(ALboutons);
 		ma.addActionListener(ALboutons);
 		
-		
+		quitter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int q = JOptionPane.showConfirmDialog(getParent(), "Quitter l'application ?");
+				if (q == JOptionPane.YES_OPTION) {
+					System.exit(1);
+				}
+				
+				
+			}
+		});
 		
 		
 		//permet de determiner la couleur, pour une nouvelle figure,
@@ -221,20 +253,7 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
-		//permet de supprimer une figure géometrique
-//		supp.addActionListener(new ActionListener() {
-//			
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				dmodele.supprimerFigure();
-//				vdessin.getManipulateurFormes().setSel(-1);
-//				dmodele.deselectTous();
-//				vdessin.repaint();
-//			}
-//		});
-		
-		ActionListener al = new ActionListener() {
+		supp.addActionListener(new ActionListener() {
 		
 		
 		@Override
@@ -244,9 +263,8 @@ public class PanneauChoix extends JPanel{
 			dmodele.deselectTous();
 			vdessin.repaint();
 		}
-	};
+	});
 
-	supp.addActionListener(al);
 		
 		
 		//Permet de supprimer l'ensemble du dessin (figures et traits)

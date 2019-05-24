@@ -1,6 +1,7 @@
 package vue;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
@@ -124,6 +125,8 @@ public class VueDessin extends JPanel implements Observer{
 		this.desactiverToutListener();
 		this.addMouseListener(this.mf);
 		this.addMouseMotionListener(this.mf);
+		this.addKeyListener(this.mf);
+		this.requestFocusInWindow();
 	}
 	
 
@@ -148,6 +151,9 @@ public class VueDessin extends JPanel implements Observer{
 		}
 		for (MouseMotionListener mm : getMouseMotionListeners()) {
 			removeMouseMotionListener(mm);
+		}
+		for (KeyListener kl : getKeyListeners()) {
+			removeKeyListener(kl);
 		}
 	}
 	

@@ -1,6 +1,8 @@
 package controleur;
 
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,7 +17,7 @@ import vue.VueDessin;
  * @author Nosal Loïck
  * Classe gérant le déplacement et la transformation des figures géométriques.
  */
-public class ManipulateurFormes implements MouseListener, MouseMotionListener {
+public class ManipulateurFormes implements MouseListener, MouseMotionListener, KeyListener {
 	
 	/*
 	 * savoir si la figure est en train d'etre deforme
@@ -218,5 +220,45 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {}
+
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if ((e.getKeyCode() == KeyEvent.VK_V) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+			if (this.sel != -1) {
+				if (this.lfg.get(this.sel).isSelected()) {
+					FigureColoree cop = this.figureSelection();
+		            for (Point p : cop.getListePoint()) {
+						p.translation(20, 20);
+					}
+		            cop.modifierPoints(cop.getListePoint());
+		            this.nbf += 1 ;
+		            this.lfg.add(cop);
+		            this.dm.ajoute(cop);
+
+		            System.out.println("test");
+				}
+			}
+			
+            
+            	
+        }
+            
+  
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

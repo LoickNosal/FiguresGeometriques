@@ -1,5 +1,6 @@
 package modele;
 
+import java.awt.Color;
 import java.awt.Polygon;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +16,24 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	 */
 	public Rectangle() {
 		super();
+	}
+	
+	public Rectangle clone() {
+		Rectangle re = new Rectangle();
+
+		Color c = this.getColor();
+		re.changeCouleur(c);
+		
+		Point p1 = this.getListePoint().get(0).clone();
+
+		Point p2 = this.getListePoint().get(2).clone();
+
+
+		
+		re.tab_mem.add(p1);
+		re.tab_mem.add(p2);
+
+		return re;
 	}
 	
 	@Override

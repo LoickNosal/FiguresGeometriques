@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
@@ -71,7 +72,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 		JRadioButton ma = new JRadioButton ("Manipulation");
 		
 		JButton copie = new JButton("Copie");
-		
+
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris"});
@@ -128,10 +129,12 @@ public class PanneauChoix extends JPanel implements Serializable{
 		supp.setEnabled(false);
 		co.setEnabled(true);
 		suppTout.setEnabled(false);
+		copie.setEnabled(false);
 		
 		this.add(menuBar,BorderLayout.NORTH);
 		this.add(placementHaut,BorderLayout.CENTER);
 		this.add(placementBas,BorderLayout.SOUTH);
+		
 		//definit l'ensemble des actions des jRadioButton
 		ActionListener ALboutons = new ActionListener() {
 			@Override
@@ -143,6 +146,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(false);
+					copie.setEnabled(false);
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -153,6 +157,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(true);
+					copie.setEnabled(false);
 					//vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -164,17 +169,9 @@ public class PanneauChoix extends JPanel implements Serializable{
 					suppTout.setEnabled(true);
 					co.setEnabled(true);
 					dmodele.deselectTous();
-					
+					copie.setEnabled(true);
 					vdessin.repaint();
 				
-				}else if(source.equals(copie)) {
-					
-					fig.setEnabled(false);
-					supp.setEnabled(false);
-					suppTout.setEnabled(false);
-					co.setEnabled(false);
-					dmodele.deselectTous();
-					
 					vdessin.repaint();
 					
 				}else {
@@ -182,6 +179,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
 					co.setEnabled(true);
+					copie.setEnabled(false);
 					
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();

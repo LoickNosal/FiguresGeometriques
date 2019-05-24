@@ -1,5 +1,6 @@
 package modele;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,6 +16,24 @@ public class Carre extends Rectangle implements Serializable{
 	public Carre() {
 		super();
 	}
+	
+	public Carre clone() {
+		Carre ca = new Carre();
+
+		Color c = this.getColor();
+		ca.changeCouleur(c);
+		
+		Point p1 = this.getListePoint().get(0).clone();
+
+		Point p2 = this.getListePoint().get(2).clone();
+		
+		ca.tab_mem.add(p1);
+		ca.tab_mem.add(p2);
+
+		return ca;
+		
+	}
+	
 	@Override
 	public int nbClics() {
 		return 2;

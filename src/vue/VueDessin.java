@@ -59,6 +59,10 @@ public class VueDessin extends JPanel implements Observer{
 		this.dessin = dm;
 	}
 	
+	public void setMF(ManipulateurFormes manip) {
+		this.mf = manip;
+	}
+	
 	/*
 	 * mise à jour de la vue
 	 */

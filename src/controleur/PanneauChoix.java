@@ -25,6 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.KeyStroke;
 
 
+
 import modele.Carre;
 import modele.Cercle;
 import modele.DessinModele;
@@ -65,7 +66,7 @@ public class PanneauChoix extends JPanel{
 		this.vdessin = v;
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
-		
+		this.couleurActuelle = Color.black;
 		
 		
 		this.setLayout(new BorderLayout());
@@ -114,9 +115,9 @@ public class PanneauChoix extends JPanel{
 		
 		final JMenu aide = new JMenu("Aide");
 		JMenuItem modeEmploi = new JMenuItem("mode d'Emploi");
-		JMenuItem Description = new JMenuItem("Description des fonctionnalitées");
+		//JMenuItem Description = new JMenuItem("Description des fonctionnalitées");
 		aide.add(modeEmploi);
-		aide.add(Description);
+		//aide.add(Description);
 		modeEmploi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,0));
 		
 		menuBar.add(menuFichier);
@@ -239,7 +240,7 @@ public class PanneauChoix extends JPanel{
 					//fc = null;
 				}else if (ma.isSelected() && couleurActuelle!= null && fc != null) {
 					if (vdessin.getManipulateurFormes().figureSelection() != null) {
-						
+						System.out.println("test");
 						vdessin.getManipulateurFormes().figureSelection().changeCouleur(couleurActuelle);
 					}
 					vdessin.repaint();
@@ -274,13 +275,13 @@ public class PanneauChoix extends JPanel{
 		});
 		
 		//permet de copier les figures
-				copie.addActionListener(new ActionListener() {
+		copie.addActionListener(new ActionListener() {
 					
-					@Override
-					public void actionPerformed(ActionEvent e) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 						vdessin.copieFigure();
-					}
-				});
+			}
+		});
 		
 		
 		
@@ -338,7 +339,7 @@ public class PanneauChoix extends JPanel{
 						try {
 							dmodele.sauvegarder(result);
 						} catch (Exception ex) {
-							ex.printStackTrace();
+							JOptionPane.showMessageDialog(null,"La sauvegarde du dessin est impossible","Sauvegarde impossible",JOptionPane.WARNING_MESSAGE);
 						}
 					}
 				
@@ -357,16 +358,49 @@ public class PanneauChoix extends JPanel{
 							result = fc.getSelectedFile();;
 							System.out.println(result.getAbsolutePath());
 							try {
+								dmodele.deleteObservers();
 								dmodele = dmodele.charger(result);
 								dmodele.addObserver(vdessin);
+								
+								
 								vdessin.setDessin(dmodele);
+								ManipulateurFormes mf = new ManipulateurFormes(dmodele);
+								vdessin.setMF(mf);
+								
 								vdessin.repaint();
+								ma.setSelected(false);
 							} catch (Exception ex) {
-								ex.printStackTrace();
+								JOptionPane.showMessageDialog(null,"Le fichier chargé n'est pas un dessin","Chargement impossible",JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					
 
+				
+			}
+		});
+		
+		modeEmploi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if ((new File("C:\\Users\\nosal\\OneDrive\\Desktop\\FG\\FiguresGeometriques\\ModeEmploi.pdf")).exists()) {
+
+						Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler C:\\Users\\nosal\\OneDrive\\Desktop\\FG\\FiguresGeometriques\\ModeEmploi.pdf");
+						p.waitFor();
+						System.out.println("charge");
+							
+					} else {
+
+						System.out.println("File is not exists");
+
+					}
+
+					System.out.println("Done");
+
+			  	  } catch (Exception ex) {
+					ex.printStackTrace();
+				  }
 				
 			}
 		});

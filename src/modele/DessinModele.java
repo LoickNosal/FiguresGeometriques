@@ -156,7 +156,9 @@ public class DessinModele extends Observable implements Serializable{
 		p.setSel(-1);
 		di.close();
 		System.out.println("sauvegarde chargée");
+		
 		return p;
+		
 	}
 	
 

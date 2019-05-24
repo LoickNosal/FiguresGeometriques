@@ -80,7 +80,7 @@ public class PanneauChoix extends JPanel implements Serializable{
 
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
-		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisé"});
+		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisée"});
 		
 
 		final JMenuBar menuBar = new JMenuBar();
@@ -221,7 +221,10 @@ public class PanneauChoix extends JPanel implements Serializable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				determineCouleur(co.getSelectedIndex());
+				
 				couleur.setBackground(couleurActuelle);
+				
 				if (nf.isSelected() && couleurActuelle!= null && fc != null) {
 					fc.changeCouleur(couleurActuelle);
 				
@@ -324,23 +327,33 @@ public class PanneauChoix extends JPanel implements Serializable{
 		switch(index) {
 		case 0 : 
 			this.couleurActuelle = Color.black;
+			break;
 		case 1 :
 			this.couleurActuelle = Color.green;
+			break;
 		case 2:
 			this.couleurActuelle = Color.yellow;
+			break;
 		case 3:
 			this.couleurActuelle = Color.blue;
+			break;
 		case 4:
 			this.couleurActuelle = Color.red;
+			break;
 		case 5:
 			this.couleurActuelle = Color.pink;
+			break;
 		case 6:
 			this.couleurActuelle = Color.gray;
+			break;
 		case 7:
 			Color c = couleurPerso();
 			this.couleurActuelle = c;
+			break;
 		default:
 			this.couleurActuelle = Color.black;
+			break;
+
 			
 		}
 	}

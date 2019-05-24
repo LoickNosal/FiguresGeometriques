@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
-
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -32,7 +33,7 @@ import vue.VueDessin;
  * @author Loïck Nosal
  * Cette classe définit une partie du controleur.
  */
-public class PanneauChoix extends JPanel{
+public class PanneauChoix extends JPanel implements Serializable{
 	/*
 	 * zone de dessin
 	 */
@@ -66,7 +67,10 @@ public class PanneauChoix extends JPanel{
 		JRadioButton nf = new JRadioButton ("Nouvelle figure");
 
 		JRadioButton tml = new JRadioButton ("Tracé à main levée");
+		
 		JRadioButton ma = new JRadioButton ("Manipulation");
+		
+		JButton copie = new JButton("Copie");
 		
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
@@ -114,6 +118,7 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(nf);
 		placementHaut.add(tml);
 		placementHaut.add(ma);
+		placementHaut.add(copie);
 		
 		placementBas.add(fig);
 		placementBas.add(co);
@@ -158,6 +163,16 @@ public class PanneauChoix extends JPanel{
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
 					co.setEnabled(true);
+					dmodele.deselectTous();
+					
+					vdessin.repaint();
+				
+				}else if(source.equals(copie)) {
+					
+					fig.setEnabled(false);
+					supp.setEnabled(false);
+					suppTout.setEnabled(false);
+					co.setEnabled(false);
 					dmodele.deselectTous();
 					
 					vdessin.repaint();
@@ -241,6 +256,18 @@ public class PanneauChoix extends JPanel{
 				vdessin.manip();
 			}
 		});
+		
+		//permet de copier les figures
+				copie.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						vdessin.copieFigure();
+					}
+				});
+		
+		
+		
 		
 		//permet de tracer des traits
 		tml.addActionListener(new ActionListener() {

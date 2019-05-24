@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import modele.FigureColoree;
@@ -12,7 +13,7 @@ import vue.VueDessin;
  * via des clics de souris.
  * @author Loick Nosal
  */
-public class FabricantFigures implements MouseListener {
+public class FabricantFigures implements MouseListener,Serializable {
 
 	/*
 	 * Accumule le nombre de clics de souris.

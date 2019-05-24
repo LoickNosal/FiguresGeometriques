@@ -1,12 +1,13 @@
 package modele;
 
 import java.awt.Polygon;
+import java.io.Serializable;
 import java.util.ArrayList;
 /*
  * @author Nosal Loïck
  * Classe modélisant les Rectangles
  */
-public class Rectangle extends Quadrilatere{
+public class Rectangle extends Quadrilatere implements Serializable{
 
 	
 	/*

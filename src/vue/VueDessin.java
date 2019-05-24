@@ -4,12 +4,14 @@ import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import controleur.CopieFigure;
 import controleur.FabricantFigures;
 import controleur.ManipulateurFormes;
 import controleur.TraceurForme;
@@ -23,7 +25,7 @@ import modele.FigureColoree;
  * La classe VueDessin est une vue et implémente donc l’interface Observer. La méthode
  * update sera déclenchée à chaque modification du modèle
  */
-public class VueDessin extends JPanel implements Observer{
+public class VueDessin extends JPanel implements Observer,Serializable{
 	
 	/*
 	 * Modèle
@@ -37,6 +39,8 @@ public class VueDessin extends JPanel implements Observer{
 	 * jpanel traceurforme pour les traits
 	 */
 	private TraceurForme tf;
+	
+	private CopieFigure cf;
 
 	/*
 	 * Constructeur
@@ -122,10 +126,16 @@ public class VueDessin extends JPanel implements Observer{
 	public void manip() {
 		System.out.println("manip");
 		this.mf = new ManipulateurFormes(this.dessin);
-		this.desactiverToutListener();
+		this.desactiverToutListener();	
 		this.addMouseListener(this.mf);
-		this.addMouseMotionListener(this.mf);
-		this.addKeyListener(this.mf);
+		this.addMouseMotionListener(this.mf);		
+		
+	}
+	
+	public void copieFigure() {
+		System.out.println("copie");
+		this.cf = new CopieFigure(this.dessin);
+		cf.Copier();
 		this.requestFocusInWindow();
 	}
 	

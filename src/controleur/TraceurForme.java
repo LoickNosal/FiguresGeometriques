@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ import vue.VueDessin;
  * @author Nosal Loïck
  * Class permettant de tracer des traits
  */
-public class TraceurForme implements MouseListener,MouseMotionListener{
+public class TraceurForme implements MouseListener,MouseMotionListener,Serializable{
 	
 	/*
 	 * Liste des traits.

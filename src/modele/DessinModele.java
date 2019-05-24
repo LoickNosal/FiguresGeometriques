@@ -1,6 +1,7 @@
 package modele;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -8,7 +9,7 @@ import java.util.Observable;
  * @author Loïck Nosal
  * Cette classe définit le modèle. 
  */
-public class DessinModele extends Observable{
+public class DessinModele extends Observable implements Serializable{
 	
 	/*
 	 * Liste de figures colorées
@@ -88,8 +89,17 @@ public class DessinModele extends Observable{
 		
 	}
 	
+	public int getSel(){
+		
+		return this.sel;
+	}
+	
 	public void setNbf(int i) {
 		this.nbf = i;
+	}
+	
+	public int getNbf() {
+		return this.nbf; 
 	}
 	
 	/*

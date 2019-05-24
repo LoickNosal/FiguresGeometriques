@@ -1,13 +1,15 @@
 package modele;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
  * @author Nosal Loïck
  * figure geometrique Cercle
  */
-public class Cercle extends ConiqueCentree{
+public class Cercle extends ConiqueCentree implements Serializable{
 	
 	/*
 	 * Rayon du cercle
@@ -21,6 +23,24 @@ public class Cercle extends ConiqueCentree{
 		super();
 		this.rayon = 0;
 	}
+	
+	public Cercle clone() {
+		Cercle ce = new Cercle();
+		double r = this.rayon;
+		Color co = this.getColor();
+		ce.changeCouleur(co);
+		
+		
+		Point p1 = this.getListePoint().get(0).clone();
+		Point p2 = this.getListePoint().get(1).clone();
+		
+		ce.tab_mem.add(p1);
+		ce.tab_mem.add(p2);
+		ce.modifierPoints(ce.getListePoint());
+		return ce;
+		
+		
+	}
 
 	@Override
 	public int nbPoints() {
@@ -32,6 +52,10 @@ public class Cercle extends ConiqueCentree{
 		return 2;
 	}
 
+	public void setRayon(double r) {
+		this.rayon = r;
+	}
+	
 	@Override
 	public void modifierPoints(ArrayList<Point> pts) {
 		ArrayList<Point> p = new ArrayList<Point>(2);

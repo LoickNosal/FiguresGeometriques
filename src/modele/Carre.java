@@ -1,12 +1,13 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
  * @author Nosal Loïck
  * Classe modélisant les Carrés
  */
-public class Carre extends Rectangle{
+public class Carre extends Rectangle implements Serializable{
 	
 	/*
 	 * constructeur vide

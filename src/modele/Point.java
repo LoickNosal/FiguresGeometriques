@@ -1,10 +1,12 @@
 package modele;
 
+import java.io.Serializable;
+
 /*
  * modelise un point
  * @author Loick Nosal
  */
-public class Point {
+public class Point implements Serializable{
 	/*
 	 * abscisse du point
 	 */
@@ -23,6 +25,14 @@ public class Point {
 		this.x = posX;
 		this.y = posY;
 	}
+	
+	public Point clone() {
+		int px = this.x;
+		int py = this.y;
+		Point p = new Point(x,y);
+		return p;
+	}
+	
 	/*
 	 * calcule la distance entre deux points
 	 * @p2 deuxieme point avec lequel calculé la distance

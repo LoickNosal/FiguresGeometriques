@@ -2,13 +2,14 @@ package modele;
 
 import java.awt.Graphics;
 import java.awt.Polygon;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
  * Cette classe abstraite est la super classe de tous les polygones.
  * @author Loick Nosal
  */
-public abstract class Polygone extends FigureColoree{
+public abstract class Polygone extends FigureColoree implements Serializable{
 	
 	/*
 	 * Polygone du package jawa.awt 
@@ -32,6 +33,9 @@ public abstract class Polygone extends FigureColoree{
 		this.p = new Polygon(ab,or,super.tab_mem.size());
 
 	}
+	
+	public abstract Polygone clone();
+	
 	
 	@Override
 	/*

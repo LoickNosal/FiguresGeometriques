@@ -2,6 +2,7 @@ package modele;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * que l'on peut dessiner.
  *  @author Loick Nosal
  */
-public abstract class FigureColoree {
+public abstract class FigureColoree implements Serializable{
 	/*
 	 * Constante definissant la taille des carres 
 	 * de selection.
@@ -43,6 +44,9 @@ public abstract class FigureColoree {
 		this.tab_mem = new ArrayList<Point>();
 
 	}
+	
+	public abstract FigureColoree clone();
+	
 	
 	public ArrayList<Point> getListePoint(){
 		return this.tab_mem;

@@ -252,7 +252,7 @@ public class PanneauChoix extends JPanel{
 				
 					vdessin.repaint();
 					//fc = null;
-				}else if (ma.isSelected() && couleurActuelle!= null && fc != null) {
+				}else if (ma.isSelected() && couleurActuelle!= null) {
 					if (vdessin.getManipulateurFormes().figureSelection() != null) {
 						System.out.println("test");
 						vdessin.getManipulateurFormes().figureSelection().changeCouleur(couleurActuelle);
@@ -385,7 +385,7 @@ public class PanneauChoix extends JPanel{
 								dmodele.deleteObservers();
 								dmodele = dmodele.charger(result);
 								dmodele.addObserver(vdessin);
-								
+								dmodele.majAffichage();
 								
 								vdessin.setDessin(dmodele);
 								ManipulateurFormes mf = new ManipulateurFormes(dmodele);

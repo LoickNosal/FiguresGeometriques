@@ -134,9 +134,9 @@ public class Trait extends FigureColoree implements Serializable {
 	@Override
 	public boolean estDedans(int x, int y) {
 		boolean res = false;
-		//int posX = Math.abs(this.debx - this.finx);
-		//int posY = Math.abs(this.deby - this.finy);
-		if ((Math.pow((this.debx - x), 2) + Math.pow((this.deby - y), 2)) <= Math.pow(15,2)) {
+		//utile uniquement pour gommer des traits
+		if ((Math.pow((this.debx - x), 2) + Math.pow((this.deby - y), 2)) <= Math.pow(10,2)
+				|| (Math.pow((this.finx - x), 2) + Math.pow((this.finy - y), 2)) <= Math.pow(10,2)) {
 			res = true;
 		}
 		return res;

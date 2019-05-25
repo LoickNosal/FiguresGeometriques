@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
-
-
+import modele.Cercle;
 import modele.DessinModele;
 import modele.FigureColoree;
 import vue.VueDessin;
@@ -68,7 +67,7 @@ public class Gomme implements MouseMotionListener, MouseListener{
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		this.g.setColor(Color.BLACK);
-		this.g.drawOval(last_x-15, last_y-15, 30, 30);
+		this.g.drawOval(last_x-20, last_y-20, 40, 40);
 		
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {
@@ -92,8 +91,7 @@ public class Gomme implements MouseMotionListener, MouseListener{
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
-		
+		// TODO Auto-generated method stub
 	}
 	
 	

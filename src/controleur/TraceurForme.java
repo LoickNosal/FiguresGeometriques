@@ -30,7 +30,7 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 	/*
 	 * Ordonnée d'un clic de souris.
 	 */
-	private int lasy_y;
+	private int last_y;
 	/*
 	 * Couleur du trait à dessiner.
 	 */
@@ -77,7 +77,7 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 	 */
 	public void mousePressed(MouseEvent e) {
 		this.last_x = e.getX();
-		this.lasy_y = e.getY();
+		this.last_y = e.getY();
 		
 	}
 	@Override
@@ -103,11 +103,11 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			gc.setColor(this.couleur_trait);
-			gc.drawLine(this.last_x, this.lasy_y, e.getX(), e.getY());
-			this.liste_traits.add(new Trait(this.last_x, this.lasy_y, e.getX(), e.getY(), this.couleur_trait));
-			((VueDessin)e.getSource()).ajouterTrait(new Trait(this.last_x, this.lasy_y, e.getX(), e.getY(), this.couleur_trait));
+			gc.drawLine(this.last_x, this.last_y, e.getX(), e.getY());
+			this.liste_traits.add(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait));
+			((VueDessin)e.getSource()).ajouterTrait(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait));
 			this.last_x = e.getX();
-			this.lasy_y = e.getY();
+			this.last_y = e.getY();
 			
 		}
 		

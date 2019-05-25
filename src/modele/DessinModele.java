@@ -134,10 +134,12 @@ public class DessinModele extends Observable implements Serializable{
 	
 	public void effacerFigure(int indice) {
 		if (indice != -1) {
+			if (indice < this.lfg.size()) {
 				this.lfg.remove(indice);
 				this.sel = -1;
 				this.nbf -= 1;
-			}
+			}		
+		}
 				
 		this.majAffichage();
 	}

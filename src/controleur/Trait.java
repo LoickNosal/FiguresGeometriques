@@ -133,8 +133,13 @@ public class Trait extends FigureColoree implements Serializable {
 
 	@Override
 	public boolean estDedans(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = false;
+		//int posX = Math.abs(this.debx - this.finx);
+		//int posY = Math.abs(this.deby - this.finy);
+		if ((Math.pow((this.debx - x), 2) + Math.pow((this.deby - y), 2)) <= Math.pow(15,2)) {
+			res = true;
+		}
+		return res;
 	}
 
 

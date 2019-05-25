@@ -19,16 +19,26 @@ public class Gomme implements MouseMotionListener, MouseListener{
 
 	private Graphics g;
 	private DessinModele dm;
-	
+	/*
+	 * Abscisse d'un clic de souris.
+	 */
+	private int last_x;
+	/*
+	 * Ordonnée d'un clic de souris.
+	 */
+	private int last_y;
 	
 	public Gomme(Graphics gr, DessinModele dessin) {
 		this.g = gr;
 		this.dm = dessin;
+		this.last_x = 0;
+		this.last_y = 0;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		this.last_x = e.getX();
+		this.last_y = e.getY();
 		
 	}
 
@@ -58,28 +68,26 @@ public class Gomme implements MouseMotionListener, MouseListener{
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		this.g.setColor(Color.BLACK);
-		this.g.drawOval(e.getX()-25, e.getY()-25, 50, 50);
-		this.dm.majAffichage();
+		this.g.drawOval(last_x-15, last_y-15, 30, 30);
+		
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {
-			int i = 0;
 			ArrayList<Integer> listei = new ArrayList<Integer>();
 			
 			for (FigureColoree fg : this.dm.get_fg()) {
-				if (fg.estDedans(e.getX(), e.getY())) {
-					listei.add(i);
-				
-				}
-				i++;				
+				if (fg.estDedans(last_x, last_y)) {
+					listei.add(this.dm.get_fg().indexOf(fg));	
+				}			
 			}
 			for (Integer in : listei) {
 				this.dm.effacerFigure(in);
-				this.dm.majAffichage();
+
 			}
-			
-			
+
 		}
-		
+		this.last_x = e.getX();
+		this.last_y = e.getY();
+		this.dm.majAffichage();
 	}
 
 	@Override

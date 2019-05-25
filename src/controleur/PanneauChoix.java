@@ -64,6 +64,7 @@ public class PanneauChoix extends JPanel{
 	 */
 	private Color couleurActuelle;
 	
+	
 	/*
 	 * Constructeur de la classe
 	 * @param v zone de dessin
@@ -77,9 +78,15 @@ public class PanneauChoix extends JPanel{
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Image Gomme = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Gomme.png"));
 		Image Pinceau = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Pinceau.png"));
+		Image MainOuverte = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\MainOuverte.png"));
+		Image MainFermee = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\MainFermee.png"));
 		Cursor CurseurGomme = tk.createCustomCursor(Gomme, new Point(1,1), "Gomme" );
 		Cursor CurseurPinceau = tk.createCustomCursor(Pinceau, new Point(1, 1), "Pinceau");
 		Cursor CurseurDefaut = Cursor.getDefaultCursor();
+		Cursor CurseurMainOuverte = tk.createCustomCursor(MainOuverte, new Point(1,1), "MainOuverte");
+		this.vdessin.setCurseurMainOuverte(tk.createCustomCursor(MainOuverte, new Point(1,1), "MainOuverte"));
+		this.vdessin.setCurseurMainFermee(tk.createCustomCursor(MainFermee, new Point(1,1), "MainFermee"));
+		
 		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
@@ -204,7 +211,7 @@ public class PanneauChoix extends JPanel{
 					dmodele.deselectTous();
 					copie.setEnabled(true);
 					vdessin.repaint();
-					vdessin.setCursor(CurseurDefaut);
+					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) {
 					

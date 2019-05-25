@@ -1,5 +1,6 @@
 package vue;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
@@ -46,6 +47,26 @@ public class VueDessin extends JPanel implements Observer{
 	private CopieFigure cf;
 	
 	private Gomme go;
+	
+	private Cursor CurseurMainOuverte;
+	
+	private Cursor CurseurMainFermee;
+	
+	public Cursor getCurseurMainOuverte() {
+		return this.CurseurMainOuverte;
+	}
+	
+	public Cursor getCurseurMainFermee() {
+		return this.CurseurMainFermee;
+	}
+	
+	public void setCurseurMainOuverte(Cursor c) {
+		this.CurseurMainOuverte = c;
+	}
+	
+	public void setCurseurMainFermee(Cursor c) {
+		this.CurseurMainFermee = c;
+	}
 
 	/*
 	 * Constructeur

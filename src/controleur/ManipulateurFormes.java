@@ -161,7 +161,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	 * Méthode permettant de sélectionner la figure géométrique à manipuler.
 	 */
 	public void mousePressed(MouseEvent e) {
-
+		((VueDessin)e.getSource()).setCursor(((VueDessin)e.getSource()).getCurseurMainFermee());
 		if(lfg.size()!=0){
 			if(MouseEvent.BUTTON1 == e.getButton()) {
 				last_y = e.getY();
@@ -220,7 +220,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 		this.deformer = false;
 		this.trans = false; 
 		this.indice = -1;
-		
+		((VueDessin)e.getSource()).setCursor(((VueDessin)e.getSource()).getCurseurMainOuverte());
 	}
 
 	@Override

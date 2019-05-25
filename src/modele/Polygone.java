@@ -43,7 +43,7 @@ public abstract class Polygone extends FigureColoree implements Serializable{
 	 */
 	public void afficher(Graphics g) {
 		g.setColor(this.couleur);
-		g.fillPolygon(this.p);
+		g.drawPolygon(this.p);
 		super.afficher(g);
 	}
 	

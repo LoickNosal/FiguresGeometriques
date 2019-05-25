@@ -147,7 +147,7 @@ public class VueDessin extends JPanel implements Observer{
 	}
 	
 	public void gommer() {
-		System.out.println("test");
+		System.out.println("gommer");
 		this.go = new Gomme(this.getGraphics(),this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.go);

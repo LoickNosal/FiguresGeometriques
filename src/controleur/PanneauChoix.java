@@ -1,6 +1,11 @@
 package controleur;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -9,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.InputMap;
@@ -62,12 +68,18 @@ public class PanneauChoix extends JPanel{
 	 * Constructeur de la classe
 	 * @param v zone de dessin
 	 */
-	public PanneauChoix(VueDessin v) {
+	public PanneauChoix(VueDessin v) throws IOException {
 		this.vdessin = v;
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
 		this.couleurActuelle = Color.black;
-		
+		//Icone curseur de souris
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image Gomme = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Gomme.png"));
+		Image Pinceau = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Pinceau.png"));
+		Cursor CurseurGomme = tk.createCustomCursor(Gomme, new Point(1,1), "Gomme" );
+		Cursor CurseurPinceau = tk.createCustomCursor(Pinceau, new Point(1, 1), "Pinceau");
+		Cursor CurseurDefaut = Cursor.getDefaultCursor();
 		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
@@ -171,7 +183,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
-					
+					vdessin.setCursor(CurseurDefaut);
 				}else if(source.equals(tml)){
 					
 					fig.setEnabled(false);
@@ -182,6 +194,7 @@ public class PanneauChoix extends JPanel{
 					//vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
+					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) {
 					fig.setEnabled(false);
@@ -191,8 +204,8 @@ public class PanneauChoix extends JPanel{
 					dmodele.deselectTous();
 					copie.setEnabled(true);
 					vdessin.repaint();
-				
-					vdessin.repaint();
+					vdessin.setCursor(CurseurDefaut);
+					
 				}else if(source.equals(gom)) {
 					
 					fig.setEnabled(false);
@@ -203,6 +216,7 @@ public class PanneauChoix extends JPanel{
 
 					dmodele.deselectTous();
 					vdessin.repaint();
+					vdessin.setCursor(CurseurGomme);
 				}else {
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -213,6 +227,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.desactiverToutListener();
 					dmodele.deselectTous();
 					vdessin.repaint();
+					vdessin.setCursor(CurseurDefaut);
+					
 				}
 			}
 		};

@@ -66,8 +66,8 @@ public class Gomme implements MouseMotionListener, MouseListener{
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		this.g.setColor(Color.BLACK);
-		this.g.drawOval(last_x-20, last_y-20, 40, 40);
+//		this.g.setColor(Color.BLACK);
+//		this.g.drawOval(last_x-20, last_y-20, 40, 40);
 		
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {

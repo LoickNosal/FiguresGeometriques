@@ -1,8 +1,16 @@
 package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -34,7 +42,7 @@ public class Fenetre extends JFrame{
 	 * @param w largeur de la fenetre
 	 * @param h longueur de la fenetre
 	 */
-	public Fenetre(String s, int w, int h) {
+	public Fenetre(String s, int w, int h) throws IOException {
 		JFrame fenetre = new JFrame(s);
 		fenetre.setSize(w,h);
 		
@@ -57,7 +65,7 @@ public class Fenetre extends JFrame{
 		
 		this.vdessin.setBackground(Color.white);
 
-		
+		fenetre.setCursor(Frame.DEFAULT_CURSOR);
 		
 
 		
@@ -66,7 +74,7 @@ public class Fenetre extends JFrame{
 	/*
 	 * Programme principale
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		JFrame fenetre = new Fenetre("Figures Géométriques",800,600);
 	}
 }

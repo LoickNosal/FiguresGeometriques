@@ -132,6 +132,16 @@ public class DessinModele extends Observable implements Serializable{
 		this.majAffichage();
 	}
 	
+	public void effacerFigure(int indice) {
+		if (indice != -1) {
+				this.lfg.remove(indice);
+				this.sel = -1;
+				this.nbf -= 1;
+			}
+				
+		this.majAffichage();
+	}
+	
 	/*
 	 * permet de supprimer l'ensemble des figures du dessin.
 	 */

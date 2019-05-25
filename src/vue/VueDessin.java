@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import controleur.CopieFigure;
 import controleur.FabricantFigures;
+import controleur.Gomme;
 import controleur.ManipulateurFormes;
 import controleur.TraceurForme;
 import controleur.Trait;
@@ -43,6 +44,8 @@ public class VueDessin extends JPanel implements Observer{
 	 * permet de gérer les copies de figures
 	 */
 	private CopieFigure cf;
+	
+	private Gomme go;
 
 	/*
 	 * Constructeur
@@ -94,6 +97,7 @@ public class VueDessin extends JPanel implements Observer{
 
 			}
 		}
+
 		
 		
 	}
@@ -140,6 +144,14 @@ public class VueDessin extends JPanel implements Observer{
 		this.addMouseListener(this.mf);
 		this.addMouseMotionListener(this.mf);		
 		
+	}
+	
+	public void gommer() {
+		System.out.println("test");
+		this.go = new Gomme(this.getGraphics(),this.dessin);
+		this.desactiverToutListener();
+		this.addMouseListener(this.go);
+		this.addMouseMotionListener(this.go);
 	}
 	
 	public void copieFigure() {

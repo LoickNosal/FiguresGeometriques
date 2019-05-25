@@ -131,12 +131,14 @@ public class Trait extends FigureColoree implements Serializable {
 		// TODO Auto-generated method stub
 	}
 
-
 	@Override
 	public boolean estDedans(int x, int y) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
+	
 	
 	
 	

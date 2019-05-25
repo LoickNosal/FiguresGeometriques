@@ -84,6 +84,8 @@ public class PanneauChoix extends JPanel{
 		
 		JButton copie = new JButton("Copier Figure");
 		
+		JRadioButton gom = new JRadioButton ("Gomme");
+		
 		JButton couleur = new JButton();
 
 		
@@ -128,11 +130,13 @@ public class PanneauChoix extends JPanel{
 		bg.add(nf);
 		bg.add(tml);
 		bg.add(ma);
+		bg.add(gom);
 		
 		placementHaut.add(nf);
 		placementHaut.add(tml);
 		placementHaut.add(ma);
 		placementHaut.add(copie);
+		placementHaut.add(gom);
 		
 		placementBas.add(fig);
 		placementBas.add(co);
@@ -157,7 +161,8 @@ public class PanneauChoix extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				JRadioButton source = (JRadioButton)e.getSource(); 
 				
-				if(source.equals(nf)){ 
+				if(source.equals(nf)){
+					
 					fig.setEnabled(true);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
@@ -179,7 +184,6 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					
 				}else if(source.equals(ma)) {
-					
 					fig.setEnabled(false);
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
@@ -189,7 +193,16 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 				
 					vdessin.repaint();
+				}else if(source.equals(gom)) {
 					
+					fig.setEnabled(false);
+					supp.setEnabled(false);
+					suppTout.setEnabled(false);
+					co.setEnabled(false);
+					copie.setEnabled(false);
+
+					dmodele.deselectTous();
+					vdessin.repaint();
 				}else {
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -207,6 +220,7 @@ public class PanneauChoix extends JPanel{
 		nf.addActionListener(ALboutons);
 		tml.addActionListener(ALboutons);
 		ma.addActionListener(ALboutons);
+		gom.addActionListener(ALboutons);
 		
 		quitter.addActionListener(new ActionListener() {
 			
@@ -279,7 +293,7 @@ public class PanneauChoix extends JPanel{
 					
 			@Override
 			public void actionPerformed(ActionEvent e) {
-						vdessin.copieFigure();
+				vdessin.copieFigure();
 			}
 		});
 		
@@ -292,6 +306,15 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vdessin.trace(couleurActuelle);
+				
+			}
+		});
+		
+		gom.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vdessin.gommer();
 				
 			}
 		});
@@ -358,6 +381,7 @@ public class PanneauChoix extends JPanel{
 							result = fc.getSelectedFile();;
 							System.out.println(result.getAbsolutePath());
 							try {
+							
 								dmodele.deleteObservers();
 								dmodele = dmodele.charger(result);
 								dmodele.addObserver(vdessin);
@@ -366,9 +390,14 @@ public class PanneauChoix extends JPanel{
 								vdessin.setDessin(dmodele);
 								ManipulateurFormes mf = new ManipulateurFormes(dmodele);
 								vdessin.setMF(mf);
+								dmodele.deselectTous();
+								
+							
+								ma.setSelected(false);
+								nf.setSelected(true);
 								
 								vdessin.repaint();
-								ma.setSelected(false);
+								
 							} catch (Exception ex) {
 								JOptionPane.showMessageDialog(null,"Le fichier chargé n'est pas un dessin","Chargement impossible",JOptionPane.WARNING_MESSAGE);
 							}
@@ -384,19 +413,18 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if ((new File("C:\\Users\\nosal\\OneDrive\\Desktop\\FG\\FiguresGeometriques\\ModeEmploi.pdf")).exists()) {
+					if ((new File("..\\FiguresGeometriques\\ModeEmploi.pdf")).exists()) {
 
-						Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler C:\\Users\\nosal\\OneDrive\\Desktop\\FG\\FiguresGeometriques\\ModeEmploi.pdf");
+						Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler ..\\FiguresGeometriques\\ModeEmploi.pdf");
 						p.waitFor();
 						System.out.println("charge");
 							
 					} else {
-
+						JOptionPane.showMessageDialog(null,"Mode d'emploi introuvable","Chargement impossible",JOptionPane.WARNING_MESSAGE);
 						System.out.println("File is not exists");
 
 					}
 
-					System.out.println("Done");
 
 			  	  } catch (Exception ex) {
 					ex.printStackTrace();

@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import controleur.Trait;
+
 /*
  * Cette classe abstraite représente les figures 
  * que l'on peut dessiner.
@@ -105,7 +107,12 @@ public abstract class FigureColoree implements Serializable{
 	 * indique que la figure est selectione
 	 */
 	public void selectionne() {
-		this.selected = true;
+		if (this instanceof Trait) {
+			this.selected = false;
+		}else {
+			this.selected = true;
+		}
+		
 	}
 	/*
 	 * indique que la figure est deselectione

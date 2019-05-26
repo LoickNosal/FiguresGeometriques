@@ -46,6 +46,8 @@ public class Trait extends FigureColoree implements Serializable {
 		this.couleur = c;
 	}
 
+	//clonage de trait impossible mais methode faite pour l'implémenter
+	//peut être plus tard
 	public Trait clone() {
 		int x1 = this.debx;
 		int y1 = this.deby;
@@ -127,12 +129,11 @@ public class Trait extends FigureColoree implements Serializable {
 	}
 	
 	@Override
-	public void modifierPoints(ArrayList<Point> pts) {
-		// TODO Auto-generated method stub
-	}
+	public void modifierPoints(ArrayList<Point> pts) {}
 
 	@Override
 	public boolean estDedans(int x, int y) {
+		this.selected = false;
 		boolean res = false;
 		//utile uniquement pour gommer des traits
 		if ((Math.pow((this.debx - x), 2) + Math.pow((this.deby - y), 2)) <= Math.pow(10,2)

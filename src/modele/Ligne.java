@@ -64,18 +64,24 @@ public class Ligne extends FigureColoree {
 		int y2 = this.getListePoint().get(1).rendreY();
 		Point vecteurAB = new Point(x2-x1, y2-y1);
 		Point vecteurAC = new Point(x-x1, y-y1);
-		System.out.println((vecteurAB.rendreX() * vecteurAC.rendreY())
-				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
-		int k;
+//		System.out.println((vecteurAB.rendreX() * vecteurAC.rendreY())
+//				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
+		int k,k2;
 		if ((vecteurAB.rendreX() * vecteurAC.rendreY())
 				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000
 				&& (vecteurAB.rendreX() * vecteurAC.rendreY())
 				- (vecteurAB.rendreY() * vecteurAC.rendreX()) >= -1000) {
-			k = vecteurAB.rendreX()/vecteurAC.rendreX();
-			System.out.println(k);
-			if (k>0) {
-				res = true;
+			if (vecteurAC.rendreX() != 0 && vecteurAC.rendreY() != 0) {
+				k = vecteurAB.rendreX()/vecteurAC.rendreX();
+				k2 = vecteurAB.rendreY()/vecteurAC.rendreY();
+				System.out.println(k);
+				System.out.println(k2);
+				if (k>0 && k2>0) {
+					res = true;
+				}
 			}
+			
+			
 			
 		}
 		return res;

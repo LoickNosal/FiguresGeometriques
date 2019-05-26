@@ -1,14 +1,28 @@
 package modele;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Ligne extends FigureColoree {
 
 	@Override
 	public FigureColoree clone() {
-		// TODO Auto-generated method stub
-		return null;
+		Ligne l = new Ligne();
+		boolean creux = false;
+		Color c = this.getColor();
+		l.changeCouleur(c);
+		
+		Point p1 = this.getListePoint().get(0).clone();
+		Point p2 = this.getListePoint().get(1).clone();
+		
+		l.tab_mem.add(p1);
+		l.tab_mem.add(p2);
+	
+		l.modifierPoints(l.getListePoint());
+		l.setFigureCreuse(creux);
+		return l;
 	}
 
 	@Override
@@ -41,16 +55,29 @@ public class Ligne extends FigureColoree {
 
 	@Override
 	public boolean estDedans(int x, int y) {
+		//Methode très peu précise utilisant des intervalles
+		//car calcul de vecteur imprécis
 		boolean res = false;
 		int x1 = this.getListePoint().get(0).rendreX();
 		int y1 = this.getListePoint().get(0).rendreY();
 		int x2 = this.getListePoint().get(1).rendreX();
 		int y2 = this.getListePoint().get(1).rendreY();
-		
-		if ((x2-x1)/(y2-y1) == (x-x1)/(y-y1)) {
-			  if( x<=x2 && x>=x1) {
-				  res = true;
-			  }
+		Point vecteurAB = new Point(x2-x1, y2-y1);
+		Point vecteurAC = new Point(x-x1, y-y1);
+		System.out.println((vecteurAB.rendreX() * vecteurAC.rendreY())
+				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
+		int k;
+		if ((vecteurAB.rendreX() * vecteurAC.rendreY())
+				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000
+				&& (vecteurAB.rendreX() * vecteurAC.rendreY())
+				- (vecteurAB.rendreY() * vecteurAC.rendreX()) >= -1000) {
+			k = vecteurAB.rendreX()/vecteurAC.rendreX();
+			System.out.println(k);
+			if (k>0) {
+				res = true;
+			}
+			
+		}
 		return res;
 	}
 

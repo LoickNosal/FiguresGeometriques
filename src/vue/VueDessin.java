@@ -2,14 +2,18 @@ package vue;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import controleur.CopieFigure;
@@ -207,6 +211,12 @@ public class VueDessin extends JPanel implements Observer{
 		for (KeyListener kl : getKeyListeners()) {
 			removeKeyListener(kl);
 		}
+	}
+	
+	public Graphics2D saveImage() {
+		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2 = image.createGraphics();
+		return g2;
 	}
 	
 

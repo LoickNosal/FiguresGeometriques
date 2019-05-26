@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Frame;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -30,8 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.KeyStroke;
-
-
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.Carre;
 import modele.Cercle;
@@ -131,13 +132,16 @@ public class PanneauChoix extends JPanel{
 		final JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem sauver = new JMenuItem("Enregistrer");
 		JMenuItem charger = new JMenuItem("Ouvrir");
+		JMenuItem exporter = new JMenuItem("Exporter");
 		JMenuItem quitter = new JMenuItem("Quitter");
 		menuFichier.add(sauver);
 		menuFichier.add(charger);
+		menuFichier.add(exporter);
 		menuFichier.add(quitter);
 		
 		sauver.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));
 		charger.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_DOWN_MASK));
+		exporter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,InputEvent.CTRL_DOWN_MASK));
 		
 		final JMenu aide = new JMenu("Aide");
 		JMenuItem modeEmploi = new JMenuItem("mode d'Emploi");
@@ -408,6 +412,39 @@ public class PanneauChoix extends JPanel{
 							JOptionPane.showMessageDialog(null,"La sauvegarde du dessin est impossible","Sauvegarde impossible",JOptionPane.WARNING_MESSAGE);
 						}
 					}
+				
+			}
+		});
+		
+		exporter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BufferedImage image = new BufferedImage(vdessin.getWidth(),vdessin.getHeight(), BufferedImage.TYPE_INT_RGB);
+				Graphics2D img = image.createGraphics();
+				vdessin.paint(img);
+
+				
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("exporter le fichier");
+				fc.setCurrentDirectory(new java.io.File("Images"));
+				fc.setFileFilter(new FileNameExtensionFilter("png", "png"));
+				File result;
+				
+				if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
+						result = fc.getSelectedFile();
+						System.out.println(result.getAbsolutePath());
+						String chemin = result.getAbsolutePath() + ".png";
+						try {
+							ImageIO.write(image, "png", new File(chemin));
+
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null,"L'exportation du dessin est impossible","Exportation impossible",JOptionPane.WARNING_MESSAGE);
+							ex.printStackTrace();
+						}
+					}	
+				
+				
 				
 			}
 		});

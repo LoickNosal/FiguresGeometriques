@@ -33,6 +33,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -80,6 +81,9 @@ public class PanneauChoix extends JPanel{
 		this.dmodele.addObserver(this.vdessin);
 		this.couleurActuelle = Color.black;
 		
+	
+		
+		
 		//Icone curseur de souris
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Image Gomme = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Gomme.png"));
@@ -104,7 +108,10 @@ public class PanneauChoix extends JPanel{
 		ImageIcon iconeGommeSelec  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\gommeSelec.png");
 		ImageIcon copy  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\copy.png");
 		
-		
+		ImageIcon save  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\save.png");
+		ImageIcon open  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\open.png");
+		ImageIcon export  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\export.png");
+		ImageIcon close  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\close.png");
 		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
@@ -127,11 +134,12 @@ public class PanneauChoix extends JPanel{
 		
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 
-	
+		
 		
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle","Ligne"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisée"});
+		
 		
 
 		final JMenuBar menuBar = new JMenuBar();
@@ -143,8 +151,8 @@ public class PanneauChoix extends JPanel{
 		menuSupp.add(suppTout);
 		supp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,0));
 		suppTout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,InputEvent.CTRL_DOWN_MASK));
-		
-		
+	
+	
 		final JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem sauver = new JMenuItem("Enregistrer");
 		JMenuItem charger = new JMenuItem("Ouvrir");
@@ -154,6 +162,10 @@ public class PanneauChoix extends JPanel{
 		menuFichier.add(charger);
 		menuFichier.add(exporter);
 		menuFichier.add(quitter);
+		sauver.setIcon(save);
+		charger.setIcon(open);
+		exporter.setIcon(export);
+		quitter.setIcon(close);
 		
 		sauver.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));
 		charger.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_DOWN_MASK));

@@ -19,6 +19,7 @@ import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -74,6 +75,7 @@ public class PanneauChoix extends JPanel{
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
 		this.couleurActuelle = Color.black;
+		
 		//Icone curseur de souris
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Image Gomme = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Gomme.png"));
@@ -106,6 +108,8 @@ public class PanneauChoix extends JPanel{
 		JRadioButton gom = new JRadioButton ("Gomme");
 		
 		JButton couleur = new JButton();
+		
+		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
@@ -157,13 +161,16 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(copie);
 		placementHaut.add(gom);
 		
+		placementBas.add(FigureCreuse);
 		placementBas.add(fig);
 		placementBas.add(co);
 		placementBas.add(couleur);
 		
+	
 		couleur.setEnabled(false);
 		couleur.setBackground(Color.black);
 		
+		FigureCreuse.setEnabled(false);
 		fig.setEnabled(false);
 		supp.setEnabled(false);
 		co.setEnabled(true);
@@ -182,6 +189,7 @@ public class PanneauChoix extends JPanel{
 				
 				if(source.equals(nf)){
 					
+					FigureCreuse.setEnabled(true);
 					fig.setEnabled(true);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
@@ -192,7 +200,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					vdessin.setCursor(CurseurDefaut);
 				}else if(source.equals(tml)){
-					
+					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
@@ -204,6 +212,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) {
+					
+					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
@@ -214,7 +224,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) {
-					
+					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
@@ -225,6 +235,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					vdessin.setCursor(CurseurGomme);
 				}else {
+					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
@@ -293,7 +304,12 @@ public class PanneauChoix extends JPanel{
 		fig.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				co.setEnabled(false);
-				fc = creeFigure(fig.getSelectedIndex());				
+				fc = creeFigure(fig.getSelectedIndex());
+				if (FigureCreuse.isSelected()) {
+					fc.setFigureCreuse(true);
+				}else{
+					fc.setFigureCreuse(false);
+				}
 				if (fc != null){
 					fc.changeCouleur(couleurActuelle);
 					vdessin.construit(fc);

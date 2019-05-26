@@ -20,7 +20,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	
 	public Rectangle clone() {
 		Rectangle re = new Rectangle();
-
+		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		re.changeCouleur(c);
 		
@@ -32,7 +32,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 		
 		re.tab_mem.add(p1);
 		re.tab_mem.add(p2);
-
+		re.setFigureCreuse(creux);
 		return re;
 	}
 	

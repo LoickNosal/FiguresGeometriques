@@ -19,7 +19,7 @@ public class Carre extends Rectangle implements Serializable{
 	
 	public Carre clone() {
 		Carre ca = new Carre();
-
+		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		ca.changeCouleur(c);
 		
@@ -29,7 +29,7 @@ public class Carre extends Rectangle implements Serializable{
 		
 		ca.tab_mem.add(p1);
 		ca.tab_mem.add(p2);
-
+		ca.setFigureCreuse(creux);
 		return ca;
 		
 	}

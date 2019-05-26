@@ -18,7 +18,7 @@ public class Triangle extends Polygone implements Serializable{
 	
 	public Triangle clone() {
 		Triangle tr = new Triangle();
-
+		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		tr.changeCouleur(c);
 		
@@ -32,6 +32,7 @@ public class Triangle extends Polygone implements Serializable{
 		tr.tab_mem.add(p3);		
 		
 		tr.modifierPoints(tr.getListePoint());
+		tr.setFigureCreuse(creux);
 		return tr;
 	}
 	

@@ -35,6 +35,8 @@ public abstract class FigureColoree implements Serializable{
 	 */
 	protected ArrayList<Point> tab_mem;
 	
+	protected boolean FigureCreuse;
+	
 	/*
 	 * constructeur vide qui initialise les attributs
 	 */
@@ -42,9 +44,12 @@ public abstract class FigureColoree implements Serializable{
 		this.selected = false;
 		this.couleur = Color.black;
 		this.tab_mem = new ArrayList<Point>();
+		this.FigureCreuse = false;
 
 	}
-	
+	public void setFigureCreuse(boolean creuse) {
+		this.FigureCreuse = creuse;
+	}
 	public abstract FigureColoree clone();
 	
 	

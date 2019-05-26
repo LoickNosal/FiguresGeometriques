@@ -115,7 +115,6 @@ public class VueDessin extends JPanel implements Observer{
 				g.setColor(fg.getColor());
 				fg.afficher(g);
 				
-
 			}
 		}
 

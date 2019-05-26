@@ -22,6 +22,7 @@ public class Quadrilatere extends Polygone implements Serializable{
 
 		Color c = this.getColor();
 		qu.changeCouleur(c);
+		boolean creux = this.FigureCreuse;
 		
 		Point p1 = this.getListePoint().get(0).clone();
 		Point p2 = this.getListePoint().get(1).clone();
@@ -33,6 +34,8 @@ public class Quadrilatere extends Polygone implements Serializable{
 		qu.tab_mem.add(p3);
 		qu.tab_mem.add(p4);
 		qu.modifierPoints(qu.getListePoint());
+		qu.setFigureCreuse(creux);
+		
 		return qu;
 	}
 	

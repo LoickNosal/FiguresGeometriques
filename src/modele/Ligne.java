@@ -40,7 +40,6 @@ public class Ligne extends FigureColoree {
 	@Override
 	public void modifierPoints(ArrayList<Point> pts) {
 		tab_mem = pts;
-		
 	}
 	
 	@Override
@@ -66,17 +65,17 @@ public class Ligne extends FigureColoree {
 		Point vecteurAC = new Point(x-x1, y-y1);
 //		System.out.println((vecteurAB.rendreX() * vecteurAC.rendreY())
 //				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
-		int k,k2;
+		double k,k2;
 		if ((vecteurAB.rendreX() * vecteurAC.rendreY())
 				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000
 				&& (vecteurAB.rendreX() * vecteurAC.rendreY())
 				- (vecteurAB.rendreY() * vecteurAC.rendreX()) >= -1000) {
 			if (vecteurAC.rendreX() != 0 && vecteurAC.rendreY() != 0) {
-				k = vecteurAB.rendreX()/vecteurAC.rendreX();
-				k2 = vecteurAB.rendreY()/vecteurAC.rendreY();
+				k = (double)(vecteurAB.rendreX()/vecteurAC.rendreX());
+				k2 = (double)(vecteurAB.rendreY()/vecteurAC.rendreY());
 				System.out.println(k);
 				System.out.println(k2);
-				if (k>0 && k2>0) {
+				if (k>0 || k2>0) {
 					res = true;
 				}
 			}

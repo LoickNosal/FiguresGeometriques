@@ -19,6 +19,8 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -91,6 +93,18 @@ public class PanneauChoix extends JPanel{
 		this.vdessin.setCurseurMainOuverte(tk.createCustomCursor(MainOuverte, new Point(1,1), "MainOuverte"));
 		this.vdessin.setCurseurMainFermee(tk.createCustomCursor(MainFermee, new Point(1,1), "MainFermee"));
 		
+		//Icone JRadioButton
+		ImageIcon iconeNf  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\cubes.png");
+		ImageIcon iconeNfSelec  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\cubesSelec.png");
+		ImageIcon iconeTml  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\brush.png");
+		ImageIcon iconeTmlSelec  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\brushSelec.png");
+		ImageIcon iconeMa  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\manip.png");
+		ImageIcon iconeMaSelec  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\manipSelec.png");
+		ImageIcon iconeGomme  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\gomme.png");
+		ImageIcon iconeGommeSelec  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\gommeSelec.png");
+		ImageIcon copy  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\copy.png");
+		
+		
 		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
@@ -99,20 +113,22 @@ public class PanneauChoix extends JPanel{
 		//placementBas.setBackground(new Color(227,227,227));
 		ButtonGroup bg = new ButtonGroup();
 		
-		JRadioButton nf = new JRadioButton ("Nouvelle figure");
-
-		JRadioButton tml = new JRadioButton ("Tracé à main levée");
+		JRadioButton nf = new JRadioButton ("Nouvelle figure",iconeNf);
 		
-		JRadioButton ma = new JRadioButton ("Manipulation");
+		JRadioButton tml = new JRadioButton ("Tracé à main levée",iconeTml);
 		
-		JButton copie = new JButton("Copier Figure");
+		JRadioButton ma = new JRadioButton ("Manipulation",iconeMa);
 		
-		JRadioButton gom = new JRadioButton ("Gomme");
+		JButton copie = new JButton("Copier Figure",copy);
+		
+		JRadioButton gom = new JRadioButton ("Gomme",iconeGomme);
 		
 		JButton couleur = new JButton();
 		
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 
+	
+		
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle","Ligne"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisée"});
@@ -193,7 +209,10 @@ public class PanneauChoix extends JPanel{
 				JRadioButton source = (JRadioButton)e.getSource(); 
 				
 				if(source.equals(nf)){
-					
+					gom.setIcon(iconeGomme);
+					ma.setIcon(iconeMa);
+					tml.setIcon(iconeTml);
+					nf.setIcon(iconeNfSelec);
 					FigureCreuse.setEnabled(true);
 					fig.setEnabled(true);
 					supp.setEnabled(false);
@@ -206,6 +225,10 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurDefaut);
 					
 				}else if(source.equals(tml)){
+					gom.setIcon(iconeGomme);
+					ma.setIcon(iconeMa);
+					tml.setIcon(iconeTmlSelec);
+					nf.setIcon(iconeNf);
 					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -218,7 +241,10 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) {
-					
+					gom.setIcon(iconeGomme);
+					ma.setIcon(iconeMaSelec);
+					tml.setIcon(iconeTml);
+					nf.setIcon(iconeNf);
 					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(true);
@@ -230,6 +256,10 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) {
+					gom.setIcon(iconeGommeSelec);
+					ma.setIcon(iconeMa);
+					tml.setIcon(iconeTml);
+					nf.setIcon(iconeNf);
 					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -241,6 +271,10 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					vdessin.setCursor(CurseurGomme);
 				}else {
+					gom.setIcon(iconeGomme);
+					ma.setIcon(iconeMa);
+					tml.setIcon(iconeTml);
+					nf.setIcon(iconeNf);
 					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
 					supp.setEnabled(false);
@@ -545,7 +579,9 @@ public class PanneauChoix extends JPanel{
 			break;
 		case 7:
 			Color c = couleurPerso();
-			this.couleurActuelle = c;
+			if (c != null) {
+				this.couleurActuelle = c;
+			}
 			break;
 		default:
 			this.couleurActuelle = Color.black;

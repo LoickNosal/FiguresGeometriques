@@ -37,6 +37,7 @@ import modele.Carre;
 import modele.Cercle;
 import modele.DessinModele;
 import modele.FigureColoree;
+import modele.Ligne;
 import modele.Quadrilatere;
 import modele.Rectangle;
 import modele.Triangle;
@@ -112,7 +113,7 @@ public class PanneauChoix extends JPanel{
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 
 		
-		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle"});
+		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle","Ligne"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisée"});
 		
 
@@ -441,7 +442,8 @@ public class PanneauChoix extends JPanel{
 								vdessin.repaint();
 								
 							} catch (Exception ex) {
-								JOptionPane.showMessageDialog(null,"Le fichier chargé n'est pas un dessin","Chargement impossible",JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null,"Le fichier chargé n'est pas un dessin, la fenetre va se fermer","Chargement impossible",JOptionPane.WARNING_MESSAGE);
+								System.exit(1);
 							}
 						}
 					
@@ -531,6 +533,8 @@ public class PanneauChoix extends JPanel{
 			return new Carre();
 		case 4:
 			return new Cercle();
+		case 5:
+			return new Ligne();
 		default :
 			return null;
 		}

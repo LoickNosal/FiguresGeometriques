@@ -12,12 +12,14 @@ import javax.swing.SwingUtilities;
 import modele.Cercle;
 import modele.DessinModele;
 import modele.FigureColoree;
+import modele.Point;
 import vue.VueDessin;
 
 public class Gomme implements MouseMotionListener, MouseListener{
 
 	private Graphics g;
 	private DessinModele dm;
+	
 	/*
 	 * Abscisse d'un clic de souris.
 	 */
@@ -32,6 +34,7 @@ public class Gomme implements MouseMotionListener, MouseListener{
 		this.dm = dessin;
 		this.last_x = 0;
 		this.last_y = 0;
+
 	}
 	
 	@Override
@@ -65,10 +68,7 @@ public class Gomme implements MouseMotionListener, MouseListener{
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
-//		this.g.setColor(Color.BLACK);
-//		this.g.drawOval(last_x-20, last_y-20, 40, 40);
-		
+	public void mouseDragged(MouseEvent e) {		
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			ArrayList<Integer> listei = new ArrayList<Integer>();
@@ -91,7 +91,7 @@ public class Gomme implements MouseMotionListener, MouseListener{
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 	}
 	
 	

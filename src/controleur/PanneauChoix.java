@@ -113,6 +113,11 @@ public class PanneauChoix extends JPanel{
 		ImageIcon export  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\export.png");
 		ImageIcon close  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\close.png");
 		
+		ImageIcon eff  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\supp.png");
+		ImageIcon effTout  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\delete.png");
+		
+		ImageIcon help  = new ImageIcon("..\\FiguresGeometriques\\IconeJRadioButton\\help.png");
+		
 		this.setLayout(new BorderLayout());
 		JPanel placementHaut  = new JPanel();
 		//placementHaut.setBackground(new Color(227,227,227));
@@ -151,6 +156,8 @@ public class PanneauChoix extends JPanel{
 		menuSupp.add(suppTout);
 		supp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,0));
 		suppTout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,InputEvent.CTRL_DOWN_MASK));
+		supp.setIcon(eff);
+		suppTout.setIcon(effTout);
 	
 	
 		final JMenu menuFichier = new JMenu("Fichier");
@@ -177,6 +184,7 @@ public class PanneauChoix extends JPanel{
 		aide.add(modeEmploi);
 		//aide.add(Description);
 		modeEmploi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,0));
+		modeEmploi.setIcon(help);
 		
 		menuBar.add(menuFichier);
 		menuBar.add(menuSupp);

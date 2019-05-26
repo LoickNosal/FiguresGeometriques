@@ -27,6 +27,7 @@ public class Cercle extends ConiqueCentree implements Serializable{
 	public Cercle clone() {
 		Cercle ce = new Cercle();
 		double r = this.rayon;
+		boolean creux = this.FigureCreuse;
 		Color co = this.getColor();
 		ce.changeCouleur(co);
 		
@@ -37,6 +38,7 @@ public class Cercle extends ConiqueCentree implements Serializable{
 		ce.tab_mem.add(p1);
 		ce.tab_mem.add(p2);
 		ce.modifierPoints(ce.getListePoint());
+		ce.setFigureCreuse(creux);
 		return ce;
 		
 		
@@ -90,7 +92,12 @@ public class Cercle extends ConiqueCentree implements Serializable{
 		int xcoinbasdroite = (int) rayon*2;
 		int ycoinbasdroite = (int) rayon*2;
 		g.setColor(this.couleur);
-		g.fillOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
+		if (this.FigureCreuse == true) {
+			g.drawOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
+		}else {
+			g.fillOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
+		}
+		
 		super.afficher(g);
 	
 	}

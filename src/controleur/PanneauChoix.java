@@ -199,6 +199,7 @@ public class PanneauChoix extends JPanel{
 					dmodele.deselectTous();
 					vdessin.repaint();
 					vdessin.setCursor(CurseurDefaut);
+					
 				}else if(source.equals(tml)){
 					FigureCreuse.setEnabled(false);
 					fig.setEnabled(false);
@@ -314,10 +315,12 @@ public class PanneauChoix extends JPanel{
 					fc.changeCouleur(couleurActuelle);
 					vdessin.construit(fc);
 					co.setEnabled(true);
+					
 				}
-				
+
 			}
 		});
+		
 		
 		//permet de manipuler les figures
 		ma.addActionListener(new ActionListener() {

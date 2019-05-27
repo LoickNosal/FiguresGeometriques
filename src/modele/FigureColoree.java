@@ -41,19 +41,27 @@ public abstract class FigureColoree implements Serializable{
 	
 	protected boolean FigureCreuse;
 	
+	protected float epaisseur;
+	
 	/*
 	 * constructeur vide qui initialise les attributs
 	 */
-	public FigureColoree() {
+	public FigureColoree(float ep) {
 		this.selected = false;
 		this.couleur = Color.black;
 		this.tab_mem = new ArrayList<Point>();
 		this.FigureCreuse = false;
+		this.epaisseur = ep;
 
 	}
 	public void setFigureCreuse(boolean creuse) {
 		this.FigureCreuse = creuse;
 	}
+	
+	public void setEpaisseur(float e) {
+		this.epaisseur = e;
+	}
+	
 	public abstract FigureColoree clone();
 	
 	
@@ -96,7 +104,7 @@ public abstract class FigureColoree implements Serializable{
 	
 		if (this.selected == true) {
 			Graphics2D g2 = (Graphics2D)g;
-			BasicStroke line = new BasicStroke(1.0f);
+			BasicStroke line = new BasicStroke(1.0f); //epaisseur des carre de selection
 			g2.setStroke(line);
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (TAILLE_CARRE_SELECTION/2);

@@ -14,12 +14,12 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	/*
 	 * constructeur vide
 	 */
-	public Rectangle() {
-		super();
+	public Rectangle(float e) {
+		super(e);
 	}
 	
 	public Rectangle clone() {
-		Rectangle re = new Rectangle();
+		Rectangle re = new Rectangle(this.epaisseur);
 		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		re.changeCouleur(c);

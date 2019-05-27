@@ -1,15 +1,21 @@
 package modele;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class Ligne extends FigureColoree {
 
+	public Ligne(float e) {
+		super(e);
+	}
+
 	@Override
 	public FigureColoree clone() {
-		Ligne l = new Ligne();
+		Ligne l = new Ligne(this.epaisseur);
 		boolean creux = false;
 		Color c = this.getColor();
 		l.changeCouleur(c);
@@ -48,6 +54,9 @@ public class Ligne extends FigureColoree {
 		int y1 = this.getListePoint().get(0).rendreY();
 		int x2 = this.getListePoint().get(1).rendreX();
 		int y2 = this.getListePoint().get(1).rendreY();
+		Graphics2D g2 = (Graphics2D)g;
+		BasicStroke line = new BasicStroke(this.epaisseur);
+		g2.setStroke(line);
 		g.drawLine(x1, y1, x2, y2);
 		super.afficher(g);
 	}

@@ -148,7 +148,7 @@ public class PanneauChoix extends JPanel{
 		
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 		
-		JTextArea textBar = new JTextArea("Largeur du Pinceau");
+		JTextArea textBar = new JTextArea("Largeur du Pinceau (" + this.epaisseur + ")");
 		JScrollBar bar = new JScrollBar(0,1,1,1,21); //de 1 a 20
 		bar.setPreferredSize(new Dimension(100,20));
 
@@ -355,9 +355,11 @@ public class PanneauChoix extends JPanel{
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {
 				epaisseur = bar.getValue();
+				textBar.setText("Largeur du Pinceau (" + epaisseur + ")");
 				if (vdessin.getTraceurForme() != null) {
 					vdessin.getTraceurForme().setEpaisseur(epaisseur);
 				}
+				vdessin.repaint();
 				
 				
 			}
@@ -669,17 +671,17 @@ public class PanneauChoix extends JPanel{
 	public FigureColoree creeFigure(int index) {
 		switch(index) {
 		case 0:
-			return new Quadrilatere();
+			return new Quadrilatere(this.epaisseur);
 		case 1:
-			return new Triangle();
+			return new Triangle(this.epaisseur);
 		case 2:
-			return new Rectangle();
+			return new Rectangle(this.epaisseur);
 		case 3:
-			return new Carre();
+			return new Carre(this.epaisseur);
 		case 4:
-			return new Cercle();
+			return new Cercle(this.epaisseur);
 		case 5:
-			return new Ligne();
+			return new Ligne(this.epaisseur);
 		default :
 			return null;
 		}

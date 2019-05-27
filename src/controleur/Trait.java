@@ -37,18 +37,17 @@ public class Trait extends FigureColoree implements Serializable {
 	 */
 	private Color couleur;
 	
-	private float epaisseur;
 	
 	/*
 	 * Constructeur
 	 */
-	public Trait(int x1, int y1, int x2, int y2, Color c,float e) {
+	public Trait(int x1, int y1, int x2, int y2, Color c, float e) {
+		super(e);
 		this.debx = x1;
 		this.deby = y1;
 		this.finx = x2;
 		this.finy = y2;
 		this.couleur = c;
-		this.epaisseur = e;
 	}
 
 	//clonage de trait impossible mais methode faite pour l'implémenter

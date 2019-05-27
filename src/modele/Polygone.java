@@ -22,8 +22,8 @@ public abstract class Polygone extends FigureColoree implements Serializable{
 	 * constructeur vide
 	 * Initialise le Polygone
 	 */
-	public Polygone() {
-		super();
+	public Polygone(float e) {
+		super(e);
 		int[] ab = new int[super.tab_mem.size()];
 		int[] or = new int[super.tab_mem.size()];
 		int i = 0;
@@ -47,7 +47,7 @@ public abstract class Polygone extends FigureColoree implements Serializable{
 		g.setColor(this.couleur);
 		if (FigureCreuse == true) {
 			Graphics2D g2 = (Graphics2D)g;
-			BasicStroke line = new BasicStroke(1.0f);
+			BasicStroke line = new BasicStroke(this.epaisseur);
 			g2.setStroke(line);
 			g.drawPolygon(this.p);
 		}else {

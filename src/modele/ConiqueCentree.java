@@ -18,8 +18,8 @@ public abstract class ConiqueCentree extends FigureColoree implements Serializab
 	/*
 	 * Constructeur
 	 */
-	public ConiqueCentree() {
-		super();
+	public ConiqueCentree(float e) {
+		super(e);
 		this.centre = new Point(0, 0);
 		
 	}

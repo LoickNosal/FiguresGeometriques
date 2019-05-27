@@ -21,13 +21,13 @@ public class Cercle extends ConiqueCentree implements Serializable{
 	/*
 	 * constructeur
 	 */
-	public Cercle() {
-		super();
+	public Cercle(float e) {
+		super(e);
 		this.rayon = 0;
 	}
 	
 	public Cercle clone() {
-		Cercle ce = new Cercle();
+		Cercle ce = new Cercle(this.epaisseur);
 		double r = this.rayon;
 		boolean creux = this.FigureCreuse;
 		Color co = this.getColor();
@@ -96,7 +96,7 @@ public class Cercle extends ConiqueCentree implements Serializable{
 		g.setColor(this.couleur);
 		if (this.FigureCreuse == true) {
 			Graphics2D g2 = (Graphics2D)g;
-			BasicStroke line = new BasicStroke(1.0f);
+			BasicStroke line = new BasicStroke(this.epaisseur);
 			g2.setStroke(line);
 			g.drawOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
 		}else {

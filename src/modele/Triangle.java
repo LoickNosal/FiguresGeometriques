@@ -12,12 +12,12 @@ public class Triangle extends Polygone implements Serializable{
 	/*
 	 * Constructeur vide
 	 */
-	public Triangle(){
-		super();
+	public Triangle(float e){
+		super(e);
 	}
 	
 	public Triangle clone() {
-		Triangle tr = new Triangle();
+		Triangle tr = new Triangle(this.epaisseur);
 		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		tr.changeCouleur(c);

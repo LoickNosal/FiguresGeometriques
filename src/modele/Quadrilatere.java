@@ -13,12 +13,12 @@ public class Quadrilatere extends Polygone implements Serializable{
 	/*
 	 * constructeur vide
 	 */
-	public Quadrilatere() {
-		super();
+	public Quadrilatere(float e) {
+		super(e);
 	}
 	
 	public Quadrilatere clone() {
-		Quadrilatere qu = new Quadrilatere();
+		Quadrilatere qu = new Quadrilatere(this.epaisseur);
 
 		Color c = this.getColor();
 		qu.changeCouleur(c);

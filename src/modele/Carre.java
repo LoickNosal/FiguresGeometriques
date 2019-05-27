@@ -13,12 +13,12 @@ public class Carre extends Rectangle implements Serializable{
 	/*
 	 * constructeur vide
 	 */
-	public Carre() {
-		super();
+	public Carre(float e) {
+		super(e);
 	}
 	
 	public Carre clone() {
-		Carre ca = new Carre();
+		Carre ca = new Carre(this.epaisseur);
 		boolean creux = this.FigureCreuse;
 		Color c = this.getColor();
 		ca.changeCouleur(c);

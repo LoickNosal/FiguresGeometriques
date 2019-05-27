@@ -1,29 +1,31 @@
 package controleur;
 
-import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
 import modele.DessinModele;
 import modele.FigureColoree;
 import modele.Point;
 
+/**
+ * Classe permettant de copier des figures colorees
+ * @author Nosal Loïck
+ */
 public class CopieFigure{
 
-	
+	/**
+	 * modele sur lequel copier la figure
+	 */
 	private DessinModele modele;
 	
+	/**
+	 * constructeur
+	 */
 	public CopieFigure(DessinModele dm) {
 		this.modele = dm;
 		
 	}
 
+	/**
+	 * methode permettant de copier une figure coloree
+	 */
 	public void Copier() {	
 			int sel = this.modele.getSel();
 			
@@ -32,10 +34,6 @@ public class CopieFigure{
 					
 					
 					FigureColoree cop = this.modele.get_fg().get(sel).clone();
-					
-					System.out.println(this.modele.get_fg().get(sel));
-					System.out.println(cop.toString());
-					
 
 					for (Point p : cop.getListePoint()) {
 						p.translation(20, 20);

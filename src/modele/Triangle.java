@@ -3,19 +3,21 @@ package modele;
 import java.awt.Color;
 import java.io.Serializable;
 
-/*
+/**
  * @author Nosal Loïck
  * Classe modélisant les triangles
  */
 public class Triangle extends Polygone implements Serializable{
 
-	/*
+	/**
 	 * Constructeur vide
 	 */
 	public Triangle(float e){
 		super(e);
 	}
-	
+	/**
+	 * permet de cloner un triangle
+	 */
 	public Triangle clone() {
 		Triangle tr = new Triangle(this.epaisseur);
 		boolean creux = this.FigureCreuse;
@@ -38,7 +40,7 @@ public class Triangle extends Polygone implements Serializable{
 	
 	
 	@Override
-	/*
+	/**
 	 * Cette méthode retourne en résultat le nombre de points de mémorisation d'un triangle.
 	 */
 	public int nbPoints() {

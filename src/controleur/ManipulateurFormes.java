@@ -1,67 +1,61 @@
 package controleur;
 
-import java.awt.Component;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
 import modele.DessinModele;
 import modele.FigureColoree;
-import modele.Point;
-import modele.Quadrilatere;
-import modele.Rectangle;
 import vue.VueDessin;
-/*
+/**
  * @author Nosal Loïck
  * Classe gérant le déplacement et la transformation des figures géométriques.
  */
 public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	
-	/*
+	/**
 	 * savoir si la figure est en train d'etre deforme
 	 */
 	private boolean deformer;
-	/*
+	/**
 	 * Abscisse d'un clic de souris.
 	 */
 	private int last_x;
-	/*
+	/**
 	 * ordonnee d'un clic de souris.
 	 */
 	private int last_y;
-	/*
+	/**
 	 * Attribut indiquant si un deplacement est en cours.
 	 */
 	private boolean trans;
-	/*
+	/**
 	 * attribut indiquant l'indice du point proche d'un carre de selection.
 	 */
 	private int indice;
-	/*
+	/**
 	 * Nombre effectif de figures apparaissant dans ce dessin.
 	 */
 	private int nbf;
-	/*
+	/**
 	 * Indice de la figure actuellement 
 	 * selectionnee (-1 si aucune figure n'est selectionnee).
 	 */
 	private int sel;
-	/*
+	/**
 	 * Liste de figures du modele
 	 */
 	private ArrayList<FigureColoree> lfg;
-	/*
+	/**
 	 * modele
 	 */
 	private DessinModele dm;
 	
-	/*
+	/**
 	 * constructeur à partir d'un DessinModele
+	 * @param d dessin 
 	 */
 	public ManipulateurFormes(DessinModele d) {
 		this.dm = d;
@@ -82,14 +76,14 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 		this.sel = s;
 	}
 
-	/*
+	/**
 	 * Cette méthode retourne le nombre de figures apparaissant dans ce dessin.
 	 */
 	public int nbFigures() {
 		return this.lfg.size();
 	}
 	
-	/*
+	/**
 	 * Cette méthode retourne la figure actuellement sélectionnée.
 	 */
 	public FigureColoree figureSelection() {
@@ -100,7 +94,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 		}
 		return null;
 	}
-	/*
+	/**
 	 * Cette méthode sélectionne la prochaine figure dans le tableau des figures.
 	 */
 	public void selectionProchaineFigure() {
@@ -110,7 +104,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	}
 	
 	@Override
-	/*
+	/**
 	 * Méthode déplaçant ou transformant la figure géométrique sélectionnée.
 	 */
 	public void mouseDragged(MouseEvent e) {
@@ -157,7 +151,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 
 
 	@Override
-	/*
+	/**
 	 * Méthode permettant de sélectionner la figure géométrique à manipuler.
 	 */
 	public void mousePressed(MouseEvent e) {
@@ -213,7 +207,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	}
 
 	@Override
-	/*
+	/**
 	 * permet de gerer le lacher de clique 
 	 */
 	public void mouseReleased(MouseEvent e) {
@@ -223,6 +217,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 		((VueDessin)e.getSource()).setCursor(((VueDessin)e.getSource()).getCurseurMainOuverte());
 	}
 
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {}
 

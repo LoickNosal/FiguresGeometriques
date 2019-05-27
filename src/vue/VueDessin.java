@@ -25,7 +25,7 @@ import controleur.Trait;
 import modele.DessinModele;
 import modele.FigureColoree;
 
-/*
+/**
  * @author Loïck Nosal
  * Cette classe définit la vue.
  * La classe VueDessin est une vue et implémente donc l’interface Observer. La méthode
@@ -33,28 +33,35 @@ import modele.FigureColoree;
  */
 public class VueDessin extends JPanel implements Observer{
 	
-	/*
+	/**
 	 * Modèle
 	 */
 	private DessinModele dessin;
-	/*
+	/**
 	 * Objet "listener" pour les manipulations et transformations de figures via la souris
 	 */
 	private ManipulateurFormes mf;
-	/*
+	/**
 	 * jpanel traceurforme pour les traits
 	 */
 	private TraceurForme tf;
-	/*
+	/**
 	 * permet de gérer les copies de figures
 	 */
 	private CopieFigure cf;
-	
+	/**
+	 * gomme du dessin
+	 */
 	private Gomme go;
-	
+	/**
+	 * curseur de base de la vuedessin
+	 */
 	private Cursor CurseurMainOuverte;
-	
+	/**
+	 * curseur mainfermee, lorsque le clique est active sur le dessin
+	 */
 	private Cursor CurseurMainFermee;
+	
 	
 	public Cursor getCurseurMainOuverte() {
 		return this.CurseurMainOuverte;
@@ -64,6 +71,7 @@ public class VueDessin extends JPanel implements Observer{
 		return this.CurseurMainFermee;
 	}
 	
+	
 	public void setCurseurMainOuverte(Cursor c) {
 		this.CurseurMainOuverte = c;
 	}
@@ -72,7 +80,7 @@ public class VueDessin extends JPanel implements Observer{
 		this.CurseurMainFermee = c;
 	}
 
-	/*
+	/**
 	 * Constructeur
 	 */
 	public VueDessin() {
@@ -91,7 +99,7 @@ public class VueDessin extends JPanel implements Observer{
 		this.mf = manip;
 	}
 	
-	/*
+	/**
 	 * mise à jour de la vue
 	 */
 	public void update(Observable o, Object ob) {
@@ -99,7 +107,7 @@ public class VueDessin extends JPanel implements Observer{
 		repaint();
 	}
 	
-	/*
+	/**
 	 * Cette méthode retourne la figure actuellement sélectionnée.
 	 */
 	public FigureColoree figureSelection() {
@@ -125,8 +133,9 @@ public class VueDessin extends JPanel implements Observer{
 		
 		
 	}
-	/*
+	/**
 	 * Cette méthode permet d'initier le mécanisme événementiel de fabrication des figures à la souris (ajout du listener).
+	 * @param f figure à construire
 	 */
 	public void construit(FigureColoree f) {
 		if (f != null) {
@@ -136,8 +145,9 @@ public class VueDessin extends JPanel implements Observer{
 	
 	}
 	
-	/*
+	/**
 	 * permet d'ajouter un trait en tant que figureColoree
+	 * @param t trait à ajouter
 	 */
 	public void ajouterTrait(Trait t) {	
 		if(this.tf != null) {
@@ -145,8 +155,10 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	}
 	
-	/*
+	/**
 	 *  Cette méthode permet de tracer des traits à la souris (ajout du listener).
+	 *  @param c couleur du trait
+	 *  @param e epaisseur du trait
 	 */
 	public void trace(Color c,float e) {
 		System.out.println("tracer");
@@ -158,7 +170,7 @@ public class VueDessin extends JPanel implements Observer{
 		
 	}
 	
-	/*
+	/**
 	 * Cette méthode permet d'initier le mécanisme de manipulation des figures à la souris (ajout du listener).
 	 */
 	public void manip() {
@@ -170,14 +182,20 @@ public class VueDessin extends JPanel implements Observer{
 		
 	}
 	
+	/**
+	 * permet de gommer des figures ou des traits
+	 */
 	public void gommer() {
 		System.out.println("gommer");
-		this.go = new Gomme(this.getGraphics(),this.dessin);
+		this.go = new Gomme(this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.go);
 		this.addMouseMotionListener(this.go);
 	}
 	
+	/**
+	 * permet de copier une figure (clone)
+	 */
 	public void copieFigure() {
 		System.out.println("copie");
 		this.cf = new CopieFigure(this.dessin);
@@ -198,7 +216,7 @@ public class VueDessin extends JPanel implements Observer{
 		return this.tf;
 	}
 	
-	/*
+	/**
 	 * Méthode désactivant les listeners
 	 */
 	public void desactiverToutListener() {
@@ -213,6 +231,9 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	}
 	
+	/**
+	 * permet de sauvegarder le dessin en image pour ensuite l'exporter en .png
+	 */
 	public Graphics2D saveImage() {
 		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = image.createGraphics();

@@ -5,45 +5,47 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import vue.VueDessin;
 
-/*
+/**
  * @author Nosal Loïck
  * Class permettant de tracer des traits
  */
 public class TraceurForme implements MouseListener,MouseMotionListener{
 	
-	/*
+	/**
 	 * Liste des traits.
 	 */
 	private ArrayList<Trait> liste_traits;
-	/*
+	/**
 	 * Abscisse d'un clic de souris.
 	 */
 	private int last_x;
-	/*
+	/**
 	 * Ordonnée d'un clic de souris.
 	 */
 	private int last_y;
-	/*
+	/**
 	 * Couleur du trait à dessiner.
 	 */
 	private Color couleur_trait;
-	/*
+	/**
 	 * Contexte graphique.
 	 */
 	private Graphics gc;
-	
+	/**
+	 * epaisseur du trait
+	 */
 	private float epaisseur;
 	
-	/*
+	/**
 	 * Constructeur de la classe.
+	 * @param g Graphics du trait
+	 * @param e epaisseur du trait
 	 */
 	public TraceurForme(Graphics g,float e) {
 		this.liste_traits = new ArrayList<Trait>();
@@ -51,21 +53,24 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 		this.gc = g;
 		this.epaisseur = e;
 		
-		
 	}
 	
-	public void setEpaisseur(float f) {
-		this.epaisseur = f;
-	}
-	
-	/*
+	/**
 	 * Méthode pour changer la couleur du trait.
 	 */
 	public void setColor(Color c) {
 		this.couleur_trait = c;
 	}
 	
-	/*
+	/**
+	 * permet de definir l'epaisseur du trait à tracer
+	 * @param e epaisseur du trait à tracer
+	 */
+	public void setEpaisseur(float e) {
+		this.epaisseur = e;
+	}
+	
+	/**
 	 * Méthode pour récupérer les traits
 	 */
 	public ArrayList<Trait> getListe_traits(){
@@ -73,12 +78,7 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	/*
+	/**
 	 * Méthode débutant le trace à main levée.
 	 */
 	public void mousePressed(MouseEvent e) {
@@ -86,23 +86,9 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 		this.last_y = e.getY();
 		
 	}
+	
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	/*
+	/**
 	 * Méthode effectuant le trace à main levée.
 	 */
 	public void mouseDragged(MouseEvent e) {
@@ -118,11 +104,23 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 		}
 		
 	}
+	
+	
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseMoved(MouseEvent e) {}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+	
 	
 	
 	

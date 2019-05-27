@@ -1,22 +1,23 @@
 package modele;
 
-import java.awt.Graphics;
-import java.io.Serializable;
-import java.util.ArrayList;
 
-/*
+import java.io.Serializable;
+
+
+/**
  * @author Nosal Loïck
  * Cette classe abstraite est la super classe de Cercle et de toute conique centrée en général.
  */
 public abstract class ConiqueCentree extends FigureColoree implements Serializable{
 	
-	/*
+	/**
 	 * centre de la coniqueCentree
 	 */
 	protected Point centre;
 	
-	/*
+	/**
 	 * Constructeur
+	 * @param e epaisseur des conteour du coniqueCentree
 	 */
 	public ConiqueCentree(float e) {
 		super(e);

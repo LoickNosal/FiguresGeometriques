@@ -4,19 +4,23 @@ import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
+/**
  * @author Nosal Loïck
  * Classe modélisant les Carrés
  */
 public class Carre extends Rectangle implements Serializable{
 	
-	/*
+	/**
 	 * constructeur vide
+	 * @param e epaisseur des contours du carre
 	 */
 	public Carre(float e) {
 		super(e);
 	}
 	
+	/**
+	 * permet de cloner un carre
+	 */
 	public Carre clone() {
 		Carre ca = new Carre(this.epaisseur);
 		boolean creux = this.FigureCreuse;

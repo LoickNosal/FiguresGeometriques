@@ -4,20 +4,23 @@ import java.awt.Color;
 import java.awt.Polygon;
 import java.io.Serializable;
 import java.util.ArrayList;
-/*
+/**
  * @author Nosal Loïck
  * Classe modélisant les Rectangles
  */
 public class Rectangle extends Quadrilatere implements Serializable{
 
 	
-	/*
+	/**
 	 * constructeur vide
 	 */
 	public Rectangle(float e) {
 		super(e);
 	}
 	
+	/**
+	 * permet de cloner un rectangle
+	 */
 	public Rectangle clone() {
 		Rectangle re = new Rectangle(this.epaisseur);
 		boolean creux = this.FigureCreuse;
@@ -37,7 +40,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	}
 	
 	@Override
-	/*
+	/**
 	 * Cette méthode retourne en résultat le nombre de points dont on a besoin pour la saisie d'un rectangle.
 	 */
 	public int nbClics() {
@@ -49,7 +52,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	}
 	
 	@Override
-	/*
+	/**
 	 * Cette méthode modifie le rectangle conformément à un ensemble de deux points de saisie.
 	 */
 	public void modifierPoints(ArrayList<Point> pts) {
@@ -66,7 +69,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 	}
 	
 	@Override
-	/*
+	/**
 	 * Cette méthode permet d'effectuer une translation des coordonées du rectangle
 	 */
 	public void translation(int x, int y) {	
@@ -76,7 +79,7 @@ public class Rectangle extends Quadrilatere implements Serializable{
 		super.modifierPoints(this.tab_mem);
 	}
 	
-	/*
+	/**
 	 * Cette méthode permet d'effectuer une transformation des coordonnées des points de mémorisation du rectangle.
 	 */
 	public void transformation(int dx, int dy, int indice) {

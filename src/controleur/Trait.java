@@ -10,36 +10,42 @@ import java.util.ArrayList;
 import modele.FigureColoree;
 import modele.Point;
 
-/*
+/**
  * @author Nosal Loïck
  * Classe modélisant des Traits
  */
 public class Trait extends FigureColoree implements Serializable {
 	
-	/*
+	/**
 	 * abscisse du premier point du trait
 	 */
 	private int debx;
-	/*
+	/**
 	 * ordonnee du premier point du trait
 	 */
 	private int deby;
-	/*
+	/**
 	 * abscisse du dernier point du trait
 	 */
 	private int finx;
-	/*
+	/**
 	 * ordonnee du dernier point du trait
 	 */
 	private int finy;
-	/*
+	/**
 	 * couleur du trait
 	 */
 	private Color couleur;
 	
 	
-	/*
+	/**
 	 * Constructeur
+	 * @param x1 x de depart du trait
+	 * @param y1 y de depart du trait
+	 * @param x2 x de fin du trait
+	 * @param y2 y de fin du trait
+	 * @param c couleur du trait
+	 * @param e epaisseur du trait
 	 */
 	public Trait(int x1, int y1, int x2, int y2, Color c, float e) {
 		super(e);
@@ -48,10 +54,14 @@ public class Trait extends FigureColoree implements Serializable {
 		this.finx = x2;
 		this.finy = y2;
 		this.couleur = c;
+		this.epaisseur = e;
 	}
 
-	//clonage de trait impossible mais methode faite pour l'implémenter
-	//peut être plus tard
+	/**
+	 * clonage de trait impossible mais methode faite pour l'implémenter(non-Javadoc)
+	 * @see modele.FigureColoree#clone()
+	 * peut être plus tard
+	 */
 	public Trait clone() {
 		int x1 = this.debx;
 		int y1 = this.deby;

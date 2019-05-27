@@ -3,20 +3,23 @@ package modele;
 import java.awt.Color;
 import java.io.Serializable;
 
-/*
+/**
  * classe qui modélise un quadrilatere
  * @author Loick Nosal
  */
 public class Quadrilatere extends Polygone implements Serializable{
 	
 	
-	/*
+	/**
 	 * constructeur vide
 	 */
 	public Quadrilatere(float e) {
 		super(e);
 	}
 	
+	/**
+	 * permet de cloner un quadrilatere
+	 */
 	public Quadrilatere clone() {
 		Quadrilatere qu = new Quadrilatere(this.epaisseur);
 
@@ -40,7 +43,7 @@ public class Quadrilatere extends Polygone implements Serializable{
 	}
 	
 	@Override
-	/*
+	/**
 	 * Cette méthode retourne en résultat le nombre de points 
 	 * de mémorisation d'un quadrilatère
 	 */

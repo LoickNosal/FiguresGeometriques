@@ -13,39 +13,39 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 
-/*
+/**
  * @author Loïck Nosal
  * Cette classe définit le modèle. 
  */
 public class DessinModele extends Observable implements Serializable{
 	
-	/*
+	/**
 	 * Liste de figures colorées
 	 */
 	private int nbf;
-	/*
+	/**
 	 * Indice de la figure actuellement sélectionnée (-1 si aucune figure n'est sélectionnée).
 	 */
 	private int sel;
-	/*
+	/**
 	 * contient l'ensemble des figures dessinees par l'utilisateur dans un dessin
 	 */
 	private ArrayList<FigureColoree> lfg;
 	
-	/*
+	/**
 	 * constructeur vide qui initialise le dessin
 	 */
 	public DessinModele() {
 		this.initDessinModele();
 	}
 	
-	/*
+	/**
 	 * Getter de la liste de figures colorées
 	 */
 	public ArrayList<FigureColoree> get_fg(){
 		return this.lfg;
 	}
-	/*
+	/**
 	 * initialise le dessin sans figures
 	 */
 	public void initDessinModele() {
@@ -54,7 +54,7 @@ public class DessinModele extends Observable implements Serializable{
 		this.nbf = 0;
 		this.majAffichage();
 	}
-	/*
+	/**
 	 * ajoute une figure dans le dessin
 	 * @param f figure à ajouter
 	 */
@@ -68,9 +68,8 @@ public class DessinModele extends Observable implements Serializable{
 	}
 	
 
-	/*
-	 * permet de deselectionner toutes les
-	 * figures
+	/**
+	 * permet de deselectionner toutes les figures
 	 */
 	public void deselectTous() {
 		if (this.lfg != null) {
@@ -83,7 +82,7 @@ public class DessinModele extends Observable implements Serializable{
 		
 	}
 	
-	/*
+	/**
 	 * Mise à jour de l'affichage Opérations de sélection,
 	 * déselection, changement de position, changement de couleur
 	 */
@@ -110,14 +109,16 @@ public class DessinModele extends Observable implements Serializable{
 		return this.nbf; 
 	}
 	
-	/*
+	/**
 	 * Cette méthode permet de changer la couleur de la figure passée en paramètre.
+	 * @param fc figure pour laquelle on veut changer la couleur
+	 * @param c couleur à appliquer à la figure
 	 */
 	public void changeCoul(FigureColoree fc, Color c) {
 		fc.changeCouleur(c);
 	}
 	
-	/*
+	/**
 	 * permet de supprimer une figure du dessin
 	 */
 	public void supprimerFigure() {
@@ -132,6 +133,10 @@ public class DessinModele extends Observable implements Serializable{
 		this.majAffichage();
 	}
 	
+	/**
+	 * permet d'effacer une figure avec la gomme
+	 * @param indice de la figure à effacer
+	 */
 	public void effacerFigure(int indice) {
 		if (indice != -1) {
 			if (indice < this.lfg.size()) {
@@ -144,7 +149,7 @@ public class DessinModele extends Observable implements Serializable{
 		this.majAffichage();
 	}
 	
-	/*
+	/**
 	 * permet de supprimer l'ensemble des figures du dessin.
 	 */
 	public void supprimerTout() {
@@ -154,6 +159,10 @@ public class DessinModele extends Observable implements Serializable{
 		this.majAffichage();
 	}
 	
+	/**
+	 * permet de sauvegarder le dessin dans un fichier
+	 * @param dest fichier où sauvegarder le dessin
+	 */
 	public void sauvegarder(File dest) throws FileNotFoundException, IOException {
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
@@ -161,6 +170,10 @@ public class DessinModele extends Observable implements Serializable{
 		System.out.println("sauvegarde effecutée");
 	}
 
+	/**
+	 * permet de charger un dessin depuis un fichier
+	 * @param source fichier depuis lequel charger le dessin
+	 */
 	public DessinModele charger(File source) throws IOException, ClassNotFoundException{
 		
 		ObjectInputStream di = new ObjectInputStream(new FileInputStream(source));

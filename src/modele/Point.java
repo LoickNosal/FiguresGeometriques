@@ -2,21 +2,21 @@ package modele;
 
 import java.io.Serializable;
 
-/*
+/**
  * modelise un point
  * @author Loick Nosal
  */
 public class Point implements Serializable{
-	/*
+	/**
 	 * abscisse du point
 	 */
 	private int x;
-	/*
+	/**
 	 * ordonnee du point
 	 */
 	private int y;
 	
-	/*
+	/**
 	 * constructeur
 	 * @posX position x du point
 	 * @posY position y du point
@@ -26,6 +26,10 @@ public class Point implements Serializable{
 		this.y = posY;
 	}
 	
+	/**
+	 * permet de cloner un point (deep copy) pour ensuite 
+	 * cloner les figures sans effet de bord
+	 */
 	public Point clone() {
 		int px = this.x;
 		int py = this.y;
@@ -33,7 +37,7 @@ public class Point implements Serializable{
 		return p;
 	}
 	
-	/*
+	/**
 	 * calcule la distance entre deux points
 	 * @p2 deuxieme point avec lequel calculé la distance
 	 */
@@ -51,35 +55,35 @@ public class Point implements Serializable{
 		return this.y;
 	}
 	
-	/*
+	/**
 	 * augmenter la valeur de x
 	 * @incx montant de x à augmenter
 	 */
 	public void incrementerX(int incx) {
 		this.x += incx;
 	}
-	/*
+	/**
 	 * augmenter la valeur de y
 	 * @incy montant de y à augmenter
 	 */
 	public void incrementerY(int incy) {
 		this.y += incy;
 	}
-	/*
+	/**
 	 * permet de modifier la valeur de x
 	 * @param newx nouvelle valeur de x
 	 */
 	public void modifierX(int newx) {
 		this.x = newx;
 	}
-	/*
+	/**
 	 * permet de modifier la valeur de y
 	 * @param newy nouvelle valeur de y
 	 */
 	public void modifierY(int newy) {
 		this.y = newy;
 	}
-	/*
+	/**
 	 * permet de translater un Point
 	 * @param dx position x à ajouter
 	 * @param dy position y à ajouter

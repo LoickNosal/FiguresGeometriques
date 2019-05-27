@@ -9,42 +9,47 @@ import java.util.ArrayList;
 
 import controleur.Trait;
 
-/*
+/**
  * Cette classe abstraite représente les figures 
  * que l'on peut dessiner.
  *  @author Loick Nosal
  */
 public abstract class FigureColoree implements Serializable{
-	/*
+	/**
 	 * Constante definissant la taille des carres 
 	 * de selection.
 	 */
 	protected static final int TAILLE_CARRE_SELECTION = 10;
-	/*
+	/**
 	 * Constante définissant 
 	 * la taille de la périphérie des carrés de sélection.
 	 */
 	protected static final int PERIPHERIE_CARRE_SELECTION = 10;
-	/*
+	/**
 	 * Attribut booleen indiquant si la figure est
 	 * selectionnee (son affichage est alors different).
 	 */
 	protected boolean selected;
-	/*
+	/**
 	 * Attribut de type Color donnant la couleur de remplissage.
 	 */
 	protected Color couleur;
-	/*
+	/**
 	 * Liste des points de memorisation de la figure.
 	 */
 	protected ArrayList<Point> tab_mem;
-	
+	/**
+	 * permet de savoir si la figure est creuse ou non (fill ou draw)
+	 */
 	protected boolean FigureCreuse;
-	
+	/**
+	 * epaisseur des contour de la figure
+	 */
 	protected float epaisseur;
 	
-	/*
+	/**
 	 * constructeur vide qui initialise les attributs
+	 * @param ep epaisseur des contour de la figure
 	 */
 	public FigureColoree(float ep) {
 		this.selected = false;
@@ -62,43 +67,50 @@ public abstract class FigureColoree implements Serializable{
 		this.epaisseur = e;
 	}
 	
+	/**
+	 * methode abstraite qui va permettre de cloner les figures
+	 */
 	public abstract FigureColoree clone();
 	
 	
 	public ArrayList<Point> getListePoint(){
 		return this.tab_mem;
 	}
-	/*
+	/**
 	 * permet de savoir si une figure est selectionne
 	 */
 	public boolean isSelected() {
 		return this.selected;
 	}
-	/*
+	/**
 	 * Methode abstraite qui retourne le nombre de points de memorisation.
 	 */
 	public abstract int nbPoints();
 	
-	/*
+	/**
 	 * Methode abstraite qui retourne le nombre de clics 
 	 * de souris necessaires a la construction d'une figure geometrique.
 	 */
 	public abstract int nbClics();
 	
-	/*
+	/**
 	 * Methode abstraite qui permet de modifier les points
 	 *  de memorisation a partir de points de saisie.
+	 *  @param pts nouvelle liste de point que l'on attribue à la figure
 	 */
 	public abstract void modifierPoints(ArrayList<Point> pts);
 	
 	/**
 	 * permet de savoir si les le Point(x,y) et dans la figure
+	 * @param x coordonnee x du point
+	 * @param y coordonnee y du point
 	 */
 	public abstract boolean estDedans(int x, int y);
 
-	/*
+	/**
 	 * methode qui permet d'afficher une figure Coloree, et d'afficher
 	 * les carres de selections si la figure est selectionnes
+	 * @param g Graphics sur lequel afficher
 	 */
 	public void afficher(Graphics g) {
 	
@@ -107,8 +119,8 @@ public abstract class FigureColoree implements Serializable{
 			BasicStroke line = new BasicStroke(1.0f); //epaisseur des carre de selection
 			g2.setStroke(line);
 			for (Point p : tab_mem) {
-				int ab = (int) (p.rendreX() - ((TAILLE_CARRE_SELECTION + epaisseur)/2));
-				int or = (int) (p.rendreY() - ((TAILLE_CARRE_SELECTION + epaisseur) /2));
+				int ab = (int) (p.rendreX() - ((TAILLE_CARRE_SELECTION + epaisseur)/2.5));
+				int or = (int) (p.rendreY() - ((TAILLE_CARRE_SELECTION + epaisseur) /2.5));
 				int taille = (int) (TAILLE_CARRE_SELECTION + epaisseur);
 				g.setColor(Color.gray);
 				g.drawRect(ab, or, taille, taille);
@@ -116,7 +128,7 @@ public abstract class FigureColoree implements Serializable{
 			}
 		}
 	}
-	/*
+	/**
 	 * indique que la figure est selectione
 	 */
 	public void selectionne() {
@@ -127,13 +139,13 @@ public abstract class FigureColoree implements Serializable{
 		}
 		
 	}
-	/*
+	/**
 	 * indique que la figure est deselectione
 	 */
 	public void deSelectionne() {
 		this.selected = false;
 	}
-	/*
+	/**
 	 * changer la couleur de la figure
 	 */
 	public void changeCouleur(Color c) {
@@ -169,9 +181,11 @@ public abstract class FigureColoree implements Serializable{
 	public Color getColor() {
 		return this.couleur;
 	}
-	/*
+	/**
 	 * Méthode qui détecte un point 
 	 * se trouvant près d'un carré de séléction.
+	 * @param x coordonne x du point
+	 * @param y coordonne y du point
 	 */
 	public int carreDeSelection(int x, int y) {
 		Point p = new Point(x,y);

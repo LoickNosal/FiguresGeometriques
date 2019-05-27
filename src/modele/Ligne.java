@@ -5,10 +5,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Vector;
 
+/**
+ * modelise une ligne 
+ * @author Nosal Loïck
+ */
 public class Ligne extends FigureColoree {
 
+	/**
+	 * constructeur
+	 * @param e epaisseur de la ligne
+	 */
 	public Ligne(float e) {
 		super(e);
 	}
@@ -72,8 +79,6 @@ public class Ligne extends FigureColoree {
 		int y2 = this.getListePoint().get(1).rendreY();
 		Point vecteurAB = new Point(x2-x1, y2-y1);
 		Point vecteurAC = new Point(x-x1, y-y1);
-//		System.out.println((vecteurAB.rendreX() * vecteurAC.rendreY())
-//				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
 		double k,k2;
 		if ((vecteurAB.rendreX() * vecteurAC.rendreY())
 				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000 + Math.pow(this.epaisseur/1.6,3)
@@ -88,8 +93,6 @@ public class Ligne extends FigureColoree {
 					res = true;
 				}
 			}
-			
-			
 			
 		}
 		return res;

@@ -7,25 +7,29 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
+/**
  * @author Nosal Loïck
  * figure geometrique Cercle
  */
 public class Cercle extends ConiqueCentree implements Serializable{
 	
-	/*
+	/**
 	 * Rayon du cercle
 	 */
 	private double rayon;
 	
-	/*
+	/**
 	 * constructeur
+	 * @param e epaisseur des contours du cercle
 	 */
 	public Cercle(float e) {
 		super(e);
 		this.rayon = 0;
 	}
 	
+	/**
+	 * permet de cloner un cercle
+	 */
 	public Cercle clone() {
 		Cercle ce = new Cercle(this.epaisseur);
 		double r = this.rayon;

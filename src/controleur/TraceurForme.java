@@ -39,17 +39,23 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 	 * Contexte graphique.
 	 */
 	private Graphics gc;
-
+	
+	private float epaisseur;
 	
 	/*
 	 * Constructeur de la classe.
 	 */
-	public TraceurForme(Graphics g) {
+	public TraceurForme(Graphics g,float e) {
 		this.liste_traits = new ArrayList<Trait>();
 		this.couleur_trait = Color.black;
 		this.gc = g;
+		this.epaisseur = e;
 		
 		
+	}
+	
+	public void setEpaisseur(float f) {
+		this.epaisseur = f;
 	}
 	
 	/*
@@ -104,8 +110,8 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			gc.setColor(this.couleur_trait);
 			gc.drawLine(this.last_x, this.last_y, e.getX(), e.getY());
-			this.liste_traits.add(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait));
-			((VueDessin)e.getSource()).ajouterTrait(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait));
+			this.liste_traits.add(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait,this.epaisseur));
+			((VueDessin)e.getSource()).ajouterTrait(new Trait(this.last_x, this.last_y, e.getX(), e.getY(), this.couleur_trait,this.epaisseur));
 			this.last_x = e.getX();
 			this.last_y = e.getY();
 			

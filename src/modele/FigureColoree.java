@@ -1,7 +1,9 @@
 package modele;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -93,7 +95,9 @@ public abstract class FigureColoree implements Serializable{
 	public void afficher(Graphics g) {
 	
 		if (this.selected == true) {
-
+			Graphics2D g2 = (Graphics2D)g;
+			BasicStroke line = new BasicStroke(1.0f);
+			g2.setStroke(line);
 			for (Point p : tab_mem) {
 				int ab = p.rendreX() - (TAILLE_CARRE_SELECTION/2);
 				int or = p.rendreY() - (TAILLE_CARRE_SELECTION/2);

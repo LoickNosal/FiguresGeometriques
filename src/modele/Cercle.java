@@ -1,7 +1,9 @@
 package modele;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -93,6 +95,9 @@ public class Cercle extends ConiqueCentree implements Serializable{
 		int ycoinbasdroite = (int) rayon*2;
 		g.setColor(this.couleur);
 		if (this.FigureCreuse == true) {
+			Graphics2D g2 = (Graphics2D)g;
+			BasicStroke line = new BasicStroke(1.0f);
+			g2.setStroke(line);
 			g.drawOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);
 		}else {
 			g.fillOval(xcoinhautgauche,ycoinhautgauche,xcoinbasdroite,ycoinbasdroite);

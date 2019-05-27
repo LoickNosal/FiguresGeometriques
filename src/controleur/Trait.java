@@ -1,7 +1,9 @@
 package controleur;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -35,15 +37,18 @@ public class Trait extends FigureColoree implements Serializable {
 	 */
 	private Color couleur;
 	
+	private float epaisseur;
+	
 	/*
 	 * Constructeur
 	 */
-	public Trait(int x1, int y1, int x2, int y2, Color c) {
+	public Trait(int x1, int y1, int x2, int y2, Color c,float e) {
 		this.debx = x1;
 		this.deby = y1;
 		this.finx = x2;
 		this.finy = y2;
 		this.couleur = c;
+		this.epaisseur = e;
 	}
 
 	//clonage de trait impossible mais methode faite pour l'implémenter
@@ -54,7 +59,8 @@ public class Trait extends FigureColoree implements Serializable {
 		int x2 = this.finx;
 		int y2 = this.finy;
 		Color c = this.couleur;
-		Trait t = new Trait(x1, y1, x2, y2, c);
+		float e = this.epaisseur;
+		Trait t = new Trait(x1, y1, x2, y2, c,e);
 		return t;
 		
 		
@@ -124,7 +130,10 @@ public class Trait extends FigureColoree implements Serializable {
 	@Override
 	public void afficher(Graphics g) {
 		g.setColor(this.couleur);
-		g.drawLine(this.debx, deby, finx, finy);
+		Graphics2D g2 = (Graphics2D)g;
+		BasicStroke line = new BasicStroke(epaisseur);
+		g2.setStroke(line);
+		g2.drawLine(this.debx, deby, finx, finy);
 		super.afficher(g);
 	}
 	

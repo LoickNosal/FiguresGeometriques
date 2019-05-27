@@ -2,6 +2,7 @@ package controleur;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,6 +10,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -18,6 +21,7 @@ import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.Action;
+import javax.swing.BoundedRangeModel;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -33,7 +37,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -70,6 +77,8 @@ public class PanneauChoix extends JPanel{
 	 */
 	private Color couleurActuelle;
 	
+	private float epaisseur;
+	
 	
 	/*
 	 * Constructeur de la classe
@@ -80,7 +89,7 @@ public class PanneauChoix extends JPanel{
 		this.dmodele = v.getDessin();
 		this.dmodele.addObserver(this.vdessin);
 		this.couleurActuelle = Color.black;
-		
+		this.epaisseur = 1.0f;
 	
 		
 		
@@ -138,6 +147,13 @@ public class PanneauChoix extends JPanel{
 		JButton couleur = new JButton();
 		
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
+		
+		JTextArea textBar = new JTextArea("Largeur du Pinceau");
+		JScrollBar bar = new JScrollBar(0,1,1,1,21); //de 1 a 20
+		bar.setPreferredSize(new Dimension(100,20));
+
+		
+		
 
 		
 		
@@ -202,6 +218,8 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(copie);
 		placementHaut.add(gom);
 		
+		placementBas.add(textBar);
+		placementBas.add(bar);
 		placementBas.add(FigureCreuse);
 		placementBas.add(fig);
 		placementBas.add(co);
@@ -211,6 +229,8 @@ public class PanneauChoix extends JPanel{
 		couleur.setEnabled(false);
 		couleur.setBackground(Color.black);
 		
+		//textBar.setEnabled(false);
+		//bar.setEnabled(false);
 		FigureCreuse.setEnabled(false);
 		fig.setEnabled(false);
 		supp.setEnabled(false);
@@ -222,6 +242,9 @@ public class PanneauChoix extends JPanel{
 		this.add(placementHaut,BorderLayout.CENTER);
 		this.add(placementBas,BorderLayout.SOUTH);
 		
+		
+		
+		
 		//definit l'ensemble des actions des jRadioButton
 		ActionListener ALboutons = new ActionListener() {
 			@Override
@@ -229,6 +252,8 @@ public class PanneauChoix extends JPanel{
 				JRadioButton source = (JRadioButton)e.getSource(); 
 				
 				if(source.equals(nf)){
+					bar.setEnabled(true);
+					textBar.setEnabled(true);
 					gom.setIcon(iconeGomme);
 					ma.setIcon(iconeMa);
 					tml.setIcon(iconeTml);
@@ -245,6 +270,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurDefaut);
 					
 				}else if(source.equals(tml)){
+					bar.setEnabled(true);
+					textBar.setEnabled(true);
 					gom.setIcon(iconeGomme);
 					ma.setIcon(iconeMa);
 					tml.setIcon(iconeTmlSelec);
@@ -261,6 +288,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) {
+					bar.setEnabled(false);
+					textBar.setEnabled(false);
 					gom.setIcon(iconeGomme);
 					ma.setIcon(iconeMaSelec);
 					tml.setIcon(iconeTml);
@@ -276,6 +305,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) {
+					bar.setEnabled(false);
+					textBar.setEnabled(false);
 					gom.setIcon(iconeGommeSelec);
 					ma.setIcon(iconeMa);
 					tml.setIcon(iconeTml);
@@ -291,6 +322,8 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					vdessin.setCursor(CurseurGomme);
 				}else {
+					bar.setEnabled(false);
+					textBar.setEnabled(false);
 					gom.setIcon(iconeGomme);
 					ma.setIcon(iconeMa);
 					tml.setIcon(iconeTml);
@@ -315,6 +348,24 @@ public class PanneauChoix extends JPanel{
 		tml.addActionListener(ALboutons);
 		ma.addActionListener(ALboutons);
 		gom.addActionListener(ALboutons);
+		
+		
+		bar.addAdjustmentListener(new AdjustmentListener() {
+			
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				epaisseur = bar.getValue();
+				if (vdessin.getTraceurForme() != null) {
+					vdessin.getTraceurForme().setEpaisseur(epaisseur);
+				}
+				
+				
+			}
+		});
+		
+		
+		
+		
 		
 		quitter.addActionListener(new ActionListener() {
 			
@@ -406,7 +457,8 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vdessin.trace(couleurActuelle);
+				System.out.println(epaisseur);
+				vdessin.trace(couleurActuelle,epaisseur);
 				
 			}
 		});

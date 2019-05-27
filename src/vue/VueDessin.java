@@ -148,10 +148,10 @@ public class VueDessin extends JPanel implements Observer{
 	/*
 	 *  Cette méthode permet de tracer des traits à la souris (ajout du listener).
 	 */
-	public void trace(Color c) {
+	public void trace(Color c,float e) {
 		System.out.println("tracer");
 		this.desactiverToutListener();
-		this.tf = new TraceurForme(this.getGraphics());
+		this.tf = new TraceurForme(this.getGraphics(),e);
 		this.tf.setColor(c);
 		this.addMouseListener(this.tf);
 		this.addMouseMotionListener(this.tf);

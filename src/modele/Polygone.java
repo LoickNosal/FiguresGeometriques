@@ -1,6 +1,8 @@
 package modele;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,6 +46,9 @@ public abstract class Polygone extends FigureColoree implements Serializable{
 	public void afficher(Graphics g) {
 		g.setColor(this.couleur);
 		if (FigureCreuse == true) {
+			Graphics2D g2 = (Graphics2D)g;
+			BasicStroke line = new BasicStroke(1.0f);
+			g2.setStroke(line);
 			g.drawPolygon(this.p);
 		}else {
 			g.fillPolygon(this.p);

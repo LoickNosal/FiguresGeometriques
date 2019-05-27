@@ -76,9 +76,9 @@ public class Ligne extends FigureColoree {
 //				- (vecteurAB.rendreY() * vecteurAC.rendreX()) );
 		double k,k2;
 		if ((vecteurAB.rendreX() * vecteurAC.rendreY())
-				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000
+				- (vecteurAB.rendreY() * vecteurAC.rendreX()) <= 1000 + Math.pow(this.epaisseur/1.6,3)
 				&& (vecteurAB.rendreX() * vecteurAC.rendreY())
-				- (vecteurAB.rendreY() * vecteurAC.rendreX()) >= -1000) {
+				- (vecteurAB.rendreY() * vecteurAC.rendreX()) >= -1000  - Math.pow(this.epaisseur/1.6,3)) {
 			if (vecteurAC.rendreX() != 0 && vecteurAC.rendreY() != 0) {
 				k = (double)(vecteurAB.rendreX()/vecteurAC.rendreX());
 				k2 = (double)(vecteurAB.rendreY()/vecteurAC.rendreY());

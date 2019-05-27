@@ -107,10 +107,11 @@ public abstract class FigureColoree implements Serializable{
 			BasicStroke line = new BasicStroke(1.0f); //epaisseur des carre de selection
 			g2.setStroke(line);
 			for (Point p : tab_mem) {
-				int ab = p.rendreX() - (TAILLE_CARRE_SELECTION/2);
-				int or = p.rendreY() - (TAILLE_CARRE_SELECTION/2);
+				int ab = (int) (p.rendreX() - ((TAILLE_CARRE_SELECTION + epaisseur)/2));
+				int or = (int) (p.rendreY() - ((TAILLE_CARRE_SELECTION + epaisseur) /2));
+				int taille = (int) (TAILLE_CARRE_SELECTION + epaisseur);
 				g.setColor(Color.gray);
-				g.drawRect(ab, or, TAILLE_CARRE_SELECTION, TAILLE_CARRE_SELECTION);
+				g.drawRect(ab, or, taille, taille);
 
 			}
 		}
@@ -177,7 +178,7 @@ public abstract class FigureColoree implements Serializable{
 		int indice = -1;
 		for (Point point : this.tab_mem) {
 			indice += 1;
-			if (p.distance(point) <= PERIPHERIE_CARRE_SELECTION) {
+			if (p.distance(point) <= PERIPHERIE_CARRE_SELECTION + (this.epaisseur/2)) {
 				return indice;
 			}
 		}

@@ -36,6 +36,8 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+
+
 import modele.Carre;
 import modele.Cercle;
 import modele.DessinModele;
@@ -280,7 +282,7 @@ public class PanneauChoix extends JPanel{
 					ma.setIcon(iconeMaSelec);
 					tml.setIcon(iconeTml);
 					nf.setIcon(iconeNf);
-					FigureCreuse.setEnabled(false);
+					FigureCreuse.setEnabled(true);
 					fig.setEnabled(false);
 					supp.setEnabled(true);
 					suppTout.setEnabled(true);
@@ -418,6 +420,22 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
+		//permet de changer une figure plein en creuse ou inversement dans manipulation
+		FigureCreuse.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean c = FigureCreuse.isSelected();
+				if (ma.isSelected()) {
+					if (dmodele.getSel() != -1) {
+						if (dmodele.get_fg().get(dmodele.getSel()) != null) {
+							dmodele.get_fg().get(dmodele.getSel()).setFigureCreuse(c);
+							dmodele.majAffichage();
+						}
+					}	
+				}
+			}
+		});
 		
 		//permet de manipuler les figures
 		ma.addActionListener(new ActionListener() {

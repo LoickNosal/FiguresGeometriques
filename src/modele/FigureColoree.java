@@ -119,9 +119,9 @@ public abstract class FigureColoree implements Serializable{
 			BasicStroke line = new BasicStroke(1.0f); //epaisseur des carre de selection
 			g2.setStroke(line);
 			for (Point p : tab_mem) {
-				int ab = (int) (p.rendreX() - ((TAILLE_CARRE_SELECTION + epaisseur)/2.5));
-				int or = (int) (p.rendreY() - ((TAILLE_CARRE_SELECTION + epaisseur) /2.5));
-				int taille = (int) (TAILLE_CARRE_SELECTION + epaisseur);
+				int ab = (int) (p.rendreX() - ((TAILLE_CARRE_SELECTION + epaisseur)/3));
+				int or = (int) (p.rendreY() - ((TAILLE_CARRE_SELECTION + epaisseur) /3));
+				int taille = (int) (TAILLE_CARRE_SELECTION + (epaisseur/3));
 				g.setColor(Color.gray);
 				g.drawRect(ab, or, taille, taille);
 

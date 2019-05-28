@@ -41,10 +41,13 @@ public class CopieFigure{
 					cop.modifierPoints(cop.getListePoint());
 
 					this.modele.ajoute(cop);
-					this.modele.setNbf(this.modele.getNbf()+1);
 					this.modele.deselectTous();
 					this.modele.setSel(this.modele.get_fg().size()-1);
+					
+					
 					cop.selectionne();
+					
+
    
 				}
 			}	

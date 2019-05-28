@@ -98,9 +98,12 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	 * Cette méthode sélectionne la prochaine figure dans le tableau des figures.
 	 */
 	public void selectionProchaineFigure() {
-		this.dm.deselectTous();
-		this.lfg.get(sel+1).selectionne();
-		this.sel = this.sel +1;
+		if (this.lfg.get(sel+1) != null) {
+			this.dm.deselectTous();
+			this.lfg.get(sel+1).selectionne();
+			this.sel = this.sel +1;
+		}
+		
 	}
 	
 	@Override
@@ -121,9 +124,12 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 		}else {
 			if (deformer == false) {
 				if (this.sel != -1) {
+					
 					if (lfg.get(this.sel).isSelected()) {
+						
 						this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
 							if (indice != -1) {
+								System.out.println("test");
 								lfg.get(this.sel).transformation(last_x, last_y, this.indice);
 								last_x = e.getX();
 								last_y = e.getY();
@@ -155,6 +161,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	 * Méthode permettant de sélectionner la figure géométrique à manipuler.
 	 */
 	public void mousePressed(MouseEvent e) {
+		this.refresh();
 		((VueDessin)e.getSource()).setCursor(((VueDessin)e.getSource()).getCurseurMainFermee());
 		if(lfg.size()!=0){
 			if(MouseEvent.BUTTON1 == e.getButton()) {
@@ -201,9 +208,21 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 				last_y = e.getY();
 				last_x = e.getX();
 				this.trans = false;
+
 				
 			}
 		}
+	}
+	
+	/**
+	 * methode qui permet de recharger la nouvelle liste de figures
+	 * et de mettre à jour les attributs
+	 */
+	public void refresh() {
+		this.lfg = this.dm.get_fg();
+		this.sel = this.dm.getSel();
+		this.nbf = this.dm.getNbf();
+		this.dm.majAffichage();
 	}
 
 	@Override

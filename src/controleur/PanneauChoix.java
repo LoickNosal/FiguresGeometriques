@@ -32,7 +32,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -140,7 +143,9 @@ public class PanneauChoix extends JPanel{
 		
 		JCheckBox FigureCreuse = new JCheckBox("Figure Creuse");
 		
+
 		JTextArea textBar = new JTextArea("Largeur du Pinceau (" + this.epaisseur + ")");
+		textBar.setEditable(false); //empeche d'ecrire dedans
 		JScrollBar bar = new JScrollBar(0,1,1,1,21); //de 1 a 20
 		bar.setPreferredSize(new Dimension(100,20));
 	
@@ -161,7 +166,7 @@ public class PanneauChoix extends JPanel{
 		supp.setIcon(eff);
 		suppTout.setIcon(effTout);
 	
-	
+
 		final JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem sauver = new JMenuItem("Enregistrer");
 		JMenuItem charger = new JMenuItem("Ouvrir");
@@ -353,6 +358,7 @@ public class PanneauChoix extends JPanel{
 				
 			}
 		});
+	
 		
 		
 		//permet de fermer la fenetre quand on clique sur quitter
@@ -429,8 +435,11 @@ public class PanneauChoix extends JPanel{
 				if (ma.isSelected()) {
 					if (dmodele.getSel() != -1) {
 						if (dmodele.get_fg().get(dmodele.getSel()) != null) {
-							dmodele.get_fg().get(dmodele.getSel()).setFigureCreuse(c);
-							dmodele.majAffichage();
+							if (dmodele.get_fg().get(dmodele.getSel()).isSelected()) {
+								dmodele.get_fg().get(dmodele.getSel()).setFigureCreuse(c);
+								dmodele.majAffichage();
+							}
+						
 						}
 					}	
 				}
@@ -462,8 +471,10 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+		
 				System.out.println(epaisseur);
 				vdessin.trace(couleurActuelle,epaisseur);
+				
 				
 			}
 		});
@@ -695,7 +706,7 @@ public class PanneauChoix extends JPanel{
 	}
 	
 	/**
-	 * permet d'utiliser une couleur personnalisé grace au JColorChooser
+	 * permet d'utiliser une couleur personnalisée grace au JColorChooser
 	 */
 	public Color couleurPerso() {
 		Color couleur = JColorChooser.showDialog(null, "couleur du fond", Color.WHITE);

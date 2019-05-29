@@ -140,7 +140,8 @@ public class Trait extends FigureColoree implements Serializable {
 	public void afficher(Graphics g) {
 		g.setColor(this.couleur);
 		Graphics2D g2 = (Graphics2D)g;
-		BasicStroke line = new BasicStroke(epaisseur);
+		//permet de tracer des lines arrondis
+		BasicStroke line = new BasicStroke(epaisseur,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 		g2.setStroke(line);
 		g2.drawLine(this.debx, deby, finx, finy);
 		super.afficher(g);

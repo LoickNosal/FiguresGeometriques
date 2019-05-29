@@ -13,6 +13,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import controleur.PanneauChoix;
 import vue.VueDessin;
@@ -76,6 +78,16 @@ public class Fenetre extends JFrame{
 	 * @param args arguments
 	 */
 	public static void main(String[] args) throws IOException {
+		
+		//Si on veut l'interface Windows
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+//				| UnsupportedLookAndFeelException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		JFrame fenetre = new Fenetre("Figures Géométriques",800,600);
 		
 	}

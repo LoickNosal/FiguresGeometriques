@@ -98,12 +98,17 @@ public class PanneauChoix extends JPanel{
 		Image Pinceau = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\Pinceau.png"));
 		Image MainOuverte = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\MainOuverte.png"));
 		Image MainFermee = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\MainFermee.png"));
+		Image Txt = ImageIO.read(new File("..\\FiguresGeometriques\\IconeCurseur\\txt.png"));
 		Cursor CurseurGomme = tk.createCustomCursor(Gomme, new Point(1,1), "Gomme" );
 		Cursor CurseurPinceau = tk.createCustomCursor(Pinceau, new Point(1, 1), "Pinceau");
 		Cursor CurseurDefaut = Cursor.getDefaultCursor();
 		Cursor CurseurMainOuverte = tk.createCustomCursor(MainOuverte, new Point(1,1), "MainOuverte");
+		Cursor CurseurTexte = tk.createCustomCursor(Txt, new Point(1,1), "Texte" );
 		this.vdessin.setCurseurMainOuverte(tk.createCustomCursor(MainOuverte, new Point(1,1), "MainOuverte"));
 		this.vdessin.setCurseurMainFermee(tk.createCustomCursor(MainFermee, new Point(1,1), "MainFermee"));
+		this.vdessin.setCurseurTexte(tk.createCustomCursor(Txt, new Point(1,1), "MainOuverte"));
+		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		this.vdessin.setCurseurVide(tk.createCustomCursor(cursorImg, new Point(0, 0), "blank cursor"));
 		
 		//Icone JRadioButton et JMenuItem
 		ImageIcon iconeNf  = new ImageIcon("..\\FiguresGeometriques\\Icone\\cubes.png");
@@ -115,6 +120,8 @@ public class PanneauChoix extends JPanel{
 		ImageIcon iconeGomme  = new ImageIcon("..\\FiguresGeometriques\\Icone\\gomme.png");
 		ImageIcon iconeGommeSelec  = new ImageIcon("..\\FiguresGeometriques\\Icone\\gommeSelec.png");
 		ImageIcon copy  = new ImageIcon("..\\FiguresGeometriques\\Icone\\copy.png");
+		ImageIcon iconeTexte  = new ImageIcon("..\\FiguresGeometriques\\Icone\\texte.png");
+		ImageIcon iconeTexteSelec  = new ImageIcon("..\\FiguresGeometriques\\Icone\\texteSelec.png");
 		
 		ImageIcon save  = new ImageIcon("..\\FiguresGeometriques\\Icone\\save.png");
 		ImageIcon open  = new ImageIcon("..\\FiguresGeometriques\\Icone\\open.png");
@@ -137,6 +144,7 @@ public class PanneauChoix extends JPanel{
 		JRadioButton tml = new JRadioButton ("Tracé à main levée",iconeTml);
 		JRadioButton ma = new JRadioButton ("Manipulation",iconeMa);
 		JRadioButton gom = new JRadioButton ("Gomme",iconeGomme);
+		JRadioButton texte = new JRadioButton ("texte",iconeTexte);
 		
 		JButton copie = new JButton("Copier Figure",copy);
 		JButton couleur = new JButton(); //affiche la couleur en cours
@@ -200,6 +208,7 @@ public class PanneauChoix extends JPanel{
 		bg.add(tml);
 		bg.add(ma);
 		bg.add(gom);
+		bg.add(texte);
 		
 		
 		//Jpanel du Haut
@@ -208,7 +217,7 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(ma);
 		placementHaut.add(copie);
 		placementHaut.add(gom);
-		
+		placementHaut.add(texte);
 		
 		//Jpanel du bas
 		placementBas.add(textBar);
@@ -246,6 +255,7 @@ public class PanneauChoix extends JPanel{
 				JRadioButton source = (JRadioButton)e.getSource(); 
 				
 				if(source.equals(nf)){ //Nouvelle figure
+					texte.setIcon(iconeTexte);
 					bar.setEnabled(true);
 					textBar.setEnabled(true);
 					gom.setIcon(iconeGomme);
@@ -264,6 +274,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurDefaut);
 					
 				}else if(source.equals(tml)){ //Trace à main levée
+					texte.setIcon(iconeTexte);
 					bar.setEnabled(true);
 					textBar.setEnabled(true);
 					gom.setIcon(iconeGomme);
@@ -281,6 +292,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) { //Manipulation
+					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
 					gom.setIcon(iconeGomme);
@@ -298,6 +310,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) { //Gomme
+					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
 					gom.setIcon(iconeGommeSelec);
@@ -314,7 +327,27 @@ public class PanneauChoix extends JPanel{
 					vdessin.repaint();
 					vdessin.setCursor(CurseurGomme);
 					
+				}else if(source.equals(texte)) { //texte
+					System.out.println("test");
+					texte.setIcon(iconeTexteSelec);
+					bar.setEnabled(false);
+					textBar.setEnabled(false);
+					gom.setIcon(iconeGomme);
+					ma.setIcon(iconeMa);
+					tml.setIcon(iconeTml);
+					nf.setIcon(iconeNf);
+					FigureCreuse.setEnabled(false);
+					fig.setEnabled(false);
+					supp.setEnabled(false);
+					suppTout.setEnabled(false);
+					co.setEnabled(false);
+					copie.setEnabled(false);
+					dmodele.deselectTous();
+					vdessin.repaint();
+					vdessin.setCursor(CurseurTexte);
+				
 				}else { //si aucun n'est coché
+					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
 					gom.setIcon(iconeGomme);
@@ -341,6 +374,7 @@ public class PanneauChoix extends JPanel{
 		tml.addActionListener(ALboutons);
 		ma.addActionListener(ALboutons);
 		gom.addActionListener(ALboutons);
+		texte.addActionListener(ALboutons);
 		
 		
 		//Barre permettant de changer l'epaisseur du pinceau (traits et figures)
@@ -443,6 +477,16 @@ public class PanneauChoix extends JPanel{
 						}
 					}	
 				}
+			}
+		});
+		
+		//permet d'ecrire dans le dessin
+		texte.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vdessin.ecrire();
+				
 			}
 		});
 		

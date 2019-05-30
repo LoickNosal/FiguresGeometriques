@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import controleur.CopieFigure;
+import controleur.DrawText;
 import controleur.FabricantFigures;
 import controleur.Gomme;
 import controleur.ManipulateurFormes;
@@ -24,6 +25,7 @@ import controleur.TraceurForme;
 import controleur.Trait;
 import modele.DessinModele;
 import modele.FigureColoree;
+import modele.Texte;
 
 /**
  * @author Loïck Nosal
@@ -61,6 +63,18 @@ public class VueDessin extends JPanel implements Observer{
 	 * curseur mainfermee, lorsque le clique est active sur le dessin
 	 */
 	private Cursor CurseurMainFermee;
+	/**
+	 * permet d'ecrire du texte dans le JPanel
+	 */
+	private DrawText dt;
+	/**
+	 * curseur de base du texte
+	 */
+	private Cursor CurseurTexte;
+	/**
+	 * curseur vide (blanc) lorsque l'on clique dans texte
+	 */
+	private Cursor CurseurVide;
 	
 	
 	public Cursor getCurseurMainOuverte() {
@@ -71,6 +85,14 @@ public class VueDessin extends JPanel implements Observer{
 		return this.CurseurMainFermee;
 	}
 	
+	public Cursor getCurseurTexte() {
+		return this.CurseurTexte;
+	}
+	
+	public Cursor getCurseurVide() {
+		return this.CurseurVide;
+	}
+	
 	
 	public void setCurseurMainOuverte(Cursor c) {
 		this.CurseurMainOuverte = c;
@@ -78,6 +100,22 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public void setCurseurMainFermee(Cursor c) {
 		this.CurseurMainFermee = c;
+	}
+	
+	public void setCurseurTexte(Cursor c) {
+		this.CurseurTexte = c;
+	}
+	
+	public void setCurseurVide(Cursor c) {
+		this.CurseurVide = c;
+	}
+	
+	public void changeCurseurTexte() {
+		if (this.getCursor() == this.CurseurTexte) {
+			this.setCursor(this.CurseurVide);
+		}else if (this.getCursor() == this.CurseurVide) {
+			this.setCursor(this.CurseurTexte);
+		}
 	}
 
 	/**
@@ -88,6 +126,7 @@ public class VueDessin extends JPanel implements Observer{
 		this.dessin = new DessinModele();
 		this.setFocusable(true);
 		this.requestFocusInWindow();
+		
 		
 	}
 	
@@ -155,6 +194,12 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	}
 	
+	public void ajouterTexte(Texte t) {
+		if (this.dt != null) {
+			this.dessin.ajoute(t);
+		}
+	}
+	
 	/**
 	 *  Cette méthode permet de tracer des traits à la souris (ajout du listener).
 	 *  @param c couleur du trait
@@ -191,6 +236,19 @@ public class VueDessin extends JPanel implements Observer{
 		this.desactiverToutListener();
 		this.addMouseListener(this.go);
 		this.addMouseMotionListener(this.go);
+	}
+	
+	/*
+	 * permet d'ecrire du texte
+	 */
+	public void ecrire() {
+		System.out.println("ecrire");
+		this.dt = new DrawText(this.getGraphics());
+		this.desactiverToutListener();
+		this.addMouseListener(this.dt);
+		this.addKeyListener(this.dt);
+		this.setFocusable(true);
+		this.requestFocusInWindow();
 	}
 	
 	/**

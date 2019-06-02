@@ -87,8 +87,6 @@ public class Ligne extends FigureColoree {
 			if (vecteurAC.rendreX() != 0 && vecteurAC.rendreY() != 0) {
 				k = (double)(vecteurAB.rendreX()/vecteurAC.rendreX());
 				k2 = (double)(vecteurAB.rendreY()/vecteurAC.rendreY());
-				System.out.println(k);
-				System.out.println(k2);
 				if (k>0 || k2>0) {
 					res = true;
 				}

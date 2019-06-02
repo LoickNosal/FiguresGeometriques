@@ -7,13 +7,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.imageio.ImageIO;
+
 import javax.swing.JPanel;
 
 import controleur.CopieFigure;
@@ -110,6 +107,9 @@ public class VueDessin extends JPanel implements Observer{
 		this.CurseurVide = c;
 	}
 	
+	/**
+	 * permet de changer le curseur du dessin
+	 */
 	public void changeCurseurTexte() {
 		if (this.getCursor() == this.CurseurTexte) {
 			this.setCursor(this.CurseurVide);
@@ -158,6 +158,9 @@ public class VueDessin extends JPanel implements Observer{
 		return null;
 	}
 	
+	/**
+	 * PaintComponent du Jpanel
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -194,6 +197,10 @@ public class VueDessin extends JPanel implements Observer{
 		}
 	}
 	
+	/**
+	 * permet d'ajouter un texte en tant que figureColoree
+	 * @param t texte à ajouter
+	 */
 	public void ajouterTexte(Texte t) {
 		if (this.dt != null) {
 			this.dessin.ajoute(t);
@@ -206,7 +213,6 @@ public class VueDessin extends JPanel implements Observer{
 	 *  @param e epaisseur du trait
 	 */
 	public void trace(Color c,float e) {
-		System.out.println("tracer");
 		this.desactiverToutListener();
 		this.tf = new TraceurForme(this.getGraphics(),e);
 		this.tf.setColor(c);
@@ -219,7 +225,6 @@ public class VueDessin extends JPanel implements Observer{
 	 * Cette méthode permet d'initier le mécanisme de manipulation des figures à la souris (ajout du listener).
 	 */
 	public void manip() {
-		System.out.println("manip");
 		this.mf = new ManipulateurFormes(this.dessin);
 		this.desactiverToutListener();	
 		this.addMouseListener(this.mf);
@@ -231,7 +236,7 @@ public class VueDessin extends JPanel implements Observer{
 	 * permet de gommer des figures ou des traits
 	 */
 	public void gommer() {
-		System.out.println("gommer");
+
 		this.go = new Gomme(this.dessin);
 		this.desactiverToutListener();
 		this.addMouseListener(this.go);
@@ -242,7 +247,7 @@ public class VueDessin extends JPanel implements Observer{
 	 * permet d'ecrire du texte
 	 */
 	public void ecrire(Color c,int taille) {
-		System.out.println("ecrire");
+
 		this.dt = new DrawText(this.getGraphics(),taille);
 		this.dt.setCouleurTexte(c);
 		this.desactiverToutListener();
@@ -256,7 +261,7 @@ public class VueDessin extends JPanel implements Observer{
 	 * permet de copier une figure (clone)
 	 */
 	public void copieFigure() {
-		System.out.println("copie");
+
 		this.cf = new CopieFigure(this.dessin);
 		cf.Copier();
 		this.requestFocusInWindow();

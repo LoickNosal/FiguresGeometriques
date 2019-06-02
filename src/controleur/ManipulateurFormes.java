@@ -78,6 +78,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 
 	/**
 	 * Cette méthode retourne le nombre de figures apparaissant dans ce dessin.
+	 * @return nombre de figure du dessin
 	 */
 	public int nbFigures() {
 		return this.lfg.size();
@@ -85,6 +86,7 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 	
 	/**
 	 * Cette méthode retourne la figure actuellement sélectionnée.
+	 * @return figureColoree selectionnée
 	 */
 	public FigureColoree figureSelection() {
 		for (FigureColoree f : this.lfg) {
@@ -129,7 +131,6 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 						
 						this.indice = lfg.get(this.sel).carreDeSelection(last_x, last_y);
 							if (indice != -1) {
-								System.out.println("test");
 								lfg.get(this.sel).transformation(last_x, last_y, this.indice);
 								last_x = e.getX();
 								last_y = e.getY();
@@ -181,22 +182,11 @@ public class ManipulateurFormes implements MouseListener, MouseMotionListener{
 						
 						this.trans = true;	
 						
-//						if (this.lfg.size() > 1) {
-//							FigureColoree f = this.lfg.get(this.sel);
-//							FigureColoree f2= this.lfg.get(this.lfg.size()-1);
-//							lfg.remove(this.lfg.size()-1);
-//							this.dm.get_fg().remove(this.dm.get_fg().size()-1);
-//							lfg.set(this.sel, f2);
-//							this.dm.get_fg().set(this.sel, f2);
-//							lfg.add(f);
-//							this.dm.get_fg().add(f);
-//						}
 						
 
 						
 					}else {
 						lfg.get(i).deSelectionne();
-						//this.dm.setSel(-1);
 					}
 					
 

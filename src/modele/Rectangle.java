@@ -1,7 +1,6 @@
 package modele;
 
 import java.awt.Color;
-import java.awt.Polygon;
 import java.io.Serializable;
 import java.util.ArrayList;
 /**

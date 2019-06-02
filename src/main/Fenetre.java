@@ -1,21 +1,11 @@
 package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import controleur.PanneauChoix;
 import vue.VueDessin;
 
@@ -80,6 +70,7 @@ public class Fenetre extends JFrame{
 	public static void main(String[] args) throws IOException {
 		
 		//Si on veut l'interface Windows
+		
 //		try {
 //			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException

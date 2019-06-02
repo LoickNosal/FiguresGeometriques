@@ -20,6 +20,7 @@ public class Carre extends Rectangle implements Serializable{
 	
 	/**
 	 * permet de cloner un carre
+	 * @return Carré cloné
 	 */
 	public Carre clone() {
 		Carre ca = new Carre(this.epaisseur);

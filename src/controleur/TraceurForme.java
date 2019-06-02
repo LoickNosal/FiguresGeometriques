@@ -72,6 +72,7 @@ public class TraceurForme implements MouseListener,MouseMotionListener{
 	
 	/**
 	 * Méthode pour récupérer les traits
+	 * @retrun liste de traits
 	 */
 	public ArrayList<Trait> getListe_traits(){
 		return this.liste_traits;

@@ -32,10 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
-import javax.swing.JSlider;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -424,7 +421,7 @@ public class PanneauChoix extends JPanel{
 		
 		
 		//permet de determiner la couleur, pour une nouvelle figure,
-		//pour un trait ou quand on modifie une figure.
+		//pour un trait, pour un texte ou quand on modifie une figure.
 		co.addActionListener(new ActionListener() {
 			
 			@Override
@@ -550,8 +547,6 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		
-				System.out.println(epaisseur);
 				vdessin.trace(couleurActuelle,epaisseur);
 				
 				
@@ -608,7 +603,6 @@ public class PanneauChoix extends JPanel{
 				File result;
 				if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
 						result = fc.getSelectedFile();;
-						System.out.println(result.getAbsolutePath());
 						try {
 							dmodele.sauvegarder(result);
 						} catch (Exception ex) {
@@ -637,7 +631,6 @@ public class PanneauChoix extends JPanel{
 				
 				if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
 						result = fc.getSelectedFile();
-						System.out.println(result.getAbsolutePath());
 						String chemin = result.getAbsolutePath() + ".png";
 						try {
 							ImageIO.write(image, "png", new File(chemin));
@@ -664,7 +657,6 @@ public class PanneauChoix extends JPanel{
 					File result;
 					if (fc.showOpenDialog(null)== JFileChooser.APPROVE_OPTION) {
 							result = fc.getSelectedFile();;
-							System.out.println(result.getAbsolutePath());
 							try {
 							
 								dmodele.deleteObservers();
@@ -703,11 +695,9 @@ public class PanneauChoix extends JPanel{
 
 						Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler ..\\FiguresGeometriques\\ModeEmploi.pdf");
 						p.waitFor();
-						System.out.println("charge");
 							
 					} else {
 						JOptionPane.showMessageDialog(null,"Mode d'emploi introuvable","Chargement impossible",JOptionPane.WARNING_MESSAGE);
-						System.out.println("File is not exists");
 
 					}
 
@@ -765,6 +755,7 @@ public class PanneauChoix extends JPanel{
 	/**
 	 * Methode determinant la taille à utiliser pour le texte
 	 * @param index index de la taille dans le jcombobox
+	 * @return taille selectionnée
 	 */
 	public int determineTaile(int index) {
 		return index+8; //car de 8 à 60
@@ -775,6 +766,7 @@ public class PanneauChoix extends JPanel{
 	/**
 	 * Méthode implémentant la création d'une forme géométrique.
 	 * @param index index de la figure dans le jcombobox
+	 * @return FigureColoree selectionnée
 	 */
 	public FigureColoree creeFigure(int index) {
 		switch(index) {
@@ -797,6 +789,7 @@ public class PanneauChoix extends JPanel{
 	
 	/**
 	 * permet d'utiliser une couleur personnalisée grace au JColorChooser
+	 * @return couleur selectionnée
 	 */
 	public Color couleurPerso() {
 		Color couleur = JColorChooser.showDialog(null, "couleur du fond", Color.WHITE);

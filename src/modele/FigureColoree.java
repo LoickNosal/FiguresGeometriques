@@ -77,7 +77,8 @@ public abstract class FigureColoree implements Serializable{
 		return this.tab_mem;
 	}
 	/**
-	 * permet de savoir si une figure est selectionne
+	 * permet de savoir si une figure est selectionnee
+	 * @return indique si la figure est selectionnée
 	 */
 	public boolean isSelected() {
 		return this.selected;

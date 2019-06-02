@@ -58,9 +58,9 @@ public class Trait extends FigureColoree implements Serializable {
 	}
 
 	/**
-	 * clonage de trait impossible mais methode faite pour l'implémenter(non-Javadoc)
-	 * @see modele.FigureColoree#clone()
+	 * clonage de trait impossible mais methode faite pour l'implémenter
 	 * peut être plus tard
+	 * @return trait cloné
 	 */
 	public Trait clone() {
 		int x1 = this.debx;

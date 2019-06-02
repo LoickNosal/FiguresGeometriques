@@ -29,6 +29,7 @@ public class Cercle extends ConiqueCentree implements Serializable{
 	
 	/**
 	 * permet de cloner un cercle
+	 * @return Cercle cloné
 	 */
 	public Cercle clone() {
 		Cercle ce = new Cercle(this.epaisseur);

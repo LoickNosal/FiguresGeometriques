@@ -167,12 +167,12 @@ public class DessinModele extends Observable implements Serializable{
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();
-		System.out.println("sauvegarde effecutée");
 	}
 
 	/**
 	 * permet de charger un dessin depuis un fichier
 	 * @param source fichier depuis lequel charger le dessin
+	 * @return DessinModele chargé
 	 */
 	public DessinModele charger(File source) throws IOException, ClassNotFoundException{
 		
@@ -180,7 +180,6 @@ public class DessinModele extends Observable implements Serializable{
 		DessinModele p = (DessinModele)(di.readObject());
 		p.setSel(-1);
 		di.close();
-		System.out.println("sauvegarde chargée");
 		
 		return p;
 		

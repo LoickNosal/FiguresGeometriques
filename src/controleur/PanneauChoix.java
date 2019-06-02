@@ -329,7 +329,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurGomme);
 					
 				}else if(source.equals(texte)) { //texte
-					System.out.println("test");
+
 					texte.setIcon(iconeTexteSelec);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
@@ -341,7 +341,7 @@ public class PanneauChoix extends JPanel{
 					fig.setEnabled(false);
 					supp.setEnabled(false);
 					suppTout.setEnabled(false);
-					co.setEnabled(false);
+					co.setEnabled(true);
 					copie.setEnabled(false);
 					dmodele.deselectTous();
 					vdessin.repaint();
@@ -423,19 +423,25 @@ public class PanneauChoix extends JPanel{
 				
 				if (nf.isSelected() && couleurActuelle!= null && fc != null) {
 					fc.changeCouleur(couleurActuelle);
-				
 					vdessin.repaint();
 
 				}else if (ma.isSelected() && couleurActuelle!= null) {
 					if (vdessin.getManipulateurFormes().figureSelection() != null) {
-						System.out.println("test");
 						vdessin.getManipulateurFormes().figureSelection().changeCouleur(couleurActuelle);
 					}
 					vdessin.repaint();
 				}else if (tml.isSelected() && couleurActuelle!= null) {
-				
-					vdessin.getTraceurForme().setColor(couleurActuelle);
-					vdessin.repaint();
+					if (vdessin.getTraceurForme() != null) {
+						vdessin.getTraceurForme().setColor(couleurActuelle);
+						vdessin.repaint();
+					}
+					
+				}else if(texte.isSelected() && couleurActuelle != null) {
+					if (vdessin.getDrawText() != null) {
+						vdessin.getDrawText().setCouleurTexte(couleurActuelle);
+						texte.doClick();
+						vdessin.repaint();
+					}
 				}
 			}
 		});
@@ -486,7 +492,7 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vdessin.ecrire();
+				vdessin.ecrire(couleurActuelle);
 				
 			}
 		});

@@ -241,9 +241,10 @@ public class VueDessin extends JPanel implements Observer{
 	/*
 	 * permet d'ecrire du texte
 	 */
-	public void ecrire() {
+	public void ecrire(Color c) {
 		System.out.println("ecrire");
 		this.dt = new DrawText(this.getGraphics());
+		this.dt.setCouleurTexte(c);
 		this.desactiverToutListener();
 		this.addMouseListener(this.dt);
 		this.addKeyListener(this.dt);
@@ -272,6 +273,10 @@ public class VueDessin extends JPanel implements Observer{
 	
 	public TraceurForme getTraceurForme() {
 		return this.tf;
+	}
+	
+	public DrawText getDrawText() {
+		return this.dt;
 	}
 	
 	/**

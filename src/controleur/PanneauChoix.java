@@ -144,7 +144,7 @@ public class PanneauChoix extends JPanel{
 		JRadioButton tml = new JRadioButton ("Tracé à main levée",iconeTml);
 		JRadioButton ma = new JRadioButton ("Manipulation",iconeMa);
 		JRadioButton gom = new JRadioButton ("Gomme",iconeGomme);
-		JRadioButton texte = new JRadioButton ("texte",iconeTexte);
+		JRadioButton texte = new JRadioButton ("Texte",iconeTexte);
 		
 		JButton copie = new JButton("Copier Figure",copy);
 		JButton couleur = new JButton(); //affiche la couleur en cours
@@ -154,6 +154,7 @@ public class PanneauChoix extends JPanel{
 
 		JTextArea textBar = new JTextArea("Largeur du Pinceau (" + this.epaisseur + ")");
 		textBar.setEditable(false); //empeche d'ecrire dedans
+		textBar.setBackground(this.getBackground());
 		JScrollBar bar = new JScrollBar(0,1,1,1,21); //de 1 a 20
 		bar.setPreferredSize(new Dimension(100,20));
 	
@@ -196,7 +197,7 @@ public class PanneauChoix extends JPanel{
 		final JMenu aide = new JMenu("Aide");
 		JMenuItem modeEmploi = new JMenuItem("mode d'Emploi");
 		aide.add(modeEmploi);
-		modeEmploi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,0));
+		modeEmploi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,InputEvent.CTRL_DOWN_MASK));
 		modeEmploi.setIcon(help);
 	
 		menuBar.add(menuFichier);

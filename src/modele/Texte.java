@@ -2,6 +2,7 @@ package modele;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -12,13 +13,15 @@ public class Texte extends FigureColoree{
 	private Color couleur;
 	private int posX;
 	private int posY;
+	private int taille;
 
-	public Texte(float ep,String t, Color c, int x, int y) {
+	public Texte(float ep,String t, Color c, int x, int y,int ta) {
 		super(ep);
 		this.texte = t;
 		this.couleur = c;
 		this.posX = x;
 		this.posY = y;
+		this.taille = ta;
 		
 	}
 	
@@ -43,6 +46,7 @@ public class Texte extends FigureColoree{
 
 	public void afficher(Graphics g) {
 		g.setColor(this.couleur);
+		g.setFont(new Font("Ma Police",0,this.taille)); //permet de changer la taille de la police
 		g.drawString(this.texte,this.posX,this.posY);
 		super.afficher(g);
 	}
@@ -52,7 +56,8 @@ public class Texte extends FigureColoree{
 	@Override
 	public boolean estDedans(int x, int y) {
 		boolean res = false;
-		if ((x>=this.posX && x<=this.posX+this.texte.length()*6 ) 
+		//pour gommer le texte
+		if ((x>=this.posX && x<=this.posX+this.texte.length()*6+(this.taille *5) ) 
 				&& (y>this.posY-10  && y<this.posY+10)) {
 			res = true;
 		}

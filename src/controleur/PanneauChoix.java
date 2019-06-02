@@ -161,7 +161,10 @@ public class PanneauChoix extends JPanel{
 		
 		final JComboBox fig = new JComboBox (new String [] {"quadrilatere","triangle","rectangle","carre", "Cercle","Ligne"});
 		final JComboBox co = new JComboBox (new String [] {"noir","vert","jaune","bleu","rouge","rose","gris","personnalisée"});
-		
+		final JComboBox taille = new JComboBox(new String[] {"8","9","10","11","12","13","14","15","16","17","18"
+				,"19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"
+				,"39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58"
+				,"59","60",});
 
 		final JMenuBar menuBar = new JMenuBar();
 		
@@ -219,6 +222,7 @@ public class PanneauChoix extends JPanel{
 		placementHaut.add(copie);
 		placementHaut.add(gom);
 		placementHaut.add(texte);
+		placementHaut.add(taille);
 		
 		//Jpanel du bas
 		placementBas.add(textBar);
@@ -227,6 +231,7 @@ public class PanneauChoix extends JPanel{
 		placementBas.add(fig);
 		placementBas.add(co);
 		placementBas.add(couleur);
+		
 		
 		
 		//parametres de base
@@ -240,6 +245,8 @@ public class PanneauChoix extends JPanel{
 		co.setEnabled(true);
 		suppTout.setEnabled(false);
 		copie.setEnabled(false);
+		taille.setEnabled(false);
+
 		
 		//Panneau de choix divisé en 3
 		this.add(menuBar,BorderLayout.NORTH);
@@ -256,6 +263,7 @@ public class PanneauChoix extends JPanel{
 				JRadioButton source = (JRadioButton)e.getSource(); 
 				
 				if(source.equals(nf)){ //Nouvelle figure
+					taille.setEnabled(false);
 					texte.setIcon(iconeTexte);
 					bar.setEnabled(true);
 					textBar.setEnabled(true);
@@ -275,6 +283,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurDefaut);
 					
 				}else if(source.equals(tml)){ //Trace à main levée
+					taille.setEnabled(false);
 					texte.setIcon(iconeTexte);
 					bar.setEnabled(true);
 					textBar.setEnabled(true);
@@ -293,6 +302,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurPinceau);
 					
 				}else if(source.equals(ma)) { //Manipulation
+					taille.setEnabled(false);
 					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
@@ -311,6 +321,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurMainOuverte);
 					
 				}else if(source.equals(gom)) { //Gomme
+					taille.setEnabled(false);
 					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
@@ -329,7 +340,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurGomme);
 					
 				}else if(source.equals(texte)) { //texte
-
+					taille.setEnabled(true);
 					texte.setIcon(iconeTexteSelec);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
@@ -348,6 +359,7 @@ public class PanneauChoix extends JPanel{
 					vdessin.setCursor(CurseurTexte);
 				
 				}else { //si aucun n'est coché
+					taille.setEnabled(false);
 					texte.setIcon(iconeTexte);
 					bar.setEnabled(false);
 					textBar.setEnabled(false);
@@ -446,6 +458,21 @@ public class PanneauChoix extends JPanel{
 			}
 		});
 		
+		//permet de determiner la taille du texte
+		taille.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int t = determineTaile(taille.getSelectedIndex());
+				if (vdessin.getDrawText() != null) {
+					vdessin.getDrawText().setTailleTexte(t);
+					texte.doClick();
+					vdessin.repaint();
+				}
+				
+			}
+		});
+		
 		
 		//permet de construire une nouvelle figure
 		fig.addActionListener(new ActionListener(){
@@ -492,7 +519,8 @@ public class PanneauChoix extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vdessin.ecrire(couleurActuelle);
+				int t = determineTaile(taille.getSelectedIndex());
+				vdessin.ecrire(couleurActuelle,t);
 				
 			}
 		});
@@ -733,6 +761,17 @@ public class PanneauChoix extends JPanel{
 			
 		}
 	}
+	
+	/**
+	 * Methode determinant la taille à utiliser pour le texte
+	 * @param index index de la taille dans le jcombobox
+	 */
+	public int determineTaile(int index) {
+		return index+8; //car de 8 à 60
+		
+	}
+	
+	
 	/**
 	 * Méthode implémentant la création d'une forme géométrique.
 	 * @param index index de la figure dans le jcombobox

@@ -23,8 +23,9 @@ public class DrawText implements MouseListener, KeyListener{
 	private boolean ecrit;
 	private boolean peutEcrire;
 	private Color couleurTexte;
+	private int tailleTexte;
 	
-	public DrawText(Graphics gr) {
+	public DrawText(Graphics gr,int taille) {
 		this.g = gr;
 		this.x = -1;
 		this.y = -1;
@@ -33,11 +34,16 @@ public class DrawText implements MouseListener, KeyListener{
 		this.ecrit = false;
 		this.peutEcrire = false;
 		this.couleurTexte = Color.black;
+		this.tailleTexte = taille;
 	}
 	
 	public void setCouleurTexte(Color c) {
 		this.couleurTexte = c;
 		System.out.println(c);
+	}
+	
+	public void setTailleTexte(int t) {
+		this.tailleTexte = t;
 	}
 	
 	public boolean changeEcrit() {
@@ -58,7 +64,7 @@ public class DrawText implements MouseListener, KeyListener{
 		System.out.println(ecrit);
 		if (ecrit == true) {
 			if (this.s.equals("")) {
-				this.listeTexte.add(new Texte(-1, this.s, this.couleurTexte, this.x, this.y));
+				this.listeTexte.add(new Texte(-1, this.s, this.couleurTexte, this.x, this.y,this.tailleTexte));
 				((VueDessin)e.getSource()).ajouterTexte(this.listeTexte.get(this.listeTexte.size()-1));
 				this.peutEcrire = true;
 			}
